@@ -80,54 +80,18 @@ export default function ThemeToggle() {
             </clipPath>
           </defs>
           <g clipPath="url(#sunHalf)">
-            <circle cx="12" cy="12" r="8" fill="currentColor" />
-            <line
-              x1="12"
-              y1="4"
-              x2="12"
-              y2="2"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="12"
-              y1="22"
-              x2="12"
-              y2="20"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="4"
-              y1="12"
-              x2="2"
-              y2="12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="5.17"
-              y1="5.17"
-              x2="3.76"
-              y2="3.76"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <line
-              x1="18.83"
-              y1="18.83"
-              x2="20.24"
-              y2="20.24"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
+            <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" strokeWidth="2" />
+            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" strokeWidth="2" />
+            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" strokeWidth="2" />
+            <line x1="4.22" y1="4.22" x2="2.81" y2="2.81" stroke="currentColor" strokeWidth="2" />
+            <line x1="19.78" y1="19.78" x2="21.19" y2="21.19" stroke="currentColor" strokeWidth="2" />
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" strokeWidth="2" />
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" strokeWidth="2" />
+            <line x1="4.22" y1="19.78" x2="2.81" y2="21.19" stroke="currentColor" strokeWidth="2" />
+            <line x1="19.78" y1="4.22" x2="21.19" y2="2.81" stroke="currentColor" strokeWidth="2" />
           </g>
           <g clipPath="url(#moonHalf)">
-            <rect x="0" y="0" width="24" height="24" fill="currentColor" />
-            <path
-              d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-              fill="transparent"
-            />
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" />
           </g>
         </svg>
       )}
