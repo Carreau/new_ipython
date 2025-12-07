@@ -1,0 +1,22 @@
+{
+  "name": "ipython-website",
+  "version": "1.0.0",
+  "description": "Modern website for IPython",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^4.15.0",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.18"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="About IPython">
+  <Navigation />
+
+  <main class="min-h-screen bg-white dark:bg-ipython-dark">
+    <!-- Header -->
+    <section class="bg-gradient-to-r from-ipython-green to-ipython-blue py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-4xl font-bold text-white mb-4">About IPython</h1>
+        <p class="text-xl text-gray-100">The story behind productive interactive computing</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-12">
+        <!-- Project History -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Project History</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            IPython (Interactive Python) was created by Fernando Pérez in 2001 as a more powerful interactive shell for Python. It evolved from Mathematica's notebook interface and was designed to improve the interactive computing experience.
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Over the years, IPython became the foundation for Jupyter notebooks and the broader Project Jupyter ecosystem, revolutionizing how scientists, data analysts, and educators work with code.
+          </p>
+        </div>
+
+        <!-- Jupyter Relationship -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">IPython and Project Jupyter</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Since IPython 4.0 (released in 2015), the language-agnostic components were separated into Project Jupyter. IPython now focuses specifically on interactive Python computing as a Jupyter kernel and terminal interface.
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Today, IPython is a core component of the Jupyter ecosystem, providing the powerful interactive Python backend for notebooks, JupyterLab, and other tools.
+          </p>
+        </div>
+
+        <!-- Architecture -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Modern Architecture</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            IPython is organized into several key components:
+          </p>
+          <div class="space-y-4">
+            <div class="border-l-4 border-ipython-cyan pl-6">
+              <h3 class="font-bold text-gray-900 dark:text-white mb-2">Terminal IPython</h3>
+              <p class="text-gray-600 dark:text-gray-400">A powerful command-line interface for interactive Python.</p>
+            </div>
+            <div class="border-l-4 border-ipython-cyan pl-6">
+              <h3 class="font-bold text-gray-900 dark:text-white mb-2">IPython Kernel</h3>
+              <p class="text-gray-600 dark:text-gray-400">Backend for Jupyter notebooks and JupyterLab.</p>
+            </div>
+            <div class="border-l-4 border-ipython-cyan pl-6">
+              <h3 class="font-bold text-gray-900 dark:text-white mb-2">Traitlets</h3>
+              <p class="text-gray-600 dark:text-gray-400">Configuration and type system used by IPython and Jupyter.</p>
+            </div>
+            <div class="border-l-4 border-ipython-cyan pl-6">
+              <h3 class="font-bold text-gray-900 dark:text-white mb-2">Display System</h3>
+              <p class="text-gray-600 dark:text-gray-400">Rich output rendering for notebooks and terminals.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Governance -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Governance</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            IPython is part of Project Jupyter and operates under a community-driven governance model. The project is guided by the Jupyter Governance Council and maintained by volunteers from the open-source community.
+          </p>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Development decisions are made transparently through GitHub discussions, pull requests, and community meetings. Anyone can contribute to IPython regardless of their background or experience level.
+          </p>
+        </div>
+
+        <!-- Citation -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Citing IPython</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            If IPython has been significant to a project that leads to an academic publication, please acknowledge this by citing the project. The canonical academic reference is:
+          </p>
+
+          <div class="bg-gray-50 dark:bg-ipython-slate p-6 rounded-lg mb-6 font-mono text-sm">
+            <div class="text-gray-700 dark:text-gray-300">
+              Pérez, F., & Granger, B. E. (2007). IPython: a system for interactive scientific computing. Computing in Science & Engineering, 9(3), 21-29.
+            </div>
+            <div class="text-gray-500 mt-4">DOI: 10.1109/MCSE.2007.53</div>
+          </div>
+
+          <p class="text-gray-600 dark:text-gray-400 mb-4">For BibTeX citations, see the <a href="https://github.com/ipython/ipython#citation" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">GitHub repository</a>.</p>
+        </div>
+
+        <!-- License -->
+        <div>
+          <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">License</h2>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            IPython is released under the <a href="https://opensource.org/licenses/BSD-3-Clause" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">BSD 3-Clause License</a>, which allows free use in both commercial and non-commercial projects.
+          </p>
+        </div>
+
+        <!-- Links -->
+        <div class="bg-blue-50 dark:bg-ipython-slate border-l-4 border-ipython-cyan p-6 rounded">
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Learn More</h3>
+          <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+            <li>
+              <a href="https://github.com/ipython/ipython" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">GitHub Repository</a>
+            </li>
+            <li>
+              <a href="https://jupyter.org" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Project Jupyter</a>
+            </li>
+            <li>
+              <a href="https://ipython.readthedocs.io" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Official Documentation</a>
+            </li>
+            <li>
+              <a href="https://github.com/ipython/ipython/blob/main/LICENSE" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Full License</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

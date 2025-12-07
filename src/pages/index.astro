@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Home">
+  <Navigation />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="min-h-screen bg-gradient-to-br from-ipython-blue via-ipython-cyan to-ipython-green flex items-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Productive Interactive Computing</h1>
+            <p class="text-xl text-gray-100 mb-8 leading-relaxed">IPython provides a rich architecture for interactive computing with a powerful shell, Jupyter kernel support, and flexible tools for parallel and distributed computing.</p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/install" class="px-8 py-4 bg-white text-ipython-blue font-bold rounded-lg hover:bg-gray-100 transition-colors text-center">
+                Install IPython
+              </a>
+              <a href="/get-started" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-colors text-center">
+                Get Started
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Code Block -->
+          <div class="hidden md:block bg-gray-900 rounded-lg p-6 font-mono text-sm">
+            <div class="text-green-400">$ ipython</div>
+            <div class="text-gray-300 mt-2">IPython 8.18.1 -- An enhanced Interactive Python</div>
+            <div class="text-gray-400">Type 'copyright', 'credits' or 'license' for more information</div>
+            <div class="text-gray-300 mt-4">
+              <div class="text-blue-400">In [1]:</div>
+              <span class="text-gray-300"> import numpy as np</span>
+            </div>
+            <div class="text-gray-300">
+              <div class="text-blue-400">In [2]:</div>
+              <span class="text-gray-300"> data = np.array([1, 2, 3, 4, 5])</span>
+            </div>
+            <div class="text-gray-300">
+              <div class="text-blue-400">In [3]:</div>
+              <span class="text-gray-300"> data.mean()</span>
+            </div>
+            <div class="text-yellow-300 mt-2">Out[3]: 3.0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-white dark:bg-ipython-dark">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Powerful Features</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Smart Completion -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-cyan rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Smart Tab Completion</h3>
+            <p class="text-gray-600 dark:text-gray-400">Context-aware completion powered by Jedi. Complete attributes, methods, and filenames with intelligent suggestions.</p>
+          </div>
+
+          <!-- Magic Commands -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-cyan rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1m2-1v2.5M12 21v-10"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Magic Commands</h3>
+            <p class="text-gray-600 dark:text-gray-400">Built-in commands for profiling, debugging, timing, and running external code. %timeit, %debug, %run, and many more.</p>
+          </div>
+
+          <!-- Object Introspection -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-cyan rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Object Introspection</h3>
+            <p class="text-gray-600 dark:text-gray-400">Explore objects with ? and ?? to view docstrings, signatures, and source code instantly.</p>
+          </div>
+
+          <!-- Rich History -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-green rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Rich History</h3>
+            <p class="text-gray-600 dark:text-gray-400">Powerful command history system with search, scrollback, and persistence across sessions.</p>
+          </div>
+
+          <!-- System Integration -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-green rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">System Integration</h3>
+            <p class="text-gray-600 dark:text-gray-400">Execute shell commands directly with !, access system information, and manipulate the environment seamlessly.</p>
+          </div>
+
+          <!-- Jupyter Kernel -->
+          <div class="p-8 rounded-lg border border-gray-200 dark:border-ipython-slate hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-shadow">
+            <div class="w-12 h-12 bg-ipython-green rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Jupyter Kernel</h3>
+            <p class="text-gray-600 dark:text-gray-400">Powers the Jupyter Notebook and JupyterLab, enabling interactive computing in web-based environments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-20 bg-gray-50 dark:bg-ipython-slate">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Who Uses IPython?</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white dark:bg-ipython-dark rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">📊</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Data Scientists</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Explore datasets, prototype algorithms, and share findings with rich visualizations.</p>
+          </div>
+
+          <div class="bg-white dark:bg-ipython-dark rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">👨‍💻</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Developers</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Debug code, test ideas interactively, and rapidly develop Python applications.</p>
+          </div>
+
+          <div class="bg-white dark:bg-ipython-dark rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🎓</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Educators</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Teach programming and data analysis interactively with immediate feedback and visualization.</p>
+          </div>
+
+          <div class="bg-white dark:bg-ipython-dark rounded-lg p-8 text-center hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🔧</div>
+            <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">System Admins</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm">Automate tasks, monitor systems, and manage infrastructure with Python scripts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-ipython-blue to-ipython-cyan">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
+        <p class="text-xl text-gray-100 mb-8">Install IPython today and boost your interactive computing experience.</p>
+        <a href="/install" class="inline-block px-8 py-4 bg-white text-ipython-blue font-bold rounded-lg hover:bg-gray-100 transition-colors">
+          Install Now
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
