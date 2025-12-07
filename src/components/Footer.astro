@@ -1,5 +1,6 @@
 ---
 // Footer component with links and copyright
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-gray-50 dark:bg-ipython-slate border-t border-gray-200 dark:border-ipython-dark">
@@ -11,13 +12,14 @@
         <p class="text-sm text-gray-600 dark:text-gray-400">Productive Interactive Computing for Python.</p>
       </div>
 
-      <!-- Product -->
+      <!-- Resources -->
       <div>
-        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Product</h3>
+        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Resources</h3>
         <ul class="space-y-2 text-sm">
           <li><a href="/features" class="text-gray-600 dark:text-gray-400 hover:text-ipython-cyan transition-colors">Features</a></li>
           <li><a href="/install" class="text-gray-600 dark:text-gray-400 hover:text-ipython-cyan transition-colors">Installation</a></li>
-          <li><a href="https://ipython.readthedocs.io/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-ipython-cyan transition-colors">Documentation</a></li>
+          <li><a href="https://pypi.org/project/ipython/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-ipython-cyan transition-colors">PyPI</a></li>
+          <li><a href="https://ipython.readthedocs.io/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-ipython-cyan transition-colors">Documentation</a></li>
         </ul>
       </div>
 
@@ -42,7 +44,7 @@
     </div>
 
     <div class="border-t border-gray-200 dark:border-ipython-dark pt-8 flex flex-col md:flex-row justify-between items-center">
-      <p class="text-sm text-gray-600 dark:text-gray-400">&copy; 2024 The IPython Development Team. All rights reserved.</p>
+      <p class="text-sm text-gray-600 dark:text-gray-400">&copy; {currentYear} The IPython Development Team. All rights reserved.</p>
       <div class="flex space-x-6 mt-4 md:mt-0">
         <a href="https://github.com/ipython/ipython" target="_blank" class="text-gray-400 hover:text-ipython-cyan transition-colors">
           <span class="sr-only">GitHub</span>
