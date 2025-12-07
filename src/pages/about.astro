@@ -71,10 +71,38 @@ function loadCache(): CacheData | null {
     const age = now - cache.timestamp;
     const ageMinutes = Math.floor(age / 60000);
     
+    // Validate cache data structure
+    if (!cache.contributors || !Array.isArray(cache.contributors)) {
+      console.log(`[Cache] ⚠ Cache data is invalid (missing contributors array), fetching fresh data`);
+      return null;
+    }
+    
+    const hasValidContributors = cache.contributors.length > 0;
+    const hasValidMaintainer = cache.maintainer !== null && 
+                                cache.maintainer !== undefined && 
+                                typeof cache.maintainer === 'object' &&
+                                cache.maintainer.login !== undefined;
+    
     // Check if cache is still valid (less than 1 hour old)
     if (age < CACHE_DURATION) {
-      console.log(`[Cache] ✓ Using cached data (${ageMinutes} minutes old)`);
-      return cache;
+      if (hasValidContributors || hasValidMaintainer) {
+        console.log(`[Cache] ✓ Using cached data (${ageMinutes} minutes old)`);
+        if (isDev) {
+          console.log(`[Cache]   - Contributors: ${cache.contributors.length}`);
+          console.log(`[Cache]   - Maintainer: ${hasValidMaintainer ? 'Yes' : 'No'}`);
+        }
+        return cache;
+      } else {
+        console.log(`[Cache] ⚠ Cache data is invalid (empty contributors and no maintainer), fetching fresh data`);
+        // Delete invalid cache
+        try {
+          fs.unlinkSync(CACHE_FILE);
+          console.log(`[Cache] Deleted invalid cache file`);
+        } catch (error) {
+          // Ignore deletion errors
+        }
+        return null;
+      }
     } else {
       console.log(`[Cache] ⚠ Cache expired (${ageMinutes} minutes old), fetching fresh data`);
     }
@@ -113,11 +141,21 @@ let maintainer: Maintainer | null = null;
 let maintainerError = false;
 
 if (cachedData) {
-  // Use cached data
-  contributors = cachedData.contributors;
-  maintainer = cachedData.maintainer;
+  // Use cached data (already validated in loadCache)
+  contributors = cachedData.contributors || [];
+  maintainer = cachedData.maintainer || null;
   carreauContributions = cachedData.carreauContributions;
-} else {
+  
+  // Double-check we have valid data
+  if (contributors.length === 0 && !maintainer) {
+    if (isDev) {
+      console.log('[Cache] ⚠ Cached data is empty, fetching fresh data');
+    }
+    cachedData = null; // Force fresh fetch
+  }
+}
+
+if (!cachedData) {
   // Fetch fresh data
   if (isDev) {
     console.log('[GitHub API] Fetching contributors...');
@@ -240,16 +278,29 @@ if (cachedData) {
     maintainerError = true;
   }
 
-  // Save to cache (dev mode only)
+  // Save to cache (dev mode only) - only if we have valid data
   if (isDev && !contributorsError && !maintainerError) {
-    saveCache({
-      contributors,
-      maintainer,
-      carreauContributions,
-      timestamp: Date.now(),
-    });
+    if (contributors.length > 0 || maintainer) {
+      saveCache({
+        contributors,
+        maintainer,
+        carreauContributions,
+        timestamp: Date.now(),
+      });
+    } else {
+      console.log('[Cache] ⚠ Not saving cache - no valid data to cache');
+    }
   } else if (isDev && (contributorsError || maintainerError)) {
     console.log('[Cache] ⚠ Not saving cache due to API errors');
+    // Delete invalid cache if it exists
+    if (fs.existsSync(CACHE_FILE)) {
+      try {
+        fs.unlinkSync(CACHE_FILE);
+        console.log('[Cache] Deleted invalid cache file');
+      } catch (error) {
+        console.error('[Cache] Failed to delete invalid cache:', error);
+      }
+    }
   }
   
   if (isDev) {
