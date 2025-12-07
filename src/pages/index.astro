@@ -13,7 +13,7 @@ import Footer from '../components/Footer.astro';
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Productive Interactive Computing</h1>
+            <h1 class="text-5xl md:text-6xl font-bold gradient-text-hero mb-6 leading-tight">Productive Interactive Computing</h1>
             <p class="text-xl text-gray-100 mb-8 leading-relaxed">IPython provides a rich architecture for interactive computing with a powerful shell, Jupyter kernel support, and flexible tools for parallel and distributed computing.</p>
 
             <div class="flex flex-col sm:flex-row gap-4">
@@ -31,19 +31,22 @@ import Footer from '../components/Footer.astro';
             <div class="text-green-400">$ ipython</div>
             <div class="text-gray-300 mt-2">IPython 8.18.1 -- An enhanced Interactive Python</div>
             <div class="text-gray-400">Type 'copyright', 'credits' or 'license' for more information</div>
-            <div class="text-gray-300 mt-4">
-              <div class="text-blue-400">In [1]:</div>
-              <span class="text-gray-300"> import numpy as np</span>
+            <div class="text-gray-300 mt-4 flex">
+              <span class="text-blue-400">In [1]:&nbsp;</span>
+              <span class="text-gray-300">import numpy as np</span>
             </div>
-            <div class="text-gray-300">
-              <div class="text-blue-400">In [2]:</div>
-              <span class="text-gray-300"> data = np.array([1, 2, 3, 4, 5])</span>
+            <div class="text-gray-300 flex">
+              <span class="text-blue-400">In [2]:&nbsp;</span>
+              <span class="text-gray-300">data = np.array([1, 2, 3, 4, 5])</span>
             </div>
-            <div class="text-gray-300">
-              <div class="text-blue-400">In [3]:</div>
-              <span class="text-gray-300"> data.mean()</span>
+            <div class="text-gray-300 flex">
+              <span class="text-blue-400">In [3]:&nbsp;</span>
+              <span class="text-gray-300">data.mean()</span>
             </div>
-            <div class="text-yellow-300 mt-2">Out[3]: 3.0</div>
+            <div class="text-yellow-300 flex">
+              <span class="text-yellow-300">Out[3]:&nbsp;</span>
+              <span class="text-gray-300">3.0</span>
+            </div>
           </div>
         </div>
       </div>
@@ -52,7 +55,7 @@ import Footer from '../components/Footer.astro';
     <!-- Features Grid -->
     <section class="py-20 bg-white dark:bg-ipython-dark">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Powerful Features</h2>
+        <h2 class="text-4xl font-bold text-center mb-16">Powerful Features</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Smart Completion -->
@@ -128,7 +131,7 @@ import Footer from '../components/Footer.astro';
     <!-- Use Cases -->
     <section class="py-20 bg-gray-50 dark:bg-ipython-slate">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">Who Uses IPython?</h2>
+        <h2 class="text-4xl font-bold text-center mb-16">Who Uses IPython?</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div class="bg-white dark:bg-ipython-dark rounded-lg p-8 text-center hover:shadow-lg transition-shadow">

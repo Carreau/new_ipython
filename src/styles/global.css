@@ -87,3 +87,21 @@ code {
 pre code {
   @apply text-gray-50;
 }
+
+/* Gradient text for headers */
+.gradient-text {
+  @apply bg-gradient-to-r from-ipython-blue via-ipython-cyan to-ipython-green bg-clip-text text-transparent;
+}
+
+/* Gradient text for hero (brighter, contrasts with gradient bg) */
+.gradient-text-hero {
+  @apply bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent;
+}
+
+h2 {
+  @apply gradient-text;
+}
+
+h3 {
+  @apply gradient-text;
+}
