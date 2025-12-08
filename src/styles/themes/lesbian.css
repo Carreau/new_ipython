@@ -6,11 +6,7 @@
 }
 
 [data-color-theme="lesbian"] .gradient-blue-cyan,
-[data-color-theme="lesbian"] .gradient-cyan-green,
-[data-color-theme="lesbian"] .gradient-hero,
-[data-color-theme="lesbian"] .gradient-header-1,
-[data-color-theme="lesbian"] .gradient-header-2,
-[data-color-theme="lesbian"] .gradient-header-3 {
+[data-color-theme="lesbian"] .gradient-cyan-green {
   background: linear-gradient(
     to right,
     #d62900 0%,
@@ -24,6 +20,58 @@
     #9b4f96 80%,
     #9b4f96 100%
   );
+}
+
+[data-color-theme="lesbian"] .gradient-hero {
+  background-image: linear-gradient(
+    to bottom right,
+    #d62900 0%,
+    #d62900 20%,
+    #ff9b55 20%,
+    #ff9b55 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #d60270 60%,
+    #d60270 80%,
+    #9b4f96 80%,
+    #9b4f96 100%
+  ) !important;
+}
+
+[data-color-theme="lesbian"] .gradient-header-1 {
+  background-image: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 33%,
+    #ff9b55 33%,
+    #ff9b55 66%,
+    #ffffff 66%,
+    #ffffff 100%
+  ) !important;
+}
+
+[data-color-theme="lesbian"] .gradient-header-2 {
+  background-image: linear-gradient(
+    to right,
+    #ffffff 0%,
+    #ffffff 33%,
+    #d60270 33%,
+    #d60270 66%,
+    #9b4f96 66%,
+    #9b4f96 100%
+  ) !important;
+}
+
+[data-color-theme="lesbian"] .gradient-header-3 {
+  background-image: linear-gradient(
+    to right,
+    #9b4f96 0%,
+    #9b4f96 33%,
+    #d60270 33%,
+    #d60270 66%,
+    #d62900 66%,
+    #d62900 100%
+  ) !important;
 }
 
 [data-color-theme="lesbian"] .gradient-text {
@@ -68,29 +116,56 @@
 [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.text-center,
 [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.text-center,
 [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.text-center,
-[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="lesbian"]
+  section.gradient-hero
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 .dark [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl.text-center,
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl.text-center,
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl.text-center,
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-hero
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark
+  [data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
-
-
 
 /* Ensure white sections are fully opaque on Lesbian theme - light mode only */
 :not(.dark) [data-color-theme="lesbian"] .bg-white,
