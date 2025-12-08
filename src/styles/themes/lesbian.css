@@ -61,66 +61,6 @@
   ) !important;
 }
 
-:not(.dark)[data-color-theme="lesbian"] .gradient-header-1 {
-  background-image: linear-gradient(
-    to right,
-    #d62900 0%,
-    #d62900 33%,
-    #ff9b55 33%,
-    #ff9b55 66%,
-    #ffffff 66%,
-    #ffffff 100%
-  ) !important;
-}
-
-.dark[data-color-theme="lesbian"] .gradient-header-1 {
-  background-image: linear-gradient(
-    to right,
-    #d62900 0%,
-    #d62900 33%,
-    #ff9b55 33%,
-    #ff9b55 66%,
-    var(--ipython-dark) 66%,
-    var(--ipython-dark) 100%
-  ) !important;
-}
-
-:not(.dark)[data-color-theme="lesbian"] .gradient-header-2 {
-  background-image: linear-gradient(
-    to right,
-    #ffffff 0%,
-    #ffffff 33%,
-    #d60270 33%,
-    #d60270 66%,
-    #9b4f96 66%,
-    #9b4f96 100%
-  ) !important;
-}
-
-.dark[data-color-theme="lesbian"] .gradient-header-2 {
-  background-image: linear-gradient(
-    to right,
-    var(--ipython-dark) 0%,
-    var(--ipython-dark) 33%,
-    #d60270 33%,
-    #d60270 66%,
-    #9b4f96 66%,
-    #9b4f96 100%
-  ) !important;
-}
-
-[data-color-theme="lesbian"] .gradient-header-3 {
-  background-image: linear-gradient(
-    to right,
-    #9b4f96 0%,
-    #9b4f96 33%,
-    #d60270 33%,
-    #d60270 66%,
-    #d62900 66%,
-    #d62900 100%
-  ) !important;
-}
-
 [data-color-theme="lesbian"] .gradient-text {
   background: linear-gradient(
     to right,

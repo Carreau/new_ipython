@@ -37,34 +37,6 @@
     #0f172a 66%, #0f172a 100%) !important;
 }
 
-:not(.dark)[data-color-theme="trans"] .gradient-header-1 {
-  background-image: linear-gradient(to right, 
-    #5BCEFA 0%, #5BCEFA 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    #FFFFFF 66%, #FFFFFF 100%) !important;
-}
-
-.dark[data-color-theme="trans"] .gradient-header-1 {
-  background-image: linear-gradient(to right, 
-    #5BCEFA 0%, #5BCEFA 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    var(--ipython-dark) 66%, var(--ipython-dark) 100%) !important;
-}
-
-:not(.dark)[data-color-theme="trans"] .gradient-header-2 {
-  background-image: linear-gradient(to right, 
-    #FFFFFF 0%, #FFFFFF 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    #5BCEFA 66%, #5BCEFA 100%) !important;
-}
-
-.dark[data-color-theme="trans"] .gradient-header-2 {
-  background-image: linear-gradient(to right, 
-    var(--ipython-dark) 0%, var(--ipython-dark) 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    #5BCEFA 66%, #5BCEFA 100%) !important;
-}
-
 [data-color-theme="trans"] .gradient-text {
   background: linear-gradient(
     to right,

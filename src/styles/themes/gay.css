@@ -18,18 +18,6 @@
     #26CEAA 50%, #26CEAA 100%) !important;
 }
 
-[data-color-theme="gay"] .gradient-header-1 {
-  background-image: linear-gradient(to right, 
-    #078D70 0%, #078D70 50%,
-    #26CEAA 50%, #26CEAA 100%) !important;
-}
-
-[data-color-theme="gay"] .gradient-header-2 {
-  background-image: linear-gradient(to right, 
-    #26CEAA 0%, #26CEAA 50%,
-    #98E8C1 50%, #98E8C1 100%) !important;
-}
-
 [data-color-theme="gay"] .gradient-text {
   background: linear-gradient(
     to right,

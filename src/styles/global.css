@@ -103,18 +103,6 @@ body {
   @apply bg-gradient-to-r from-ipython-blue to-ipython-cyan;
 }
 
-.gradient-header-1 {
-  @apply bg-gradient-to-r from-ipython-blue to-ipython-cyan;
-}
-
-.gradient-header-2 {
-  @apply bg-gradient-to-r from-ipython-cyan to-ipython-green;
-}
-
-.gradient-header-3 {
-  @apply bg-gradient-to-r from-ipython-green to-ipython-blue;
-}
-
 /* Simplified gradient classes with opacity for stats cards */
 .gradient-stats-cyan-blue {
   background: linear-gradient(to right, color-mix(in srgb, var(--theme-secondary) 10%, transparent), color-mix(in srgb, var(--theme-primary) 10%, transparent));

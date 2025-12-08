@@ -23,27 +23,6 @@
     #FFED00 66%, #FFED00 100%) !important;
 }
 
-[data-color-theme="rainbow"] .gradient-header-1 {
-  background-image: linear-gradient(to right, 
-    #E40303 0%, #E40303 33%,
-    #FF8C00 33%, #FF8C00 66%,
-    #FFED00 66%, #FFED00 100%) !important;
-}
-
-[data-color-theme="rainbow"] .gradient-header-2 {
-  background-image: linear-gradient(to right, 
-    #FFED00 0%, #FFED00 33%,
-    #008026 33%, #008026 66%,
-    #004DFF 66%, #004DFF 100%) !important;
-}
-
-[data-color-theme="rainbow"] .gradient-header-3 {
-  background-image: linear-gradient(to right, 
-    #004DFF 0%, #004DFF 33%,
-    #750787 33%, #750787 66%,
-    #E40303 66%, #E40303 100%) !important;
-}
-
 [data-color-theme="rainbow"] .gradient-text {
   background: linear-gradient(
     to right,
