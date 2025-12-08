@@ -397,19 +397,19 @@ if (!cachedData) {
             IPython is organized into several key components:
           </p>
           <div class="space-y-4">
-            <div class="border-l-4 border-ipython-cyan pl-6">
+            <div class="border-l-4 border-theme-secondary pl-6">
               <h3 class="font-bold text-gray-900 dark:text-white mb-2">Terminal IPython</h3>
               <p class="text-gray-600 dark:text-gray-400">A powerful command-line interface for interactive Python.</p>
             </div>
-            <div class="border-l-4 border-ipython-cyan pl-6">
+            <div class="border-l-4 border-theme-secondary pl-6">
               <h3 class="font-bold text-gray-900 dark:text-white mb-2">IPython Kernel</h3>
               <p class="text-gray-600 dark:text-gray-400">Backend for Jupyter notebooks and JupyterLab.</p>
             </div>
-            <div class="border-l-4 border-ipython-cyan pl-6">
+            <div class="border-l-4 border-theme-secondary pl-6">
               <h3 class="font-bold text-gray-900 dark:text-white mb-2">Traitlets</h3>
               <p class="text-gray-600 dark:text-gray-400">Configuration and type system used by IPython and Jupyter.</p>
             </div>
-            <div class="border-l-4 border-ipython-cyan pl-6">
+            <div class="border-l-4 border-theme-secondary pl-6">
               <h3 class="font-bold text-gray-900 dark:text-white mb-2">Display System</h3>
               <p class="text-gray-600 dark:text-gray-400">Rich output rendering for notebooks and terminals.</p>
             </div>
@@ -434,11 +434,11 @@ if (!cachedData) {
             <div class="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-400 rounded-lg p-6">
               <p class="text-gray-700 dark:text-gray-300">
                 Unable to load maintainer information at this time. This may be due to GitHub API rate limits. 
-                Please visit <a href="https://github.com/Carreau" target="_blank" rel="noopener noreferrer" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors underline">@Carreau's GitHub profile</a> directly.
+                Please visit <a href="https://github.com/Carreau" target="_blank" rel="noopener noreferrer" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors underline">@Carreau's GitHub profile</a> directly.
               </p>
             </div>
           ) : maintainer ? (
-            <div class="gradient-stats-cyan-blue border-2 border-ipython-cyan rounded-lg p-8">
+            <div class="gradient-stats-cyan-blue border-2 border-theme-secondary rounded-lg p-8">
               <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                 <a
                   href={maintainer.html_url}
@@ -449,7 +449,7 @@ if (!cachedData) {
                   <img
                     src={maintainer.avatar_url}
                     alt={`${maintainer.name}'s avatar`}
-                    class="w-24 h-24 rounded-full border-4 border-ipython-cyan group-hover:scale-110 transition-transform"
+                    class="w-24 h-24 rounded-full border-4 border-theme-secondary group-hover:scale-110 transition-transform"
                   />
                 </a>
                 <div class="flex-1 text-center sm:text-left">
@@ -459,10 +459,10 @@ if (!cachedData) {
                     rel="noopener noreferrer"
                     class="block"
                   >
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-1 hover:text-ipython-cyan transition-colors">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-1 hover:text-theme-secondary transition-colors">
                       {maintainer.name}
                     </h3>
-                    <p class="text-ipython-cyan mb-3">@{maintainer.login}</p>
+                    <p class="text-theme-secondary mb-3">@{maintainer.login}</p>
                   </a>
                   {maintainer.contributions !== undefined && (
                     <p class="text-gray-600 dark:text-gray-400 mb-2">
@@ -479,7 +479,7 @@ if (!cachedData) {
             <div class="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-400 rounded-lg p-6">
               <p class="text-gray-700 dark:text-gray-300">
                 Unable to load maintainer information at this time. 
-                Please visit <a href="https://github.com/Carreau" target="_blank" rel="noopener noreferrer" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors underline">@Carreau's GitHub profile</a> directly.
+                Please visit <a href="https://github.com/Carreau" target="_blank" rel="noopener noreferrer" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors underline">@Carreau's GitHub profile</a> directly.
               </p>
             </div>
           )}
@@ -497,7 +497,7 @@ if (!cachedData) {
                 Unable to load contributors at this time. This may be due to GitHub API rate limits.
               </p>
               <p class="text-gray-700 dark:text-gray-300">
-                Please visit our <a href="https://github.com/ipython/ipython/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors underline">GitHub contributors page</a> to see all contributors.
+                Please visit our <a href="https://github.com/ipython/ipython/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors underline">GitHub contributors page</a> to see all contributors.
               </p>
             </div>
           ) : contributors.length > 0 ? (
@@ -509,7 +509,7 @@ if (!cachedData) {
                     href={contributor.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-ipython-slate hover:border-ipython-cyan hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-ipython-cyan/20 transition-all group"
+                    class="flex flex-col items-center p-4 rounded-lg border border-gray-200 dark:border-ipython-slate hover:border-theme-secondary hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-theme-secondary/20 transition-all group"
                   >
                     <img
                       src={contributor.avatar_url}
@@ -535,12 +535,12 @@ if (!cachedData) {
                 Unable to load contributors at this time.
               </p>
               <p class="text-gray-700 dark:text-gray-300">
-                Please visit our <a href="https://github.com/ipython/ipython/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors underline">GitHub contributors page</a> to see all contributors.
+                Please visit our <a href="https://github.com/ipython/ipython/graphs/contributors" target="_blank" rel="noopener noreferrer" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors underline">GitHub contributors page</a> to see all contributors.
               </p>
             </div>
           )}
           <p class="text-gray-600 dark:text-gray-400 mt-6">
-            Want to contribute? Check out our <a href="https://github.com/ipython/ipython" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">GitHub repository</a> to get started!
+            Want to contribute? Check out our <a href="https://github.com/ipython/ipython" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">GitHub repository</a> to get started!
           </p>
         </div>
 
@@ -549,25 +549,25 @@ if (!cachedData) {
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">License</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">
-            IPython is released under the <a href="https://opensource.org/licenses/BSD-3-Clause" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">BSD 3-Clause License</a>, which allows free use in both commercial and non-commercial projects.
+            IPython is released under the <a href="https://opensource.org/licenses/BSD-3-Clause" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">BSD 3-Clause License</a>, which allows free use in both commercial and non-commercial projects.
           </p>
         </div>
 
         <!-- Links -->
-        <div class="bg-blue-50 dark:bg-ipython-slate border-l-4 border-ipython-cyan p-6 rounded">
+        <div class="bg-blue-50 dark:bg-ipython-slate border-l-4 border-theme-secondary p-6 rounded">
           <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Learn More</h3>
           <ul class="space-y-3 text-gray-600 dark:text-gray-400">
             <li>
-              <a href="https://github.com/ipython/ipython" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">GitHub Repository</a>
+              <a href="https://github.com/ipython/ipython" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">GitHub Repository</a>
             </li>
             <li>
-              <a href="https://jupyter.org" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Project Jupyter</a>
+              <a href="https://jupyter.org" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Project Jupyter</a>
             </li>
             <li>
-              <a href="https://ipython.readthedocs.io" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Official Documentation</a>
+              <a href="https://ipython.readthedocs.io" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Official Documentation</a>
             </li>
             <li>
-              <a href="https://github.com/ipython/ipython/blob/main/LICENSE" class="text-ipython-cyan hover:text-ipython-cyan/80 transition-colors">Full License</a>
+              <a href="https://github.com/ipython/ipython/blob/main/LICENSE" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Full License</a>
             </li>
           </ul>
         </div>

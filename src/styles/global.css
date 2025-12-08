@@ -77,26 +77,9 @@ body {
   animation: slideInLeft 0.6s ease-out forwards;
 }
 
-/* Gradient backgrounds - use CSS variables for theme support */
-.gradient-blue-cyan {
-  background: linear-gradient(
-    to bottom right,
-    var(--theme-primary),
-    var(--theme-secondary)
-  );
-}
-
-.gradient-cyan-green {
-  background: linear-gradient(
-    to bottom right,
-    var(--theme-secondary),
-    var(--theme-accent)
-  );
-}
-
 /* Simplified gradient classes for sections */
 .gradient-hero {
-  @apply bg-gradient-to-br from-ipython-blue;
+  @apply bg-gradient-to-br from-theme-primary;
   --tw-gradient-to: var(--theme-accent) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from),
     var(--theme-secondary) var(--tw-gradient-via-position),
@@ -104,7 +87,7 @@ body {
 }
 
 .gradient-header {
-  @apply bg-gradient-to-r from-ipython-blue;
+  @apply bg-gradient-to-r from-theme-primary;
   --tw-gradient-to: var(--theme-secondary) var(--tw-gradient-to-position);
 }
 
@@ -178,45 +161,7 @@ pre code {
   @apply bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent;
 }
 
-/* Theme-aware gradient backgrounds using CSS variables */
-.bg-gradient-theme-primary {
-  background: linear-gradient(
-    to bottom right,
-    var(--theme-primary),
-    var(--theme-secondary),
-    var(--theme-accent)
-  );
-}
-
-.bg-gradient-theme-primary-to-secondary {
-  background: linear-gradient(
-    to right,
-    var(--theme-primary),
-    var(--theme-secondary)
-  );
-}
-
-.bg-gradient-theme-secondary-to-accent {
-  background: linear-gradient(
-    to right,
-    var(--theme-secondary),
-    var(--theme-accent)
-  );
-}
-
-.bg-gradient-theme-accent-to-primary {
-  background: linear-gradient(
-    to right,
-    var(--theme-accent),
-    var(--theme-primary)
-  );
-}
-
 /* Theme-aware border colors */
-.border-theme-primary {
-  border-color: var(--theme-primary);
-}
-
 .border-theme-secondary {
   border-color: var(--theme-secondary);
 }
@@ -238,6 +183,15 @@ pre code {
   color: var(--theme-accent);
 }
 
+/* Theme-aware background colors */
+.bg-theme-secondary {
+  background-color: var(--theme-secondary);
+}
+
+.bg-theme-accent {
+  background-color: var(--theme-accent);
+}
+
 /* Theme-aware hover colors */
 .hover\:text-theme-primary:hover {
   color: var(--theme-primary);
@@ -252,22 +206,10 @@ pre code {
 }
 
 /* Override Tailwind gradient classes with CSS variables */
-.from-ipython-blue {
+.from-theme-primary {
   --tw-gradient-from: var(--theme-primary) var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(13 92 99 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
-.text-ipython-cyan {
-  color: var(--theme-secondary);
-}
-
-.hover\:text-ipython-cyan:hover {
-  color: var(--theme-secondary);
-}
-
-.border-ipython-cyan {
-  border-color: var(--theme-secondary);
 }
 
 h2 {

@@ -104,7 +104,6 @@
 }
 
 /* Ensure icon containers have visible backgrounds on Trans theme */
-[data-color-theme="trans"] .bg-ipython-cyan,
-[data-color-theme="trans"] .bg-ipython-green {
+[data-color-theme="trans"] .bg-theme-secondary {
   background: #5bcefa !important;
 }

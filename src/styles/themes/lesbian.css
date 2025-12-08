@@ -130,7 +130,6 @@
 }
 
 /* Ensure icon containers have visible backgrounds on Lesbian theme */
-[data-color-theme="lesbian"] .bg-ipython-cyan,
-[data-color-theme="lesbian"] .bg-ipython-green {
+[data-color-theme="lesbian"] .bg-theme-secondary {
   background: #d62900 !important;
 }

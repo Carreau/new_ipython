@@ -96,7 +96,6 @@
 }
 
 /* Ensure icon containers have visible backgrounds on Rainbow theme */
-[data-color-theme="rainbow"] .bg-ipython-cyan,
-[data-color-theme="rainbow"] .bg-ipython-green {
+[data-color-theme="rainbow"] .bg-theme-secondary {
   background: #1f2937 !important;
 }

@@ -85,7 +85,6 @@
 }
 
 /* Ensure icon containers have visible backgrounds on Gay theme */
-[data-color-theme="gay"] .bg-ipython-cyan,
-[data-color-theme="gay"] .bg-ipython-green {
+[data-color-theme="gay"] .bg-theme-secondary {
   background: #0d5c63 !important;
 }

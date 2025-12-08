@@ -43,7 +43,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={cycleTheme}
-      className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-ipython-slate text-ipython-blue dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-ipython-slate/70 transition-all flex items-center justify-center overflow-hidden"
+      className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-ipython-slate text-theme-primary dark:text-yellow-400 hover:bg-gray-200 dark:hover:bg-ipython-slate/70 transition-all flex items-center justify-center overflow-hidden"
       aria-label="Toggle theme"
       title={`Theme: ${theme}`}
     >

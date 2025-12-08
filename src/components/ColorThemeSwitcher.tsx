@@ -156,7 +156,7 @@ export default function ColorThemeSwitcher() {
           <button
             key={theme.id}
             onClick={() => handleThemeChange(theme.id)}
-            className={`w-6 h-6 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ipython-cyan ${
+            className={`w-6 h-6 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-secondary ${
               theme.dotColor
             } ${
               currentTheme === theme.id
