@@ -7,45 +7,42 @@
 
 :not(.dark)[data-color-theme="ocean"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
-    #0a2540 0%, #0a2540 20%,
-    #006994 20%, #006994 40%,
-    #0088cc 40%, #0088cc 60%,
-    #00b8e6 60%, #00b8e6 80%,
-    #00d4ff 80%, #00d4ff 100%) !important;
+    #0a2540,
+    #006994,
+    #0088cc,
+    #00b8e6,
+    #00d4ff) !important;
 }
 
 .dark[data-color-theme="ocean"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
-    #051a2e 0%, #051a2e 20%,
-    #0a2540 20%, #0a2540 40%,
-    #006994 40%, #006994 60%,
-    #0088cc 60%, #0088cc 80%,
-    #00b8e6 80%, #00b8e6 100%) !important;
+    #051a2e,
+    #0a2540,
+    #006994,
+    #0088cc,
+    #00b8e6) !important;
 }
 
 :not(.dark)[data-color-theme="ocean"] .gradient-header {
   background-image: linear-gradient(to right, 
-    #0a2540 0%, #0a2540 40%,
-    #006994 40%, #006994 70%,
-    #00d4ff 70%, #00d4ff 100%) !important;
+    #0a2540,
+    #006994,
+    #00d4ff) !important;
 }
 
 .dark[data-color-theme="ocean"] .gradient-header {
   background-image: linear-gradient(to right, 
-    #051a2e 0%, #051a2e 40%,
-    #0a2540 40%, #0a2540 70%,
-    #006994 70%, #006994 100%) !important;
+    #051a2e,
+    #0a2540,
+    #006994) !important;
 }
 
 [data-color-theme="ocean"] .gradient-text {
   background: linear-gradient(
     to right,
-    #0a2540 0%,
-    #0a2540 30%,
-    #006994 30%,
-    #006994 60%,
-    #00d4ff 60%,
-    #00d4ff 100%
+    #0a2540,
+    #006994,
+    #00d4ff
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -89,10 +86,10 @@
 [data-color-theme="ocean"] h6 {
   background: linear-gradient(
     135deg,
-    #0a2540 0%,
-    #006994 40%,
-    #00b8e6 70%,
-    #00d4ff 100%
+    #0a2540,
+    #006994,
+    #00b8e6,
+    #00d4ff
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -125,10 +122,10 @@
 .dark[data-color-theme="ocean"] h6 {
   background: linear-gradient(
     135deg,
-    #0d3a5c 0%,
-    #0088cc 40%,
-    #00b8e6 70%,
-    #00d4ff 100%
+    #0d3a5c,
+    #0088cc,
+    #00b8e6,
+    #00d4ff
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -150,10 +147,10 @@
 [data-color-theme="ocean"] h6.text-white {
   background: linear-gradient(
     135deg,
-    #ffffff 0%,
-    #b3e5fc 30%,
-    #4dd0e1 60%,
-    #00d4ff 100%
+    #ffffff,
+    #b3e5fc,
+    #4dd0e1,
+    #00d4ff
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -174,10 +171,10 @@
 .dark[data-color-theme="ocean"] h6.text-white {
   background: linear-gradient(
     135deg,
-    #e0f7fa 0%,
-    #b2ebf2 30%,
-    #4dd0e1 60%,
-    #00d4ff 100%
+    #e0f7fa,
+    #b2ebf2,
+    #4dd0e1,
+    #00d4ff
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -195,11 +192,11 @@
 [data-color-theme="ocean"] .gradient-text-hero {
   background: linear-gradient(
     135deg,
-    #ffffff 0%,
-    #b3e5fc 25%,
-    #4dd0e1 50%,
-    #00d4ff 75%,
-    #ffffff 100%
+    #ffffff,
+    #b3e5fc,
+    #4dd0e1,
+    #00d4ff,
+    #ffffff
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
@@ -217,10 +214,10 @@
 .dark[data-color-theme="ocean"] .gradient-text-hero {
   background: linear-gradient(
     135deg,
-    #e0f7fa 0%,
-    #b2ebf2 30%,
-    #4dd0e1 60%,
-    #00d4ff 100%
+    #e0f7fa,
+    #b2ebf2,
+    #4dd0e1,
+    #00d4ff
   ) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;

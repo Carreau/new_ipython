@@ -14,6 +14,7 @@ export default function OceanWaves() {
   const animationFrameRef = useRef<number>();
   const bubblesRef = useRef<Bubble[]>([]);
   const waveOffsetRef = useRef(0);
+  const sectionDividersRef = useRef<Array<{ y: number; inverted: boolean }>>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -21,6 +22,32 @@ export default function OceanWaves() {
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    const findSections = () => {
+      const sections = document.querySelectorAll('section, main > div');
+      sectionDividersRef.current = [];
+      
+      sections.forEach((section, index) => {
+        if (index === 0) return; // Skip first section
+        const rect = section.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        const sectionTop = rect.top + scrollY;
+        
+        // Check if section has different background
+        const computedStyle = window.getComputedStyle(section);
+        const bgColor = computedStyle.backgroundColor;
+        const prevSection = sections[index - 1] as HTMLElement;
+        const prevBgColor = prevSection ? window.getComputedStyle(prevSection).backgroundColor : '';
+        
+        // Add divider if sections have different backgrounds or are substantial
+        if (bgColor !== prevBgColor || rect.height > 200) {
+          sectionDividersRef.current.push({
+            y: sectionTop,
+            inverted: index % 2 === 0, // Alternate wave direction
+          });
+        }
+      });
+    };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -32,33 +59,52 @@ export default function OceanWaves() {
       for (let i = 0; i < bubbleCount; i++) {
         bubblesRef.current.push({
           x: Math.random() * canvas.width,
-          y: canvas.height + Math.random() * 200,
+          y: window.scrollY + Math.random() * canvas.height,
           size: 2 + Math.random() * 8,
           speed: 0.5 + Math.random() * 1.5,
           opacity: 0.2 + Math.random() * 0.4,
           drift: (Math.random() - 0.5) * 0.5,
         });
       }
+      
+      findSections();
     };
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('scroll', findSections, { passive: true });
+    
+    // Update sections periodically
+    const sectionInterval = setInterval(findSections, 1000);
 
-    const drawWave = (ctx: CanvasRenderingContext2D, y: number, amplitude: number, frequency: number, speed: number, color: string, opacity: number) => {
+    const drawWave = (ctx: CanvasRenderingContext2D, screenY: number, amplitude: number, frequency: number, speed: number, color: string, opacity: number, inverted: boolean = false) => {
       ctx.save();
       ctx.beginPath();
-      ctx.moveTo(0, y);
+      
+      const direction = inverted ? -1 : 1;
+      const waveSpeed = speed * direction;
+      
+      ctx.moveTo(0, screenY);
       
       for (let x = 0; x <= canvas.width; x += 2) {
-        const waveY = y + Math.sin((x * frequency + waveOffsetRef.current * speed) * 0.01) * amplitude;
+        const waveY = screenY + Math.sin((x * frequency + waveOffsetRef.current * waveSpeed) * 0.01) * amplitude * direction;
         ctx.lineTo(x, waveY);
       }
       
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.lineTo(0, canvas.height);
+      if (inverted) {
+        // Wave going up - fill above
+        ctx.lineTo(canvas.width, 0);
+        ctx.lineTo(0, 0);
+      } else {
+        // Wave going down - fill below
+        ctx.lineTo(canvas.width, window.innerHeight);
+        ctx.lineTo(0, window.innerHeight);
+      }
       ctx.closePath();
       
-      const gradient = ctx.createLinearGradient(0, y - amplitude, 0, canvas.height);
+      const gradientStart = inverted ? screenY + amplitude : screenY - amplitude;
+      const gradientEnd = inverted ? 0 : window.innerHeight;
+      const gradient = ctx.createLinearGradient(0, gradientStart, 0, gradientEnd);
       gradient.addColorStop(0, color + Math.floor(opacity * 255).toString(16).padStart(2, '0'));
       gradient.addColorStop(1, color + '00');
       
@@ -71,13 +117,17 @@ export default function OceanWaves() {
       ctx.save();
       ctx.globalAlpha = bubble.opacity;
       
+      const scrollY = window.scrollY;
+      const screenX = bubble.x;
+      const screenY = bubble.y - scrollY;
+      
       // Draw bubble
       const gradient = ctx.createRadialGradient(
-        bubble.x - bubble.size * 0.3,
-        bubble.y - bubble.size * 0.3,
+        screenX - bubble.size * 0.3,
+        screenY - bubble.size * 0.3,
         0,
-        bubble.x,
-        bubble.y,
+        screenX,
+        screenY,
         bubble.size
       );
       gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
@@ -86,13 +136,13 @@ export default function OceanWaves() {
       
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
+      ctx.arc(screenX, screenY, bubble.size, 0, Math.PI * 2);
       ctx.fill();
       
       // Draw highlight
       ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
       ctx.beginPath();
-      ctx.arc(bubble.x - bubble.size * 0.3, bubble.y - bubble.size * 0.3, bubble.size * 0.3, 0, Math.PI * 2);
+      ctx.arc(screenX - bubble.size * 0.3, screenY - bubble.size * 0.3, bubble.size * 0.3, 0, Math.PI * 2);
       ctx.fill();
       
       ctx.restore();
@@ -104,20 +154,55 @@ export default function OceanWaves() {
       // Update wave offset
       waveOffsetRef.current += 1;
       
-      // Draw waves at the bottom
-      const waveY = canvas.height * 0.7;
-      drawWave(ctx, waveY, 15, 0.5, 2, '#00d4ff', 0.15);
-      drawWave(ctx, waveY + 20, 12, 0.6, 1.5, '#00b8e6', 0.12);
-      drawWave(ctx, waveY + 40, 10, 0.7, 1, '#006994', 0.1);
+      const scrollY = window.scrollY;
+      
+      // Draw waves at section dividers
+      sectionDividersRef.current.forEach((divider) => {
+        const dividerScreenY = divider.y - scrollY;
+        
+        // Only draw if in or near viewport
+        if (dividerScreenY > -150 && dividerScreenY < window.innerHeight + 150) {
+          if (divider.inverted) {
+            // Wave going up
+            drawWave(ctx, dividerScreenY, 12, 0.5, 1.5, '#00d4ff', 0.12, true);
+            drawWave(ctx, dividerScreenY - 15, 10, 0.6, 1.2, '#00b8e6', 0.1, true);
+            drawWave(ctx, dividerScreenY - 30, 8, 0.7, 1, '#006994', 0.08, true);
+          } else {
+            // Wave going down
+            drawWave(ctx, dividerScreenY, 12, 0.5, 1.5, '#00d4ff', 0.12, false);
+            drawWave(ctx, dividerScreenY + 15, 10, 0.6, 1.2, '#00b8e6', 0.1, false);
+            drawWave(ctx, dividerScreenY + 30, 8, 0.7, 1, '#006994', 0.08, false);
+          }
+        }
+      });
+      
+      // Draw waves at the bottom of document (footer)
+      const docHeight = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+      const bottomWaveDocY = docHeight - 100;
+      const bottomWaveScreenY = bottomWaveDocY - scrollY;
+      
+      // Only draw if in or near viewport
+      if (bottomWaveScreenY > -150 && bottomWaveScreenY < window.innerHeight + 150) {
+        drawWave(ctx, bottomWaveScreenY, 15, 0.5, 2, '#00d4ff', 0.15);
+        drawWave(ctx, bottomWaveScreenY + 20, 12, 0.6, 1.5, '#00b8e6', 0.12);
+        drawWave(ctx, bottomWaveScreenY + 40, 10, 0.7, 1, '#006994', 0.1);
+      }
       
       // Update and draw bubbles
       bubblesRef.current.forEach((bubble) => {
+        // Update bubble position
         bubble.y -= bubble.speed;
         bubble.x += bubble.drift;
         
-        // Reset if off screen
-        if (bubble.y < -bubble.size) {
-          bubble.y = canvas.height + bubble.size;
+        // Reset if off screen top
+        if (bubble.y < scrollY - 100) {
+          bubble.y = scrollY + window.innerHeight + 100;
+          bubble.x = Math.random() * canvas.width;
+        }
+        
+        // Reset if off screen bottom
+        if (bubble.y > scrollY + window.innerHeight + 100) {
+          bubble.y = scrollY - 100;
           bubble.x = Math.random() * canvas.width;
         }
         
@@ -125,7 +210,11 @@ export default function OceanWaves() {
         if (bubble.x < -bubble.size) bubble.x = canvas.width + bubble.size;
         if (bubble.x > canvas.width + bubble.size) bubble.x = -bubble.size;
         
-        drawBubble(ctx, bubble);
+        // Only draw if in or near viewport
+        const currentScreenY = bubble.y - scrollY;
+        if (currentScreenY > -100 && currentScreenY < window.innerHeight + 100) {
+          drawBubble(ctx, bubble);
+        }
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -135,6 +224,8 @@ export default function OceanWaves() {
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('scroll', findSections);
+      clearInterval(sectionInterval);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -144,7 +235,7 @@ export default function OceanWaves() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed bottom-0 left-0 w-full h-1/3 pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
     />
   );
 }
