@@ -98,7 +98,7 @@ export default function AnimatedTerminal() {
       }
     }
     if (line.startsWith('   ...:')) {
-      return { prefix: '   ...: ', content: line.substring(8), prefixColor: 'text-gray-400' };
+      return { prefix: '   ...: ', content: line.substring(8), prefixColor: 'text-gray-500 dark:text-gray-400' };
     }
     return { prefix: '', content: line, prefixColor: '' };
   };
@@ -111,12 +111,12 @@ export default function AnimatedTerminal() {
       return 'text-theme-accent';
     }
     if (line.startsWith('IPython') || line.includes('Type')) {
-      return 'text-gray-300';
+      return 'text-gray-600 dark:text-gray-300';
     }
     if (line.trim() === '') {
-      return 'text-gray-400';
+      return 'text-gray-500 dark:text-gray-400';
     }
-    return 'text-gray-300';
+    return 'text-gray-700 dark:text-gray-300';
   };
 
   // Calculate max height based on the longest example
@@ -127,9 +127,9 @@ export default function AnimatedTerminal() {
   const minHeight = `${maxLines * lineHeight + padding + controlsHeight}rem`;
 
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden font-mono text-sm" style={{ minHeight }}>
+    <div className="bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden font-mono text-sm" style={{ minHeight }}>
       {/* macOS Window Controls */}
-      <div className="bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center gap-2">
+      <div className="bg-gray-200 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-700 px-4 py-2 flex items-center gap-2">
         <div className="w-3 h-3 rounded-full bg-red-500"></div>
         <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
         <div className="w-3 h-3 rounded-full bg-green-500"></div>
