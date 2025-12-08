@@ -179,10 +179,6 @@ pre code {
   color: var(--theme-secondary);
 }
 
-.text-theme-accent {
-  color: var(--theme-accent);
-}
-
 /* Theme-aware background colors */
 .bg-theme-secondary {
   background-color: var(--theme-secondary);
@@ -199,10 +195,6 @@ pre code {
 
 .hover\:text-theme-secondary:hover {
   color: var(--theme-secondary);
-}
-
-.hover\:text-theme-accent:hover {
-  color: var(--theme-accent);
 }
 
 /* Override Tailwind gradient classes with CSS variables */
