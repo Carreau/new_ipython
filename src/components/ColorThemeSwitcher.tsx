@@ -142,6 +142,16 @@ const themes: Theme[] = [
     },
     dotGradient: 'linear-gradient(to bottom right, #0a2540 0%, #0a2540 40%, #006994 40%, #006994 70%, #00d4ff 70%, #00d4ff 100%)',
   },
+  {
+    id: 'velvet',
+    name: 'Red Velvet',
+    colors: {
+      primary: '#6b0f2a',   // Deep velvet red
+      secondary: '#8b1538', // Rich carmine
+      accent: '#a91d3d',    // Warm velvet
+    },
+    dotGradient: 'linear-gradient(to bottom right, #6b0f2a 0%, #6b0f2a 40%, #8b1538 40%, #8b1538 70%, #a91d3d 70%, #a91d3d 100%)',
+  },
 ];
 
 export default function ColorThemeSwitcher() {
