@@ -1,0 +1,119 @@
+/* Rainbow theme */
+[data-color-theme="rainbow"] {
+  --theme-primary: #e40303;
+  --theme-secondary: #ff8c00;
+  --theme-accent: #ffed00;
+}
+
+/* Enhanced Rainbow theme gradients with discrete color bands */
+[data-color-theme="rainbow"] .gradient-blue-cyan,
+[data-color-theme="rainbow"] .gradient-cyan-green,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+  background: linear-gradient(
+    to right,
+    #e40303 0%,
+    #e40303 14%,
+    #ff8c00 14%,
+    #ff8c00 28%,
+    #ffed00 28%,
+    #ffed00 42%,
+    #008026 42%,
+    #008026 57%,
+    #004dff 57%,
+    #004dff 71%,
+    #750787 71%,
+    #750787 85%,
+    #e40303 85%,
+    #e40303 100%
+  );
+}
+
+[data-color-theme="rainbow"] .gradient-text {
+  background: linear-gradient(
+    to right,
+    #e40303 0%,
+    #e40303 14%,
+    #ff8c00 14%,
+    #ff8c00 28%,
+    #ffed00 28%,
+    #ffed00 42%,
+    #008026 42%,
+    #008026 57%,
+    #004dff 57%,
+    #004dff 71%,
+    #750787 71%,
+    #750787 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Add background to content containers with white text on Rainbow theme */
+[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-7xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-7xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-4xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-4xl {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* Override gradient text with solid dark text on Rainbow theme for headings in white sections */
+[data-color-theme="rainbow"] section.bg-white h2,
+[data-color-theme="rainbow"] section.bg-white h3,
+[data-color-theme="rainbow"] section.bg-gray-50 h2,
+[data-color-theme="rainbow"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  color: #1f2937 !important;
+}
+
+.dark [data-color-theme="rainbow"] section.bg-white h2,
+.dark [data-color-theme="rainbow"] section.bg-white h3,
+.dark [data-color-theme="rainbow"] section.bg-gray-50 h2,
+.dark [data-color-theme="rainbow"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #f9fafb !important;
+  color: #f9fafb !important;
+}
+
+/* Ensure white sections are fully opaque on Rainbow theme - light mode */
+[data-color-theme="rainbow"] .bg-white,
+[data-color-theme="rainbow"] section.bg-white {
+  background: #ffffff !important;
+}
+
+/* Override for dark mode - must come after light mode rules */
+.dark [data-color-theme="rainbow"] .bg-white,
+.dark [data-color-theme="rainbow"] section.bg-white,
+.dark [data-color-theme="rainbow"] .bg-white.dark\:bg-ipython-dark {
+  background: #0f172a !important;
+}
+
+/* Ensure gray sections are fully opaque white on Rainbow theme */
+[data-color-theme="rainbow"] section.bg-gray-50 {
+  background: #ffffff !important;
+}
+
+.dark [data-color-theme="rainbow"] section.bg-gray-50 {
+  background: #0f172a !important;
+}
+
+/* Ensure icon containers have visible backgrounds on Rainbow theme */
+[data-color-theme="rainbow"] .bg-ipython-cyan,
+[data-color-theme="rainbow"] .bg-ipython-green {
+  background: #1f2937 !important;
+}
