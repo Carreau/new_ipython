@@ -83,9 +83,9 @@
 
 
 
-/* Ensure white sections are fully opaque on Trans theme - light mode */
-[data-color-theme="trans"] .bg-white,
-[data-color-theme="trans"] section.bg-white {
+/* Ensure white sections are fully opaque on Trans theme - light mode only */
+:not(.dark) [data-color-theme="trans"] .bg-white,
+:not(.dark) [data-color-theme="trans"] section.bg-white {
   background: #ffffff !important;
 }
 
@@ -97,8 +97,8 @@
   background: #0f172a !important;
 }
 
-/* Ensure gray sections are fully opaque white on Trans theme */
-[data-color-theme="trans"] section.bg-gray-50 {
+/* Ensure gray sections are fully opaque white on Trans theme - light mode only */
+:not(.dark) [data-color-theme="trans"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 

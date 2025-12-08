@@ -101,9 +101,9 @@
 
 
 
-/* Ensure white sections are fully opaque on Rainbow theme - light mode */
-[data-color-theme="rainbow"] .bg-white,
-[data-color-theme="rainbow"] section.bg-white {
+/* Ensure white sections are fully opaque on Rainbow theme - light mode only */
+:not(.dark) [data-color-theme="rainbow"] .bg-white,
+:not(.dark) [data-color-theme="rainbow"] section.bg-white {
   background: #ffffff !important;
 }
 
@@ -115,8 +115,8 @@
   background: #0f172a !important;
 }
 
-/* Ensure gray sections are fully opaque white on Rainbow theme */
-[data-color-theme="rainbow"] section.bg-gray-50 {
+/* Ensure gray sections are fully opaque white on Rainbow theme - light mode only */
+:not(.dark) [data-color-theme="rainbow"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 

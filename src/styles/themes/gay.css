@@ -84,9 +84,9 @@
 }
 
 
-/* Ensure white sections are fully opaque on Gay theme - light mode */
-[data-color-theme="gay"] .bg-white,
-[data-color-theme="gay"] section.bg-white {
+/* Ensure white sections are fully opaque on Gay theme - light mode only */
+:not(.dark) [data-color-theme="gay"] .bg-white,
+:not(.dark) [data-color-theme="gay"] section.bg-white {
   background: #ffffff !important;
 }
 
@@ -98,8 +98,8 @@
   background: #0f172a !important;
 }
 
-/* Ensure gray sections are fully opaque white on Gay theme */
-[data-color-theme="gay"] section.bg-gray-50 {
+/* Ensure gray sections are fully opaque white on Gay theme - light mode only */
+:not(.dark) [data-color-theme="gay"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 

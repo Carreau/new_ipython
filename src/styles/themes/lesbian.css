@@ -92,9 +92,9 @@
 
 
 
-/* Ensure white sections are fully opaque on Lesbian theme - light mode */
-[data-color-theme="lesbian"] .bg-white,
-[data-color-theme="lesbian"] section.bg-white {
+/* Ensure white sections are fully opaque on Lesbian theme - light mode only */
+:not(.dark) [data-color-theme="lesbian"] .bg-white,
+:not(.dark) [data-color-theme="lesbian"] section.bg-white {
   background: #ffffff !important;
 }
 
@@ -106,8 +106,8 @@
   background: #0f172a !important;
 }
 
-/* Ensure gray sections are fully opaque white on Lesbian theme */
-[data-color-theme="lesbian"] section.bg-gray-50 {
+/* Ensure gray sections are fully opaque white on Lesbian theme - light mode only */
+:not(.dark) [data-color-theme="lesbian"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 
