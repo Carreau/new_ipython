@@ -22,7 +22,7 @@
   );
 }
 
-[data-color-theme="lesbian"] .gradient-hero {
+:not(.dark)[data-color-theme="lesbian"] .gradient-hero {
   background-image: linear-gradient(
     to bottom right,
     #d62900 0%,
@@ -35,10 +35,26 @@
     #d60270 80%,
     #9b4f96 80%,
     #9b4f96 100%
+  );
+}
+
+.dark[data-color-theme="lesbian"] .gradient-hero {
+  background-image: linear-gradient(
+    to bottom right,
+    #d62900 0%,
+    #d62900 20%,
+    #ff9b55 20%,
+    #ff9b55 40%,
+    var(--ipython-dark) 40%,
+    var(--ipython-dark) 60%,
+    #d60270 60%,
+    #d60270 80%,
+    #9b4f96 80%,
+    #9b4f96 100%
   ) !important;
 }
 
-[data-color-theme="lesbian"] .gradient-header-1 {
+:not(.dark)[data-color-theme="lesbian"] .gradient-header-1 {
   background-image: linear-gradient(
     to right,
     #d62900 0%,
@@ -50,11 +66,35 @@
   ) !important;
 }
 
-[data-color-theme="lesbian"] .gradient-header-2 {
+.dark[data-color-theme="lesbian"] .gradient-header-1 {
+  background-image: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 33%,
+    #ff9b55 33%,
+    #ff9b55 66%,
+    var(--ipython-dark) 66%,
+    var(--ipython-dark) 100%
+  ) !important;
+}
+
+:not(.dark)[data-color-theme="lesbian"] .gradient-header-2 {
   background-image: linear-gradient(
     to right,
     #ffffff 0%,
     #ffffff 33%,
+    #d60270 33%,
+    #d60270 66%,
+    #9b4f96 66%,
+    #9b4f96 100%
+  ) !important;
+}
+
+.dark[data-color-theme="lesbian"] .gradient-header-2 {
+  background-image: linear-gradient(
+    to right,
+    var(--ipython-dark) 0%,
+    var(--ipython-dark) 33%,
     #d60270 33%,
     #d60270 66%,
     #9b4f96 66%,
@@ -101,52 +141,74 @@
 [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.text-center,
 [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.text-center,
 [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.text-center,
-[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="lesbian"]
+  section.gradient-hero
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
-.dark [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-20,
-.dark [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.py-20,
-.dark [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.py-20,
-.dark [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.py-20,
-.dark [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.text-center,
-.dark [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+.dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.text-center,
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl.text-center,
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl.text-center,
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl.text-center,
+.dark[data-color-theme="lesbian"]
+  section.gradient-hero
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-1
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-2
+  .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="lesbian"]
+  section.gradient-header-3
+  .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 /* Ensure white sections are fully opaque on Lesbian theme - light mode only */
-:not(.dark) [data-color-theme="lesbian"] .bg-white,
-:not(.dark) [data-color-theme="lesbian"] section.bg-white {
+:not(.dark)[data-color-theme="lesbian"] .bg-white,
+:not(.dark)[data-color-theme="lesbian"] section.bg-white {
   background: #ffffff !important;
 }
 
 /* Override for dark mode - must come after light mode rules */
-.dark [data-color-theme="lesbian"] .bg-white,
-.dark [data-color-theme="lesbian"] section.bg-white,
-.dark [data-color-theme="lesbian"] .bg-white.dark\:bg-ipython-dark,
-.dark [data-color-theme="lesbian"] nav.bg-white {
+.dark[data-color-theme="lesbian"] .bg-white,
+.dark[data-color-theme="lesbian"] section.bg-white,
+.dark[data-color-theme="lesbian"] .bg-white.dark\:bg-ipython-dark,
+.dark[data-color-theme="lesbian"] nav.bg-white {
   background: #0f172a !important;
 }
 
 /* Ensure gray sections are fully opaque white on Lesbian theme - light mode only */
-:not(.dark) [data-color-theme="lesbian"] section.bg-gray-50 {
+:not(.dark)[data-color-theme="lesbian"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 
-.dark [data-color-theme="lesbian"] section.bg-gray-50 {
+.dark[data-color-theme="lesbian"] section.bg-gray-50 {
   background: #0f172a !important;
 }
 

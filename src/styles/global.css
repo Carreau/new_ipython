@@ -19,6 +19,7 @@
   --theme-primary: #0d5c63;
   --theme-secondary: #008b95;
   --theme-accent: #059669;
+  --ipython-dark: #0f172a;
 }
 
 :root.dark {

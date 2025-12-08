@@ -99,18 +99,18 @@
   backdrop-filter: blur(4px);
 }
 
-.dark [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-20,
-.dark [data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.py-20,
-.dark [data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.py-20,
-.dark [data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.py-20,
-.dark [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.text-center,
-.dark [data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.text-center,
-.dark [data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.text-center,
-.dark [data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.text-center,
-.dark [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-.dark [data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+.dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);
@@ -119,25 +119,25 @@
 
 
 /* Ensure white sections are fully opaque on Rainbow theme - light mode only */
-:not(.dark) [data-color-theme="rainbow"] .bg-white,
-:not(.dark) [data-color-theme="rainbow"] section.bg-white {
+:not(.dark)[data-color-theme="rainbow"] .bg-white,
+:not(.dark)[data-color-theme="rainbow"] section.bg-white {
   background: #ffffff !important;
 }
 
 /* Override for dark mode - must come after light mode rules */
-.dark [data-color-theme="rainbow"] .bg-white,
-.dark [data-color-theme="rainbow"] section.bg-white,
-.dark [data-color-theme="rainbow"] .bg-white.dark\:bg-ipython-dark,
-.dark [data-color-theme="rainbow"] nav.bg-white {
+.dark[data-color-theme="rainbow"] .bg-white,
+.dark[data-color-theme="rainbow"] section.bg-white,
+.dark[data-color-theme="rainbow"] .bg-white.dark\:bg-ipython-dark,
+.dark[data-color-theme="rainbow"] nav.bg-white {
   background: #0f172a !important;
 }
 
 /* Ensure gray sections are fully opaque white on Rainbow theme - light mode only */
-:not(.dark) [data-color-theme="rainbow"] section.bg-gray-50 {
+:not(.dark)[data-color-theme="rainbow"] section.bg-gray-50 {
   background: #ffffff !important;
 }
 
-.dark [data-color-theme="rainbow"] section.bg-gray-50 {
+.dark[data-color-theme="rainbow"] section.bg-gray-50 {
   background: #0f172a !important;
 }
 
