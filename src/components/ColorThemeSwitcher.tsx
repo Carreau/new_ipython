@@ -8,7 +8,7 @@ type Theme = {
     secondary: string;
     accent: string;
   };
-  dotColor: string;
+  dotGradient: string; // CSS linear-gradient string
 };
 
 const themes: Theme[] = [
@@ -20,7 +20,7 @@ const themes: Theme[] = [
       secondary: '#008B95',  // ipython-cyan
       accent: '#059669',     // ipython-green
     },
-    dotColor: 'bg-gradient-to-br from-[#0D5C63] via-[#008B95] to-[#059669]',
+    dotGradient: 'linear-gradient(to bottom right, #0D5C63, #008B95, #059669)',
   },
   {
     id: 'rainbow',
@@ -30,7 +30,7 @@ const themes: Theme[] = [
       secondary: '#FF8C00', // Orange
       accent: '#FFED00',    // Yellow
     },
-    dotColor: 'bg-gradient-to-r from-[#E40303] via-[#FF8C00] via-[#FFED00] via-[#008026] via-[#004DFF] via-[#750787]',
+    dotGradient: 'linear-gradient(to bottom right, #E40303 0%, #E40303 14%, #FF8C00 14%, #FF8C00 28%, #FFED00 28%, #FFED00 42%, #008026 42%, #008026 57%, #004DFF 57%, #004DFF 71%, #750787 71%, #750787 85%, #E40303 85%, #E40303 100%)',
   },
   {
     id: 'gay',
@@ -40,7 +40,7 @@ const themes: Theme[] = [
       secondary: '#26CEAA', // Light green
       accent: '#98E8C1',    // Pale green
     },
-    dotColor: 'bg-gradient-to-r from-[#078D70] via-[#26CEAA] to-[#98E8C1]',
+    dotGradient: 'linear-gradient(to bottom right, #078D70 0%, #078D70 33%, #26CEAA 33%, #26CEAA 66%, #98E8C1 66%, #98E8C1 100%)',
   },
   {
     id: 'lesbian',
@@ -50,7 +50,7 @@ const themes: Theme[] = [
       secondary: '#FF9B55', // Orange
       accent: '#D60270',    // Pink
     },
-    dotColor: 'bg-gradient-to-r from-[#D62900] via-[#FF9B55] via-[#FFFFFF] via-[#D60270] to-[#9B4F96]',
+    dotGradient: 'linear-gradient(to bottom right, #d62900 0%, #d62900 20%, #ff9b55 20%, #ff9b55 40%, #ffffff 40%, #ffffff 60%, #d60270 60%, #d60270 80%, #9b4f96 80%, #9b4f96 100%)',
   },
   {
     id: 'trans',
@@ -60,7 +60,7 @@ const themes: Theme[] = [
       secondary: '#F5A9B8', // Pink
       accent: '#FFFFFF',    // White
     },
-    dotColor: 'bg-gradient-to-r from-[#5BCEFA] via-[#F5A9B8] via-[#FFFFFF] via-[#F5A9B8] to-[#5BCEFA]',
+    dotGradient: 'linear-gradient(to bottom right, #5BCEFA 0%, #5BCEFA 20%, #F5A9B8 20%, #F5A9B8 40%, #FFFFFF 40%, #FFFFFF 60%, #F5A9B8 60%, #F5A9B8 80%, #5BCEFA 80%, #5BCEFA 100%)',
   },
   {
     id: 'purple',
@@ -70,7 +70,7 @@ const themes: Theme[] = [
       secondary: '#9333EA',
       accent: '#C084FC',
     },
-    dotColor: 'bg-gradient-to-br from-[#6B21A8] via-[#9333EA] to-[#C084FC]',
+    dotGradient: 'linear-gradient(to bottom right, #6B21A8, #9333EA, #C084FC)',
   },
   {
     id: 'orange',
@@ -80,7 +80,7 @@ const themes: Theme[] = [
       secondary: '#EA580C',
       accent: '#FB923C',
     },
-    dotColor: 'bg-gradient-to-br from-[#C2410C] via-[#EA580C] to-[#FB923C]',
+    dotGradient: 'linear-gradient(to bottom right, #C2410C, #EA580C, #FB923C)',
   },
   {
     id: 'pink',
@@ -90,7 +90,7 @@ const themes: Theme[] = [
       secondary: '#EC4899',
       accent: '#F472B6',
     },
-    dotColor: 'bg-gradient-to-br from-[#BE185D] via-[#EC4899] to-[#F472B6]',
+    dotGradient: 'linear-gradient(to bottom right, #BE185D, #EC4899, #F472B6)',
   },
   {
     id: 'indigo',
@@ -100,7 +100,7 @@ const themes: Theme[] = [
       secondary: '#6366F1',
       accent: '#818CF8',
     },
-    dotColor: 'bg-gradient-to-br from-[#4338CA] via-[#6366F1] to-[#818CF8]',
+    dotGradient: 'linear-gradient(to bottom right, #4338CA, #6366F1, #818CF8)',
   },
   {
     id: 'emerald',
@@ -110,7 +110,7 @@ const themes: Theme[] = [
       secondary: '#059669',
       accent: '#34D399',
     },
-    dotColor: 'bg-gradient-to-br from-[#047857] via-[#059669] to-[#34D399]',
+    dotGradient: 'linear-gradient(to bottom right, #047857, #059669, #34D399)',
   },
 ];
 
@@ -157,12 +157,11 @@ export default function ColorThemeSwitcher() {
             key={theme.id}
             onClick={() => handleThemeChange(theme.id)}
             className={`w-6 h-6 rounded-full transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-secondary ${
-              theme.dotColor
-            } ${
               currentTheme === theme.id
                 ? 'ring-2 ring-gray-900 dark:ring-white ring-offset-2 scale-110'
                 : 'opacity-60 hover:opacity-100'
             }`}
+            style={{ backgroundImage: theme.dotGradient }}
             aria-label={`Switch to ${theme.name} theme`}
             title={theme.name}
           />
