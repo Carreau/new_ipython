@@ -129,7 +129,7 @@ body {
   background: linear-gradient(to bottom right, var(--theme-secondary), var(--theme-accent));
 }
 
-/* Enhanced Pride theme gradients with stronger color stops */
+/* Enhanced Pride theme gradients with discrete color bands */
 [data-color-theme="rainbow"] .gradient-blue-cyan,
 [data-color-theme="rainbow"] .gradient-cyan-green,
 [data-color-theme="rainbow"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
@@ -137,13 +137,13 @@ body {
 [data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
 [data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
   background: linear-gradient(to right, 
-    #E40303 0%, 
-    #FF8C00 16.66%, 
-    #FFED00 33.33%, 
-    #008026 50%, 
-    #004DFF 66.66%, 
-    #750787 83.33%, 
-    #E40303 100%);
+    #E40303 0%, #E40303 14%,
+    #FF8C00 14%, #FF8C00 28%,
+    #FFED00 28%, #FFED00 42%,
+    #008026 42%, #008026 57%,
+    #004DFF 57%, #004DFF 71%,
+    #750787 71%, #750787 85%,
+    #E40303 85%, #E40303 100%);
 }
 
 [data-color-theme="gay"] .gradient-blue-cyan,
@@ -152,9 +152,9 @@ body {
 [data-color-theme="gay"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
 [data-color-theme="gay"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
   background: linear-gradient(to right, 
-    #078D70 0%, 
-    #26CEAA 50%, 
-    #98E8C1 100%);
+    #078D70 0%, #078D70 33%,
+    #26CEAA 33%, #26CEAA 66%,
+    #98E8C1 66%, #98E8C1 100%);
 }
 
 [data-color-theme="lesbian"] .gradient-blue-cyan,
@@ -164,12 +164,11 @@ body {
 [data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
 [data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
   background: linear-gradient(to right, 
-    #D62900 0%, 
-    #FF9B55 20%, 
-    #FFFFFF 40%, 
-    #D60270 60%, 
-    #9B4F96 80%, 
-    #D62900 100%);
+    #D62900 0%, #D62900 20%,
+    #FF9B55 20%, #FF9B55 40%,
+    #FFFFFF 40%, #FFFFFF 60%,
+    #D60270 60%, #D60270 80%,
+    #9B4F96 80%, #9B4F96 100%);
 }
 
 [data-color-theme="trans"] .gradient-blue-cyan,
@@ -178,11 +177,11 @@ body {
 [data-color-theme="trans"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
 [data-color-theme="trans"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
   background: linear-gradient(to right, 
-    #5BCEFA 0%, 
-    #F5A9B8 25%, 
-    #FFFFFF 50%, 
-    #F5A9B8 75%, 
-    #5BCEFA 100%);
+    #5BCEFA 0%, #5BCEFA 20%,
+    #F5A9B8 20%, #F5A9B8 40%,
+    #FFFFFF 40%, #FFFFFF 60%,
+    #F5A9B8 60%, #F5A9B8 80%,
+    #5BCEFA 80%, #5BCEFA 100%);
 }
 
 /* Text utilities */
@@ -212,15 +211,15 @@ pre code {
   color: transparent;
 }
 
-/* Enhanced Pride theme gradient text with stronger color stops */
+/* Enhanced Pride theme gradient text with discrete color bands */
 [data-color-theme="rainbow"] .gradient-text {
   background: linear-gradient(to right, 
-    #E40303 0%, 
-    #FF8C00 16.66%, 
-    #FFED00 33.33%, 
-    #008026 50%, 
-    #004DFF 66.66%, 
-    #750787 83.33%);
+    #E40303 0%, #E40303 14%,
+    #FF8C00 14%, #FF8C00 28%,
+    #FFED00 28%, #FFED00 42%,
+    #008026 42%, #008026 57%,
+    #004DFF 57%, #004DFF 71%,
+    #750787 71%, #750787 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -229,9 +228,9 @@ pre code {
 
 [data-color-theme="gay"] .gradient-text {
   background: linear-gradient(to right, 
-    #078D70 0%, 
-    #26CEAA 50%, 
-    #98E8C1 100%);
+    #078D70 0%, #078D70 33%,
+    #26CEAA 33%, #26CEAA 66%,
+    #98E8C1 66%, #98E8C1 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -240,11 +239,11 @@ pre code {
 
 [data-color-theme="lesbian"] .gradient-text {
   background: linear-gradient(to right, 
-    #D62900 0%, 
-    #FF9B55 20%, 
-    #FFFFFF 40%, 
-    #D60270 60%, 
-    #9B4F96 80%);
+    #D62900 0%, #D62900 20%,
+    #FF9B55 20%, #FF9B55 40%,
+    #FFFFFF 40%, #FFFFFF 60%,
+    #D60270 60%, #D60270 80%,
+    #9B4F96 80%, #9B4F96 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -253,11 +252,11 @@ pre code {
 
 [data-color-theme="trans"] .gradient-text {
   background: linear-gradient(to right, 
-    #5BCEFA 0%, 
-    #F5A9B8 25%, 
-    #FFFFFF 50%, 
-    #F5A9B8 75%, 
-    #5BCEFA 100%);
+    #5BCEFA 0%, #5BCEFA 20%,
+    #F5A9B8 20%, #F5A9B8 40%,
+    #FFFFFF 40%, #FFFFFF 60%,
+    #F5A9B8 60%, #F5A9B8 80%,
+    #5BCEFA 80%, #5BCEFA 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
