@@ -123,24 +123,35 @@ export default function AnimatedTerminal() {
   const maxLines = Math.max(...examples.map(ex => ex.lines.length));
   const lineHeight = 1.5; // rem (24px for text-sm)
   const padding = 1.5 * 2; // rem (top + bottom padding)
-  const minHeight = `${maxLines * lineHeight + padding}rem`;
+  const controlsHeight = 2.5; // rem (window controls height)
+  const minHeight = `${maxLines * lineHeight + padding + controlsHeight}rem`;
 
   return (
-    <div className="bg-gray-900 rounded-lg p-6 font-mono text-sm" style={{ minHeight }}>
-      {displayedLines.map((line, index) => {
-        const { prefix, content, prefixColor } = getLinePrefix(line);
-        const lineColor = getLineColor(line);
+    <div className="bg-gray-900 rounded-lg overflow-hidden font-mono text-sm" style={{ minHeight }}>
+      {/* macOS Window Controls */}
+      <div className="bg-gray-800 border-b border-gray-700 px-4 py-2 flex items-center gap-2">
+        <div className="w-3 h-3 rounded-full bg-red-500"></div>
+        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div className="w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+      
+      {/* Terminal Content */}
+      <div className="p-6">
+        {displayedLines.map((line, index) => {
+          const { prefix, content, prefixColor } = getLinePrefix(line);
+          const lineColor = getLineColor(line);
 
-        return (
-          <div key={index} className={lineColor}>
-            {prefix && <span className={prefixColor}>{prefix}</span>}
-            {content}
-          </div>
-        );
-      })}
-      {displayedLines.length === 0 && (
-        <div className="text-theme-secondary">$ ipython</div>
-      )}
+          return (
+            <div key={index} className={lineColor}>
+              {prefix && <span className={prefixColor}>{prefix}</span>}
+              {content}
+            </div>
+          );
+        })}
+        {displayedLines.length === 0 && (
+          <div className="text-theme-secondary">$ ipython</div>
+        )}
+      </div>
     </div>
   );
 }
