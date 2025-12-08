@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import PageHeader from '../components/PageHeader.astro';
 import fs from 'fs';
 import path from 'path';
 
@@ -359,13 +360,10 @@ if (!cachedData) {
   <Navigation />
 
   <main class="min-h-screen bg-white dark:bg-ipython-dark">
-    <!-- Header -->
-    <section class="gradient-header-3 py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 class="text-4xl font-bold gradient-text-hero mb-4">About IPython</h1>
-        <p class="text-xl text-gray-100">The story behind productive interactive computing</p>
-      </div>
-    </section>
+    <PageHeader 
+      title="About IPython" 
+      description="The story behind productive interactive computing"
+    />
 
     <!-- Content -->
     <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

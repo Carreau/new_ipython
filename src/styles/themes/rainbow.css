@@ -16,6 +16,13 @@
     #E40303 85%, #E40303 100%) !important;
 }
 
+[data-color-theme="rainbow"] .gradient-header {
+  background-image: linear-gradient(to right, 
+    #E40303 0%, #E40303 33%,
+    #FF8C00 33%, #FF8C00 66%,
+    #FFED00 66%, #FFED00 100%) !important;
+}
+
 [data-color-theme="rainbow"] .gradient-header-1 {
   background-image: linear-gradient(to right, 
     #E40303 0%, #E40303 33%,
@@ -61,34 +68,26 @@
 
 /* Add backdrop blur to gradient sections */
 [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-20,
-[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.py-20,
-[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.py-20,
-[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.py-20,
+[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.py-20,
+[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-8.text-center,
+[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.py-8.text-center,
 [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.text-center,
-[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.text-center,
-[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.text-center,
-[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.text-center,
+[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.text-center,
 [data-color-theme="rainbow"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="rainbow"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 .dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-20,
-.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.py-20,
-.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.py-20,
-.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.py-20,
+.dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-8.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.py-8.text-center,
 .dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.text-center,
-.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.text-center,
-.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.text-center,
-.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.text-center,
+.dark[data-color-theme="rainbow"] section.gradient-header .max-w-7xl.text-center,
 .dark[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
+.dark[data-color-theme="rainbow"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);

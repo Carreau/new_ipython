@@ -99,6 +99,10 @@ body {
   @apply bg-gradient-to-br from-ipython-blue via-ipython-cyan to-ipython-green;
 }
 
+.gradient-header {
+  @apply bg-gradient-to-r from-ipython-blue to-ipython-cyan;
+}
+
 .gradient-header-1 {
   @apply bg-gradient-to-r from-ipython-blue to-ipython-cyan;
 }

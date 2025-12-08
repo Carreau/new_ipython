@@ -37,6 +37,30 @@
   ) !important;
 }
 
+:not(.dark)[data-color-theme="lesbian"] .gradient-header {
+  background-image: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 33%,
+    #ff9b55 33%,
+    #ff9b55 66%,
+    #ffffff 66%,
+    #ffffff 100%
+  );
+}
+
+.dark[data-color-theme="lesbian"] .gradient-header {
+  background-image: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 33%,
+    #ff9b55 33%,
+    #ff9b55 66%,
+    #0f172a 66%,
+    #0f172a 100%
+  ) !important;
+}
+
 :not(.dark)[data-color-theme="lesbian"] .gradient-header-1 {
   background-image: linear-gradient(
     to right,
@@ -117,56 +141,26 @@
 
 /* Add backdrop blur to gradient sections */
 [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-20,
-[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.py-20,
-[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.py-20,
-[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.py-20,
+[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.py-20,
+[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-8.text-center,
+[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.py-8.text-center,
 [data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.text-center,
-[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.text-center,
-[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.text-center,
-[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.text-center,
-[data-color-theme="lesbian"]
-  section.gradient-hero
-  .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"]
-  section.gradient-header-1
-  .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"]
-  section.gradient-header-2
-  .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="lesbian"]
-  section.gradient-header-3
-  .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.text-center,
+[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="lesbian"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 .dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-20,
-.dark[data-color-theme="lesbian"] section.gradient-header-1 .max-w-7xl.py-20,
-.dark[data-color-theme="lesbian"] section.gradient-header-2 .max-w-7xl.py-20,
-.dark[data-color-theme="lesbian"] section.gradient-header-3 .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.py-20,
+.dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.py-8.text-center,
+.dark[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.py-8.text-center,
 .dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl.text-center,
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-1
-  .max-w-7xl.text-center,
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-2
-  .max-w-7xl.text-center,
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-3
-  .max-w-7xl.text-center,
-.dark[data-color-theme="lesbian"]
-  section.gradient-hero
-  .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-1
-  .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-2
-  .max-w-7xl:has(h1.gradient-text-hero),
-.dark[data-color-theme="lesbian"]
-  section.gradient-header-3
-  .max-w-7xl:has(h1.gradient-text-hero) {
+.dark[data-color-theme="lesbian"] section.gradient-header .max-w-7xl.text-center,
+.dark[data-color-theme="lesbian"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="lesbian"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);
