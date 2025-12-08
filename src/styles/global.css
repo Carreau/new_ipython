@@ -93,6 +93,23 @@ body {
   );
 }
 
+/* Simplified gradient classes for sections */
+.gradient-hero {
+  @apply bg-gradient-to-br from-ipython-blue via-ipython-cyan to-ipython-green;
+}
+
+.gradient-header-1 {
+  @apply bg-gradient-to-r from-ipython-blue to-ipython-cyan;
+}
+
+.gradient-header-2 {
+  @apply bg-gradient-to-r from-ipython-cyan to-ipython-green;
+}
+
+.gradient-header-3 {
+  @apply bg-gradient-to-r from-ipython-green to-ipython-blue;
+}
+
 /* Text utilities */
 a {
   @apply transition-colors duration-200;

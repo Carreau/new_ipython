@@ -154,8 +154,7 @@ export default function ColorThemeSwitcher() {
       // Pride themes: Use explicit multi-color gradients with strong stops
       if (themeId === 'rainbow') {
         gradientStyles = `
-          .from-ipython-blue.via-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green {
+          .gradient-hero {
             background-image: linear-gradient(to bottom right, 
               #E40303 0%, #E40303 14%,
               #FF8C00 14%, #FF8C00 28%,
@@ -165,22 +164,19 @@ export default function ColorThemeSwitcher() {
               #750787 71%, #750787 85%,
               #E40303 85%, #E40303 100%) !important;
           }
-          .from-ipython-blue.to-ipython-cyan,
-          .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan {
+          .gradient-header-1 {
             background-image: linear-gradient(to right, 
               #E40303 0%, #E40303 33%,
               #FF8C00 33%, #FF8C00 66%,
               #FFED00 66%, #FFED00 100%) !important;
           }
-          .from-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+          .gradient-header-2 {
             background-image: linear-gradient(to right, 
               #FFED00 0%, #FFED00 33%,
               #008026 33%, #008026 66%,
               #004DFF 66%, #004DFF 100%) !important;
           }
-          .from-ipython-green.to-ipython-blue,
-          .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+          .gradient-header-3 {
             background-image: linear-gradient(to right, 
               #004DFF 0%, #004DFF 33%,
               #750787 33%, #750787 66%,
@@ -189,21 +185,18 @@ export default function ColorThemeSwitcher() {
         `;
       } else if (themeId === 'gay') {
         gradientStyles = `
-          .from-ipython-blue.via-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green {
+          .gradient-hero {
             background-image: linear-gradient(to bottom right, 
               #078D70 0%, #078D70 33%,
               #26CEAA 33%, #26CEAA 66%,
               #98E8C1 66%, #98E8C1 100%) !important;
           }
-          .from-ipython-blue.to-ipython-cyan,
-          .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan {
+          .gradient-header-1 {
             background-image: linear-gradient(to right, 
               #078D70 0%, #078D70 50%,
               #26CEAA 50%, #26CEAA 100%) !important;
           }
-          .from-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+          .gradient-header-2 {
             background-image: linear-gradient(to right, 
               #26CEAA 0%, #26CEAA 50%,
               #98E8C1 50%, #98E8C1 100%) !important;
@@ -211,8 +204,7 @@ export default function ColorThemeSwitcher() {
         `;
       } else if (themeId === 'lesbian') {
         gradientStyles = `
-          .from-ipython-blue.via-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green {
+          .gradient-hero {
             background-image: linear-gradient(to bottom right, 
               #D62900 0%, #D62900 20%,
               #FF9B55 20%, #FF9B55 40%,
@@ -220,22 +212,19 @@ export default function ColorThemeSwitcher() {
               #D60270 60%, #D60270 80%,
               #9B4F96 80%, #9B4F96 100%) !important;
           }
-          .from-ipython-blue.to-ipython-cyan,
-          .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan {
+          .gradient-header-1 {
             background-image: linear-gradient(to right, 
               #D62900 0%, #D62900 33%,
               #FF9B55 33%, #FF9B55 66%,
               #FFFFFF 66%, #FFFFFF 100%) !important;
           }
-          .from-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+          .gradient-header-2 {
             background-image: linear-gradient(to right, 
               #FFFFFF 0%, #FFFFFF 33%,
               #D60270 33%, #D60270 66%,
               #9B4F96 66%, #9B4F96 100%) !important;
           }
-          .from-ipython-green.to-ipython-blue,
-          .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+          .gradient-header-3 {
             background-image: linear-gradient(to right, 
               #9B4F96 0%, #9B4F96 33%,
               #D60270 33%, #D60270 66%,
@@ -244,8 +233,7 @@ export default function ColorThemeSwitcher() {
         `;
       } else if (themeId === 'trans') {
         gradientStyles = `
-          .from-ipython-blue.via-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green {
+          .gradient-hero {
             background-image: linear-gradient(to bottom right, 
               #5BCEFA 0%, #5BCEFA 20%,
               #F5A9B8 20%, #F5A9B8 40%,
@@ -253,15 +241,13 @@ export default function ColorThemeSwitcher() {
               #F5A9B8 60%, #F5A9B8 80%,
               #5BCEFA 80%, #5BCEFA 100%) !important;
           }
-          .from-ipython-blue.to-ipython-cyan,
-          .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan {
+          .gradient-header-1 {
             background-image: linear-gradient(to right, 
               #5BCEFA 0%, #5BCEFA 33%,
               #F5A9B8 33%, #F5A9B8 66%,
               #FFFFFF 66%, #FFFFFF 100%) !important;
           }
-          .from-ipython-cyan.to-ipython-green,
-          .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+          .gradient-header-2 {
             background-image: linear-gradient(to right, 
               #FFFFFF 0%, #FFFFFF 33%,
               #F5A9B8 33%, #F5A9B8 66%,

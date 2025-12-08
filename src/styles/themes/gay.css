@@ -7,10 +7,9 @@
 
 [data-color-theme="gay"] .gradient-blue-cyan,
 [data-color-theme="gay"] .gradient-cyan-green,
-[data-color-theme="gay"]
-  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
-[data-color-theme="gay"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
-[data-color-theme="gay"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+[data-color-theme="gay"] .gradient-hero,
+[data-color-theme="gay"] .gradient-header-1,
+[data-color-theme="gay"] .gradient-header-2 {
   background: linear-gradient(
     to right,
     #078d70 0%,
@@ -39,18 +38,24 @@
 }
 
 /* Add backdrop blur to hero section container (py-20) for better white-on-white readability */
-[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl.py-20,
-[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl.py-20 {
+[data-color-theme="gay"] section.gradient-hero .max-w-7xl.py-20,
+[data-color-theme="gay"] section.gradient-header-1 .max-w-7xl.py-20,
+[data-color-theme="gay"] section.gradient-header-2 .max-w-7xl.py-20,
+[data-color-theme="gay"] section.gradient-header-3 .max-w-7xl.py-20 {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 /* Add backdrop blur to header/CTA divs with text-center or containing h1 */
-[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl.text-center,
-[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl.text-center,
-[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="gay"] section.gradient-hero .max-w-7xl.text-center,
+[data-color-theme="gay"] section.gradient-header-1 .max-w-7xl.text-center,
+[data-color-theme="gay"] section.gradient-header-2 .max-w-7xl.text-center,
+[data-color-theme="gay"] section.gradient-header-3 .max-w-7xl.text-center,
+[data-color-theme="gay"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="gay"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="gay"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="gay"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(4px);

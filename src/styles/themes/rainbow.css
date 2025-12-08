@@ -8,14 +8,10 @@
 /* Enhanced Rainbow theme gradients with discrete color bands */
 [data-color-theme="rainbow"] .gradient-blue-cyan,
 [data-color-theme="rainbow"] .gradient-cyan-green,
-[data-color-theme="rainbow"]
-  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
-[data-color-theme="rainbow"]
-  .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
-[data-color-theme="rainbow"]
-  .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
-[data-color-theme="rainbow"]
-  .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+[data-color-theme="rainbow"] .gradient-hero,
+[data-color-theme="rainbow"] .gradient-header-1,
+[data-color-theme="rainbow"] .gradient-header-2,
+[data-color-theme="rainbow"] .gradient-header-3 {
   background: linear-gradient(
     to right,
     #e40303 0%,
@@ -58,18 +54,24 @@
 }
 
 /* Add backdrop blur to hero section container (py-20) for better white-on-white readability */
-[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-7xl.py-20,
-[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-7xl.py-20 {
+[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.py-20,
+[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.py-20,
+[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.py-20,
+[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.py-20 {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
 
 /* Add backdrop blur to header/CTA divs with text-center or containing h1 */
-[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-7xl.text-center,
-[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-7xl.text-center,
-[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-7xl:has(h1.gradient-text-hero),
-[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-7xl:has(h1.gradient-text-hero) {
+[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl.text-center,
+[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl.text-center,
+[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl.text-center,
+[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl.text-center,
+[data-color-theme="rainbow"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="rainbow"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="rainbow"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="rainbow"] section.gradient-header-3 .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   backdrop-filter: blur(4px);
