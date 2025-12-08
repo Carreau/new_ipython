@@ -137,55 +137,6 @@ export default function ColorThemeSwitcher() {
     // Update Tailwind colors via data attribute
     root.setAttribute('data-color-theme', themeId);
     
-    // Inject dynamic styles for Tailwind gradient classes
-    let styleElement = document.getElementById('theme-gradient-styles');
-    if (!styleElement) {
-      styleElement = document.createElement('style');
-      styleElement.id = 'theme-gradient-styles';
-      document.head.appendChild(styleElement);
-    }
-    
-    // Pride themes with stronger color stops
-    const isPrideTheme = ['rainbow', 'gay', 'lesbian', 'trans'].includes(themeId);
-    
-    // Override Tailwind gradient classes with CSS variables
-    styleElement.textContent = `
-      .from-ipython-blue {
-        --tw-gradient-from: var(--theme-primary) var(--tw-gradient-from-position);
-        --tw-gradient-to: rgb(13 92 99 / 0) var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-      }
-      .via-ipython-cyan {
-        --tw-gradient-to: rgb(0 139 149 / 0) var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--theme-secondary) var(--tw-gradient-via-position), var(--tw-gradient-to);
-      }
-      .to-ipython-cyan {
-        --tw-gradient-to: var(--theme-secondary) var(--tw-gradient-to-position);
-      }
-      .to-ipython-green {
-        --tw-gradient-to: var(--theme-accent) var(--tw-gradient-to-position);
-      }
-      .from-ipython-cyan {
-        --tw-gradient-from: var(--theme-secondary) var(--tw-gradient-from-position);
-        --tw-gradient-to: rgb(0 139 149 / 0) var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-      }
-      .from-ipython-green {
-        --tw-gradient-from: var(--theme-accent) var(--tw-gradient-from-position);
-        --tw-gradient-to: rgb(5 150 105 / 0) var(--tw-gradient-to-position);
-        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-      }
-      .text-ipython-cyan {
-        color: var(--theme-secondary);
-      }
-      .hover\\:text-ipython-cyan:hover {
-        color: var(--theme-secondary);
-      }
-      .border-ipython-cyan {
-        border-color: var(--theme-secondary);
-      }
-    `;
-    
     // Store preference
     localStorage.setItem('colorTheme', themeId);
   };
