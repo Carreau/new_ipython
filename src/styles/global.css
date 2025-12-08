@@ -558,3 +558,24 @@ h3.text-white {
 [data-color-theme="trans"] section.bg-gray-50 {
   background: #ffffff !important;
 }
+
+/* Ensure icon containers have visible backgrounds on Pride themes */
+[data-color-theme="rainbow"] .bg-ipython-cyan,
+[data-color-theme="rainbow"] .bg-ipython-green {
+  background: #1f2937 !important;
+}
+
+[data-color-theme="gay"] .bg-ipython-cyan,
+[data-color-theme="gay"] .bg-ipython-green {
+  background: #0d5c63 !important;
+}
+
+[data-color-theme="lesbian"] .bg-ipython-cyan,
+[data-color-theme="lesbian"] .bg-ipython-green {
+  background: #d62900 !important;
+}
+
+[data-color-theme="trans"] .bg-ipython-cyan,
+[data-color-theme="trans"] .bg-ipython-green {
+  background: #5bcefa !important;
+}
