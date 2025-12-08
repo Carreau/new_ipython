@@ -131,7 +131,7 @@ a {
 
 /* Code highlighting */
 pre {
-  @apply bg-gray-900 dark:bg-gray-950 text-gray-50 p-4 rounded-lg overflow-x-auto;
+  @apply bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 p-3 rounded-lg overflow-x-auto;
 }
 
 code {
@@ -139,7 +139,7 @@ code {
 }
 
 pre code {
-  @apply text-gray-50;
+  @apply text-gray-700 dark:text-gray-300;
 }
 
 /* Gradient text for headers - use CSS variables for theme support */

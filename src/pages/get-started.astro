@@ -21,8 +21,8 @@ import PageHeader from '../components/PageHeader.astro';
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Starting IPython</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">Once installed, start IPython by typing:</p>
-          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
-            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-secondary">$</span> ipython
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700 mb-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm p-3"><code><span class="text-theme-secondary">$</span> ipython
 IPython 8.18.1 -- An enhanced Interactive Python
 Type 'copyright', 'credits' or 'license' for more information
 IPython -- Productive Interactive Computing
@@ -36,8 +36,8 @@ IPython -- Productive Interactive Computing
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Basic Python Code</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">IPython works like standard Python, but with enhanced features:</p>
-          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> x = 10
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm p-3"><code><span class="text-theme-primary">In [1]:</span> x = 10
 
 <span class="text-theme-primary">In [2]:</span> y = 20
 
@@ -79,8 +79,8 @@ IPython -- Productive Interactive Computing
               <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Show source code</p>
             </div>
           </div>
-          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> import numpy
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm p-3"><code><span class="text-theme-primary">In [1]:</span> import numpy
 
 <span class="text-theme-primary">In [2]:</span> numpy.array?
 <span class="text-gray-500 dark:text-gray-400">Type:      type
@@ -115,8 +115,8 @@ ndarray(shape, dtype=float, buffer=None, offset=0,
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Shell Integration</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">Execute shell commands directly with <code class="bg-gray-100 dark:bg-ipython-slate px-2 py-1 rounded">!</code>:</p>
-          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
-            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> !ls
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700 mb-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm p-3"><code><span class="text-theme-primary">In [1]:</span> !ls
 
 <span class="text-theme-primary">In [2]:</span> files = !find . -name "*.py"
 
