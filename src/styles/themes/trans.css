@@ -63,28 +63,6 @@
 }
 
 
-/* Override gradient text with solid dark text on Trans theme for headings in white sections */
-[data-color-theme="trans"] section.bg-white h2,
-[data-color-theme="trans"] section.bg-white h3,
-[data-color-theme="trans"] section.bg-gray-50 h2,
-[data-color-theme="trans"] section.bg-gray-50 h3 {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  background-clip: unset !important;
-  -webkit-text-fill-color: #1f2937 !important;
-  color: #1f2937 !important;
-}
-
-.dark [data-color-theme="trans"] section.bg-white h2,
-.dark [data-color-theme="trans"] section.bg-white h3,
-.dark [data-color-theme="trans"] section.bg-gray-50 h2,
-.dark [data-color-theme="trans"] section.bg-gray-50 h3 {
-  background: none !important;
-  -webkit-background-clip: unset !important;
-  background-clip: unset !important;
-  -webkit-text-fill-color: #f9fafb !important;
-  color: #f9fafb !important;
-}
 
 /* Ensure white sections are fully opaque on Trans theme - light mode */
 [data-color-theme="trans"] .bg-white,
