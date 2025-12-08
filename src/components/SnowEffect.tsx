@@ -81,18 +81,37 @@ export default function SnowEffect() {
         if (el instanceof HTMLElement) {
           const rect = el.getBoundingClientRect();
           // Only include visible elements with reasonable size
-          if (rect.width > 50 && rect.height > 20 && rect.top < window.innerHeight) {
+          if (rect.width > 50 && rect.height > 20 && rect.top < window.innerHeight && rect.bottom > 0) {
             targets.push(el);
           }
         }
       });
       
-      // Find terminals (pre elements, AnimatedTerminal containers)
-      document.querySelectorAll('pre, [class*="terminal"], [class*="Terminal"]').forEach((el) => {
+      // Find terminals and code blocks (pre elements, AnimatedTerminal containers)
+      // AnimatedTerminal has: bg-gray-50 dark:bg-gray-900 rounded-lg font-mono
+      // Also look for divs containing the macOS window controls (red/yellow/green circles)
+      document.querySelectorAll('pre, code, div[class*="bg-gray-50"][class*="rounded-lg"], div[class*="bg-gray-900"][class*="rounded-lg"]').forEach((el) => {
         if (el instanceof HTMLElement) {
           const rect = el.getBoundingClientRect();
-          if (rect.width > 100 && rect.height > 50 && rect.top < window.innerHeight) {
+          // Check if it looks like a terminal/code block (has reasonable size and font-mono or contains window controls)
+          const hasWindowControls = el.querySelector('div[class*="bg-red-500"], div[class*="bg-yellow-500"], div[class*="bg-green-500"]');
+          const hasFontMono = el.classList.contains('font-mono') || window.getComputedStyle(el).fontFamily.includes('mono');
+          if (rect.width > 100 && rect.height > 50 && rect.top < window.innerHeight && rect.bottom > 0 && (hasWindowControls || hasFontMono)) {
             targets.push(el);
+          }
+        }
+      });
+      
+      // Find card-like containers (divs with rounded corners and padding)
+      document.querySelectorAll('div[class*="rounded-lg"], div[class*="rounded-xl"], div[class*="rounded-md"]').forEach((el) => {
+        if (el instanceof HTMLElement) {
+          const rect = el.getBoundingClientRect();
+          // Only include substantial containers, not tiny icons
+          if (rect.width > 150 && rect.height > 80 && rect.top < window.innerHeight && rect.bottom > 0) {
+            // Check if it's not already added
+            if (!targets.includes(el)) {
+              targets.push(el);
+            }
           }
         }
       });
@@ -190,7 +209,7 @@ export default function SnowEffect() {
           height: ${flake.size * 2}px;
           opacity: ${flake.opacity};
           pointer-events: none;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, 0);
         `;
         
         // Create SVG snowflake
@@ -314,7 +333,8 @@ export default function SnowEffect() {
           // Check collision: flake must be horizontally over the element
           // and vertically crossing from above to at/below the top
           const horizontalOverlap = flake.x >= elementLeft - flake.size && flake.x <= elementLeft + rect.width + flake.size;
-          const verticalCrossing = prevY < elementTop && flake.y >= elementTop - 5; // More lenient overlap
+          // Check if flake is crossing the top edge of the element
+          const verticalCrossing = prevY < elementTop && flake.y >= elementTop - 3; // Allow small overlap
           const withinMaxHeight = flake.y <= elementTop + acc.maxAmount;
           
           if (horizontalOverlap && verticalCrossing && withinMaxHeight) {
@@ -323,12 +343,14 @@ export default function SnowEffect() {
             flake.stuckElement = acc.element;
             // Position relative to element's left edge and top
             flake.stuckX = flake.x - elementLeft;
-            // Stack flakes - place new flake on top of existing ones
+            // Stack flakes - place new flake on top of existing ones, starting at the very top
             const existingHeight = acc.stuckFlakes.reduce((max, f) => {
               const fY = (f.stuckY ?? 0) + (f.size * 2);
               return Math.max(max, fY);
             }, 0);
-            flake.stuckY = Math.max(0, Math.min(existingHeight, acc.maxAmount - flake.size));
+            // Start stacking from the very top (0), but allow stacking up to maxAmount
+            // First flake goes at top (0), subsequent ones stack on top
+            flake.stuckY = Math.min(existingHeight, acc.maxAmount - flake.size * 2);
             
             // Add to accumulation
             acc.stuckFlakes.push(flake);
