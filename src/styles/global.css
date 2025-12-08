@@ -8,6 +8,7 @@
 @import "./themes/gay.css";
 @import "./themes/lesbian.css";
 @import "./themes/trans.css";
+@import "./themes/winter.css";
 
 @tailwind base;
 @tailwind components;

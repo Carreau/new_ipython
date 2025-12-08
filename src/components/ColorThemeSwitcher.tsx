@@ -112,6 +112,16 @@ const themes: Theme[] = [
     },
     dotGradient: 'linear-gradient(to bottom right, #047857, #059669, #34D399)',
   },
+  {
+    id: 'winter',
+    name: 'Winter',
+    colors: {
+      primary: '#1e40af',   // Deep blue
+      secondary: '#3b82f6', // Bright blue
+      accent: '#e0f2fe',    // Light blue/ice
+    },
+    dotGradient: 'linear-gradient(to bottom right, #1e40af 0%, #1e40af 33%, #3b82f6 33%, #3b82f6 66%, #93c5fd 66%, #93c5fd 100%)',
+  },
 ];
 
 export default function ColorThemeSwitcher() {

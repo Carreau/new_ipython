@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ConditionalSnow from '../components/ConditionalSnow.tsx';
 
 interface Props {
   title: string;
@@ -29,5 +30,6 @@ const { title, description = 'IPython - Productive Interactive Computing' } = As
   </head>
   <body class="bg-white dark:bg-ipython-dark text-gray-900 dark:text-gray-50">
     <slot />
+    <ConditionalSnow client:load />
   </body>
 </html>
