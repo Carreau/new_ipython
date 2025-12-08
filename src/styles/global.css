@@ -1,3 +1,14 @@
+/* Import all theme files - must come before other CSS rules */
+@import "./themes/purple.css";
+@import "./themes/orange.css";
+@import "./themes/pink.css";
+@import "./themes/indigo.css";
+@import "./themes/emerald.css";
+@import "./themes/rainbow.css";
+@import "./themes/gay.css";
+@import "./themes/lesbian.css";
+@import "./themes/trans.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,17 +24,6 @@
 :root.dark {
   color-scheme: dark;
 }
-
-/* Import all theme files */
-@import './themes/purple.css';
-@import './themes/orange.css';
-@import './themes/pink.css';
-@import './themes/indigo.css';
-@import './themes/emerald.css';
-@import './themes/rainbow.css';
-@import './themes/gay.css';
-@import './themes/lesbian.css';
-@import './themes/trans.css';
 
 html {
   scroll-behavior: smooth;
@@ -93,7 +93,6 @@ body {
   );
 }
 
-
 /* Text utilities */
 a {
   @apply transition-colors duration-200;
@@ -125,7 +124,6 @@ pre code {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-
 
 /* Gradient text for hero (brighter, contrasts with gradient bg) */
 .gradient-text-hero {
@@ -223,6 +221,3 @@ h3.text-white {
   -webkit-text-fill-color: white !important;
   color: white !important;
 }
-
-
-
