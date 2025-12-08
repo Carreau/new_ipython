@@ -129,6 +129,62 @@ body {
   background: linear-gradient(to bottom right, var(--theme-secondary), var(--theme-accent));
 }
 
+/* Enhanced Pride theme gradients with stronger color stops */
+[data-color-theme="rainbow"] .gradient-blue-cyan,
+[data-color-theme="rainbow"] .gradient-cyan-green,
+[data-color-theme="rainbow"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+  background: linear-gradient(to right, 
+    #E40303 0%, 
+    #FF8C00 16.66%, 
+    #FFED00 33.33%, 
+    #008026 50%, 
+    #004DFF 66.66%, 
+    #750787 83.33%, 
+    #E40303 100%);
+}
+
+[data-color-theme="gay"] .gradient-blue-cyan,
+[data-color-theme="gay"] .gradient-cyan-green,
+[data-color-theme="gay"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="gay"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="gay"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+  background: linear-gradient(to right, 
+    #078D70 0%, 
+    #26CEAA 50%, 
+    #98E8C1 100%);
+}
+
+[data-color-theme="lesbian"] .gradient-blue-cyan,
+[data-color-theme="lesbian"] .gradient-cyan-green,
+[data-color-theme="lesbian"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
+[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+  background: linear-gradient(to right, 
+    #D62900 0%, 
+    #FF9B55 20%, 
+    #FFFFFF 40%, 
+    #D60270 60%, 
+    #9B4F96 80%, 
+    #D62900 100%);
+}
+
+[data-color-theme="trans"] .gradient-blue-cyan,
+[data-color-theme="trans"] .gradient-cyan-green,
+[data-color-theme="trans"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="trans"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="trans"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+  background: linear-gradient(to right, 
+    #5BCEFA 0%, 
+    #F5A9B8 25%, 
+    #FFFFFF 50%, 
+    #F5A9B8 75%, 
+    #5BCEFA 100%);
+}
+
 /* Text utilities */
 a {
   @apply transition-colors duration-200;
@@ -150,6 +206,58 @@ pre code {
 /* Gradient text for headers - use CSS variables for theme support */
 .gradient-text {
   background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary), var(--theme-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Enhanced Pride theme gradient text with stronger color stops */
+[data-color-theme="rainbow"] .gradient-text {
+  background: linear-gradient(to right, 
+    #E40303 0%, 
+    #FF8C00 16.66%, 
+    #FFED00 33.33%, 
+    #008026 50%, 
+    #004DFF 66.66%, 
+    #750787 83.33%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-color-theme="gay"] .gradient-text {
+  background: linear-gradient(to right, 
+    #078D70 0%, 
+    #26CEAA 50%, 
+    #98E8C1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-color-theme="lesbian"] .gradient-text {
+  background: linear-gradient(to right, 
+    #D62900 0%, 
+    #FF9B55 20%, 
+    #FFFFFF 40%, 
+    #D60270 60%, 
+    #9B4F96 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+[data-color-theme="trans"] .gradient-text {
+  background: linear-gradient(to right, 
+    #5BCEFA 0%, 
+    #F5A9B8 25%, 
+    #FFFFFF 50%, 
+    #F5A9B8 75%, 
+    #5BCEFA 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
