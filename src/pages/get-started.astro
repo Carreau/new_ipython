@@ -21,13 +21,13 @@ import PageHeader from '../components/PageHeader.astro';
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Starting IPython</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">Once installed, start IPython by typing:</p>
-          <div class="bg-gray-900 rounded-lg p-6 mb-6">
-            <pre class="text-gray-50 font-mono text-sm"><code>$ ipython
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-secondary">$</span> ipython
 IPython 8.18.1 -- An enhanced Interactive Python
 Type 'copyright', 'credits' or 'license' for more information
 IPython -- Productive Interactive Computing
 
-In [1]:</code></pre>
+<span class="text-theme-primary">In [1]:</span></code></pre>
           </div>
           <p class="text-gray-600 dark:text-gray-400">You're now in the IPython shell! Type Python code and press Enter to execute it.</p>
         </div>
@@ -36,18 +36,18 @@ In [1]:</code></pre>
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Basic Python Code</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">IPython works like standard Python, but with enhanced features:</p>
-          <div class="bg-gray-900 rounded-lg p-6">
-            <pre class="text-gray-50 font-mono text-sm"><code><span class="text-blue-400">In [1]:</span> x = 10
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> x = 10
 
-<span class="text-blue-400">In [2]:</span> y = 20
+<span class="text-theme-primary">In [2]:</span> y = 20
 
-<span class="text-blue-400">In [3]:</span> x + y
-<span class="text-yellow-300">Out[3]:</span> 30
+<span class="text-theme-primary">In [3]:</span> x + y
+<span class="text-theme-accent">Out[3]:</span> 30
 
-<span class="text-blue-400">In [4]:</span> name = "IPython"
+<span class="text-theme-primary">In [4]:</span> name = "IPython"
 
-<span class="text-blue-400">In [5]:</span> f"Hello, {'{name}'}"
-<span class="text-yellow-300">Out[5]:</span> 'Hello, IPython!'</code></pre>
+<span class="text-theme-primary">In [5]:</span> f"Hello, {'{name}'}"
+<span class="text-theme-accent">Out[5]:</span> 'Hello, IPython!'</code></pre>
           </div>
         </div>
 
@@ -79,13 +79,13 @@ In [1]:</code></pre>
               <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Show source code</p>
             </div>
           </div>
-          <div class="bg-gray-900 rounded-lg p-6">
-            <pre class="text-gray-50 font-mono text-sm"><code><span class="text-blue-400">In [1]:</span> import numpy
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> import numpy
 
-<span class="text-blue-400">In [2]:</span> numpy.array?
-<span class="text-gray-400">Type:      type
+<span class="text-theme-primary">In [2]:</span> numpy.array?
+<span class="text-gray-500 dark:text-gray-400">Type:      type
 String form: &lt;class 'numpy.ndarray'&gt;</span>
-<span class="text-gray-400">Docstring:
+<span class="text-gray-500 dark:text-gray-400">Docstring:
 ndarray(shape, dtype=float, buffer=None, offset=0,
         strides=None, order=None)</span></code></pre>
           </div>
@@ -115,13 +115,13 @@ ndarray(shape, dtype=float, buffer=None, offset=0,
         <div>
           <h2 class="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Shell Integration</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-4">Execute shell commands directly with <code class="bg-gray-100 dark:bg-ipython-slate px-2 py-1 rounded">!</code>:</p>
-          <div class="bg-gray-900 rounded-lg p-6 mb-6">
-            <pre class="text-gray-50 font-mono text-sm"><code><span class="text-blue-400">In [1]:</span> !ls
+          <div class="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 mb-6">
+            <pre class="text-gray-700 dark:text-gray-300 font-mono text-sm"><code><span class="text-theme-primary">In [1]:</span> !ls
 
-<span class="text-blue-400">In [2]:</span> files = !find . -name "*.py"
+<span class="text-theme-primary">In [2]:</span> files = !find . -name "*.py"
 
-<span class="text-blue-400">In [3]:</span> len(files)
-<span class="text-yellow-300">Out[3]:</span> 42</code></pre>
+<span class="text-theme-primary">In [3]:</span> len(files)
+<span class="text-theme-accent">Out[3]:</span> 42</code></pre>
           </div>
           <p class="text-gray-600 dark:text-gray-400">Capture command output directly into Python variables!</p>
         </div>
