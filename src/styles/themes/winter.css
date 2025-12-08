@@ -1,0 +1,83 @@
+/* Winter theme */
+[data-color-theme="winter"] {
+  --theme-primary: #1e40af;   /* Deep blue */
+  --theme-secondary: #3b82f6; /* Bright blue */
+  --theme-accent: #e0f2fe;     /* Light blue/ice */
+}
+
+:not(.dark)[data-color-theme="winter"] .gradient-hero {
+  background-image: linear-gradient(to bottom right, 
+    #1e40af 0%, #1e40af 20%,
+    #3b82f6 20%, #3b82f6 40%,
+    #60a5fa 40%, #60a5fa 60%,
+    #93c5fd 60%, #93c5fd 80%,
+    #e0f2fe 80%, #e0f2fe 100%) !important;
+}
+
+.dark[data-color-theme="winter"] .gradient-hero {
+  background-image: linear-gradient(to bottom right, 
+    #1e3a8a 0%, #1e3a8a 20%,
+    #1e40af 20%, #1e40af 40%,
+    #3b82f6 40%, #3b82f6 60%,
+    #60a5fa 60%, #60a5fa 80%,
+    #93c5fd 80%, #93c5fd 100%) !important;
+}
+
+:not(.dark)[data-color-theme="winter"] .gradient-header {
+  background-image: linear-gradient(to right, 
+    #1e40af 0%, #1e40af 33%,
+    #3b82f6 33%, #3b82f6 66%,
+    #93c5fd 66%, #93c5fd 100%) !important;
+}
+
+.dark[data-color-theme="winter"] .gradient-header {
+  background-image: linear-gradient(to right, 
+    #1e3a8a 0%, #1e3a8a 33%,
+    #1e40af 33%, #1e40af 66%,
+    #3b82f6 66%, #3b82f6 100%) !important;
+}
+
+[data-color-theme="winter"] .gradient-text {
+  background: linear-gradient(
+    to right,
+    #1e40af 0%,
+    #1e40af 25%,
+    #3b82f6 25%,
+    #3b82f6 50%,
+    #60a5fa 50%,
+    #60a5fa 75%,
+    #93c5fd 75%,
+    #93c5fd 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Add backdrop blur to gradient sections */
+[data-color-theme="winter"] section.gradient-hero .max-w-7xl.py-20,
+[data-color-theme="winter"] section.gradient-header .max-w-7xl.py-20,
+[data-color-theme="winter"] section.gradient-hero .max-w-7xl.py-8.text-center,
+[data-color-theme="winter"] section.gradient-header .max-w-7xl.py-8.text-center,
+[data-color-theme="winter"] section.gradient-hero .max-w-7xl.text-center,
+[data-color-theme="winter"] section.gradient-header .max-w-7xl.text-center,
+[data-color-theme="winter"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="winter"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.dark[data-color-theme="winter"] section.gradient-hero .max-w-7xl.py-20,
+.dark[data-color-theme="winter"] section.gradient-header .max-w-7xl.py-20,
+.dark[data-color-theme="winter"] section.gradient-hero .max-w-7xl.py-8.text-center,
+.dark[data-color-theme="winter"] section.gradient-header .max-w-7xl.py-8.text-center,
+.dark[data-color-theme="winter"] section.gradient-hero .max-w-7xl.text-center,
+.dark[data-color-theme="winter"] section.gradient-header .max-w-7xl.text-center,
+.dark[data-color-theme="winter"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+.dark[data-color-theme="winter"] section.gradient-header .max-w-7xl:has(h1.gradient-text-hero) {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
