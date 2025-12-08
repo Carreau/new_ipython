@@ -342,3 +342,115 @@ h3.text-white {
   -webkit-text-fill-color: white !important;
   color: white !important;
 }
+
+/* Add background to content containers with white text on Pride themes */
+[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-7xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-7xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-br .max-w-4xl,
+[data-color-theme="rainbow"] section.bg-gradient-to-r .max-w-4xl {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl,
+[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl,
+[data-color-theme="gay"] section.bg-gradient-to-br .max-w-4xl,
+[data-color-theme="gay"] section.bg-gradient-to-r .max-w-4xl {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+[data-color-theme="lesbian"] section.bg-gradient-to-br .max-w-7xl,
+[data-color-theme="lesbian"] section.bg-gradient-to-r .max-w-7xl,
+[data-color-theme="lesbian"] section.bg-gradient-to-br .max-w-4xl,
+[data-color-theme="lesbian"] section.bg-gradient-to-r .max-w-4xl {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl,
+[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl,
+[data-color-theme="trans"] section.bg-gradient-to-br .max-w-4xl,
+[data-color-theme="trans"] section.bg-gradient-to-r .max-w-4xl {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* Add background to headings with gradient text on Pride themes */
+[data-color-theme="rainbow"] h2.gradient-text,
+[data-color-theme="rainbow"] h3.gradient-text {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-color-theme="gay"] h2.gradient-text,
+[data-color-theme="gay"] h3.gradient-text {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-color-theme="lesbian"] h2.gradient-text,
+[data-color-theme="lesbian"] h3.gradient-text {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-color-theme="trans"] h2.gradient-text,
+[data-color-theme="trans"] h3.gradient-text {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Add background to white cards on Pride themes */
+[data-color-theme="rainbow"] .bg-white,
+[data-color-theme="rainbow"] section.bg-white {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-color-theme="gay"] .bg-white,
+[data-color-theme="gay"] section.bg-white {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-color-theme="lesbian"] .bg-white,
+[data-color-theme="lesbian"] section.bg-white {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+[data-color-theme="trans"] .bg-white,
+[data-color-theme="trans"] section.bg-white {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Add background to gray sections on Pride themes */
+[data-color-theme="rainbow"] section.bg-gray-50 {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-color-theme="gay"] section.bg-gray-50 {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-color-theme="lesbian"] section.bg-gray-50 {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-color-theme="trans"] section.bg-gray-50 {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
