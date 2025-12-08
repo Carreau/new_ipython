@@ -132,6 +132,16 @@ const themes: Theme[] = [
     },
     dotGradient: 'linear-gradient(to bottom right, #c8102e 0%, #c8102e 40%, #006b3c 40%, #006b3c 80%, #ffffff 80%, #ffffff 100%)',
   },
+  {
+    id: 'ocean',
+    name: 'Ocean',
+    colors: {
+      primary: '#0a2540',   // Deep ocean blue
+      secondary: '#006994', // Ocean blue
+      accent: '#00d4ff',    // Bright cyan
+    },
+    dotGradient: 'linear-gradient(to bottom right, #0a2540 0%, #0a2540 40%, #006994 40%, #006994 70%, #00d4ff 70%, #00d4ff 100%)',
+  },
 ];
 
 export default function ColorThemeSwitcher() {

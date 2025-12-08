@@ -10,6 +10,7 @@
 @import "./themes/trans.css";
 @import "./themes/winter.css";
 @import "./themes/christmas.css";
+@import "./themes/ocean.css";
 
 @tailwind base;
 @tailwind components;

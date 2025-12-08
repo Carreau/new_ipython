@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import ConditionalSnow from '../components/ConditionalSnow.tsx';
 import ConditionalChristmas from '../components/ConditionalChristmas.tsx';
+import ConditionalOcean from '../components/ConditionalOcean.tsx';
 
 interface Props {
   title: string;
@@ -33,5 +34,6 @@ const { title, description = 'IPython - Productive Interactive Computing' } = As
     <slot />
     <ConditionalSnow client:load />
     <ConditionalChristmas client:load />
+    <ConditionalOcean client:load />
   </body>
 </html>
