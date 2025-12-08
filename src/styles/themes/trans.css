@@ -47,15 +47,12 @@
   color: transparent;
 }
 
-/* Add backdrop blur to grid container for better white-on-white readability */
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl > div.grid,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl > div.grid,
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-4xl > div.grid,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-4xl > div.grid {
+/* Add backdrop blur to hero section container (py-20) for better white-on-white readability */
+[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl.py-20,
+[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl.py-20 {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(4px);
-  padding: 1.5rem;
 }
 
 /* Add backdrop blur to header/CTA divs with text-center or containing h1 */
