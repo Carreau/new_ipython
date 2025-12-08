@@ -5,23 +5,6 @@
   --theme-accent: #ffffff;
 }
 
-[data-color-theme="lesbian"] .gradient-blue-cyan,
-[data-color-theme="lesbian"] .gradient-cyan-green {
-  background: linear-gradient(
-    to right,
-    #d62900 0%,
-    #d62900 20%,
-    #ff9b55 20%,
-    #ff9b55 40%,
-    #ffffff 40%,
-    #ffffff 60%,
-    #d60270 60%,
-    #d60270 80%,
-    #9b4f96 80%,
-    #9b4f96 100%
-  );
-}
-
 :not(.dark)[data-color-theme="lesbian"] .gradient-hero {
   background-image: linear-gradient(
     to bottom right,

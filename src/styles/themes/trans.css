@@ -5,32 +5,6 @@
   --theme-accent: #ffffff;
 }
 
-[data-color-theme="trans"] .gradient-blue-cyan,
-[data-color-theme="trans"] .gradient-cyan-green {
-  background: linear-gradient(
-    to right,
-    #5bcefa 0%,
-    #5bcefa 20%,
-    #f5a9b8 20%,
-    #f5a9b8 40%,
-    #ffffff 40%,
-    #ffffff 60%,
-    #f5a9b8 60%,
-    #f5a9b8 80%,
-    #5bcefa 80%,
-    #5bcefa 100%
-  );
-}
-
-[data-color-theme="trans"] .gradient-hero {
-  background-image: linear-gradient(to bottom right, 
-    #5BCEFA 0%, #5BCEFA 20%,
-    #F5A9B8 20%, #F5A9B8 40%,
-    #FFFFFF 40%, #FFFFFF 60%,
-    #F5A9B8 60%, #F5A9B8 80%,
-    #5BCEFA 80%, #5BCEFA 100%) !important;
-}
-
 :not(.dark)[data-color-theme="trans"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
     #5BCEFA 0%, #5BCEFA 20%,
@@ -63,13 +37,6 @@
     var(--ipython-dark) 66%, var(--ipython-dark) 100%) !important;
 }
 
-.dark [data-color-theme="trans"] .gradient-header-1 {
-  background-image: linear-gradient(to right, 
-    #5BCEFA 0%, #5BCEFA 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    var(--ipython-dark) 66%, var(--ipython-dark) 100%) !important;
-}
-
 :not(.dark)[data-color-theme="trans"] .gradient-header-2 {
   background-image: linear-gradient(to right, 
     #FFFFFF 0%, #FFFFFF 33%,
@@ -78,13 +45,6 @@
 }
 
 .dark[data-color-theme="trans"] .gradient-header-2 {
-  background-image: linear-gradient(to right, 
-    var(--ipython-dark) 0%, var(--ipython-dark) 33%,
-    #F5A9B8 33%, #F5A9B8 66%,
-    #5BCEFA 66%, #5BCEFA 100%) !important;
-}
-
-.dark [data-color-theme="trans"] .gradient-header-2 {
   background-image: linear-gradient(to right, 
     var(--ipython-dark) 0%, var(--ipython-dark) 33%,
     #F5A9B8 33%, #F5A9B8 66%,
@@ -135,8 +95,6 @@
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
-
-
 
 /* Ensure white sections are fully opaque on Trans theme - light mode only */
 :not(.dark)[data-color-theme="trans"] .bg-white,

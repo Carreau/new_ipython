@@ -5,28 +5,6 @@
   --theme-accent: #ffed00;
 }
 
-/* Enhanced Rainbow theme gradients with discrete color bands */
-[data-color-theme="rainbow"] .gradient-blue-cyan,
-[data-color-theme="rainbow"] .gradient-cyan-green {
-  background: linear-gradient(
-    to right,
-    #e40303 0%,
-    #e40303 14%,
-    #ff8c00 14%,
-    #ff8c00 28%,
-    #ffed00 28%,
-    #ffed00 42%,
-    #008026 42%,
-    #008026 57%,
-    #004dff 57%,
-    #004dff 71%,
-    #750787 71%,
-    #750787 85%,
-    #e40303 85%,
-    #e40303 100%
-  );
-}
-
 [data-color-theme="rainbow"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
     #E40303 0%, #E40303 14%,
@@ -115,8 +93,6 @@
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
-
-
 
 /* Ensure white sections are fully opaque on Rainbow theme - light mode only */
 :not(.dark)[data-color-theme="rainbow"] .bg-white,

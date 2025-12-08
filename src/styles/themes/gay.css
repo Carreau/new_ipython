@@ -5,19 +5,6 @@
   --theme-accent: #98e8c1;
 }
 
-[data-color-theme="gay"] .gradient-blue-cyan,
-[data-color-theme="gay"] .gradient-cyan-green {
-  background: linear-gradient(
-    to right,
-    #078d70 0%,
-    #078d70 33%,
-    #26ceaa 33%,
-    #26ceaa 66%,
-    #98e8c1 66%,
-    #98e8c1 100%
-  );
-}
-
 [data-color-theme="gay"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
     #078D70 0%, #078D70 33%,
@@ -87,7 +74,6 @@
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
-
 
 /* Ensure white sections are fully opaque on Gay theme - light mode only */
 :not(.dark)[data-color-theme="gay"] .bg-white,
