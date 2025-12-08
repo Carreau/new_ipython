@@ -9,6 +9,7 @@
 @import "./themes/lesbian.css";
 @import "./themes/trans.css";
 @import "./themes/winter.css";
+@import "./themes/christmas.css";
 
 @tailwind base;
 @tailwind components;

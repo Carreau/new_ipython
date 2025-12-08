@@ -122,6 +122,16 @@ const themes: Theme[] = [
     },
     dotGradient: 'linear-gradient(to bottom right, #1e40af 0%, #1e40af 33%, #3b82f6 33%, #3b82f6 66%, #93c5fd 66%, #93c5fd 100%)',
   },
+  {
+    id: 'christmas',
+    name: 'Christmas',
+    colors: {
+      primary: '#c8102e',   // Deep Christmas Red
+      secondary: '#006b3c', // Forest Green
+      accent: '#ffffff',    // White/Snow
+    },
+    dotGradient: 'linear-gradient(to bottom right, #c8102e 0%, #c8102e 40%, #006b3c 40%, #006b3c 80%, #ffffff 80%, #ffffff 100%)',
+  },
 ];
 
 export default function ColorThemeSwitcher() {
