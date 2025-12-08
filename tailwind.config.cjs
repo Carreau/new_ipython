@@ -6,10 +6,11 @@ export default {
     extend: {
       colors: {
         // IPython Modern Brand - Blue & Green
+        // These use CSS variables for theme support
         'ipython': {
-          'blue': '#0D5C63',       // Primary teal blue
-          'cyan': '#008B95',       // Cyan accent
-          'green': '#059669',      // Green accent
+          'blue': 'var(--theme-primary, #0D5C63)',       // Primary teal blue
+          'cyan': 'var(--theme-secondary, #008B95)',     // Cyan accent
+          'green': 'var(--theme-accent, #059669)',       // Green accent
           'dark': '#0F172A',       // Dark background
           'slate': '#1E293B',      // Slate background
           'light': '#F0FDFA',      // Light background
