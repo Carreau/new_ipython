@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 type TerminalExample = {
   lines: string[];
   delay: number; // Delay before starting next example
 };
 
-const examples: TerminalExample[] = [
+interface AnimatedTerminalProps {
+  version?: string | null;
+}
+
+const getExamples = (version: string = '9.8.0'): TerminalExample[] => [
   {
     lines: [
       '$ ipython',
-      'IPython 8.18.1 -- An enhanced Interactive Python',
+      `IPython ${version} -- An enhanced Interactive Python`,
       "Type 'copyright', 'credits' or 'license' for more information",
       '',
       'In [1]: import numpy as np',
@@ -24,7 +28,7 @@ const examples: TerminalExample[] = [
   {
     lines: [
       '$ ipython',
-      'IPython 8.18.1 -- An enhanced Interactive Python',
+      `IPython ${version} -- An enhanced Interactive Python`,
       '',
       'In [1]: %timeit sum(range(1000))',
       '14.2 µs ± 245 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)',
@@ -38,7 +42,7 @@ const examples: TerminalExample[] = [
   {
     lines: [
       '$ ipython',
-      'IPython 8.18.1 -- An enhanced Interactive Python',
+      `IPython ${version} -- An enhanced Interactive Python`,
       '',
       'In [1]: def fibonacci(n):',
       '   ...:     if n <= 1:',
@@ -53,7 +57,8 @@ const examples: TerminalExample[] = [
   },
 ];
 
-export default function AnimatedTerminal() {
+export default function AnimatedTerminal({ version }: AnimatedTerminalProps) {
+  const examples = useMemo(() => getExamples(version || undefined), [version]);
   const [currentExample, setCurrentExample] = useState(0);
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -82,7 +87,7 @@ export default function AnimatedTerminal() {
 
       return () => clearTimeout(timer);
     }
-  }, [currentExample, currentLineIndex]);
+  }, [currentExample, currentLineIndex, examples]);
 
   const getLinePrefix = (line: string): { prefix: string; content: string; prefixColor: string } => {
     if (line.startsWith('In [')) {
