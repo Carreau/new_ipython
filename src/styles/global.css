@@ -5,8 +5,8 @@
 :root {
   color-scheme: light;
   /* Default IPython theme */
-  --theme-primary: #0D5C63;
-  --theme-secondary: #008B95;
+  --theme-primary: #0d5c63;
+  --theme-secondary: #008b95;
   --theme-accent: #059669;
 }
 
@@ -16,57 +16,57 @@
 
 /* Theme color overrides */
 [data-color-theme="purple"] {
-  --theme-primary: #6B21A8;
-  --theme-secondary: #9333EA;
-  --theme-accent: #C084FC;
+  --theme-primary: #6b21a8;
+  --theme-secondary: #9333ea;
+  --theme-accent: #c084fc;
 }
 
 [data-color-theme="orange"] {
-  --theme-primary: #C2410C;
-  --theme-secondary: #EA580C;
-  --theme-accent: #FB923C;
+  --theme-primary: #c2410c;
+  --theme-secondary: #ea580c;
+  --theme-accent: #fb923c;
 }
 
 [data-color-theme="pink"] {
-  --theme-primary: #BE185D;
-  --theme-secondary: #EC4899;
-  --theme-accent: #F472B6;
+  --theme-primary: #be185d;
+  --theme-secondary: #ec4899;
+  --theme-accent: #f472b6;
 }
 
 [data-color-theme="indigo"] {
-  --theme-primary: #4338CA;
-  --theme-secondary: #6366F1;
-  --theme-accent: #818CF8;
+  --theme-primary: #4338ca;
+  --theme-secondary: #6366f1;
+  --theme-accent: #818cf8;
 }
 
 [data-color-theme="emerald"] {
   --theme-primary: #047857;
   --theme-secondary: #059669;
-  --theme-accent: #34D399;
+  --theme-accent: #34d399;
 }
 
 [data-color-theme="rainbow"] {
-  --theme-primary: #E40303;
-  --theme-secondary: #FF8C00;
-  --theme-accent: #FFED00;
+  --theme-primary: #e40303;
+  --theme-secondary: #ff8c00;
+  --theme-accent: #ffed00;
 }
 
 [data-color-theme="gay"] {
-  --theme-primary: #078D70;
-  --theme-secondary: #26CEAA;
-  --theme-accent: #98E8C1;
+  --theme-primary: #078d70;
+  --theme-secondary: #26ceaa;
+  --theme-accent: #98e8c1;
 }
 
 [data-color-theme="lesbian"] {
-  --theme-primary: #D62900;
-  --theme-secondary: #FF9B55;
-  --theme-accent: #FFFFFF;
+  --theme-primary: #d62900;
+  --theme-secondary: #ff9b55;
+  --theme-accent: #ffffff;
 }
 
 [data-color-theme="trans"] {
-  --theme-primary: #5BCEFA;
-  --theme-secondary: #F5A9B8;
-  --theme-accent: #FFFFFF;
+  --theme-primary: #5bcefa;
+  --theme-secondary: #f5a9b8;
+  --theme-accent: #ffffff;
 }
 
 html {
@@ -122,66 +122,113 @@ body {
 
 /* Gradient backgrounds - use CSS variables for theme support */
 .gradient-blue-cyan {
-  background: linear-gradient(to bottom right, var(--theme-primary), var(--theme-secondary));
+  background: linear-gradient(
+    to bottom right,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
 }
 
 .gradient-cyan-green {
-  background: linear-gradient(to bottom right, var(--theme-secondary), var(--theme-accent));
+  background: linear-gradient(
+    to bottom right,
+    var(--theme-secondary),
+    var(--theme-accent)
+  );
 }
 
 /* Enhanced Pride theme gradients with discrete color bands */
 [data-color-theme="rainbow"] .gradient-blue-cyan,
 [data-color-theme="rainbow"] .gradient-cyan-green,
-[data-color-theme="rainbow"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
-[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
-[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
-[data-color-theme="rainbow"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
-  background: linear-gradient(to right, 
-    #E40303 0%, #E40303 14%,
-    #FF8C00 14%, #FF8C00 28%,
-    #FFED00 28%, #FFED00 42%,
-    #008026 42%, #008026 57%,
-    #004DFF 57%, #004DFF 71%,
-    #750787 71%, #750787 85%,
-    #E40303 85%, #E40303 100%);
+[data-color-theme="rainbow"]
+  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
+[data-color-theme="rainbow"]
+  .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+  background: linear-gradient(
+    to right,
+    #e40303 0%,
+    #e40303 14%,
+    #ff8c00 14%,
+    #ff8c00 28%,
+    #ffed00 28%,
+    #ffed00 42%,
+    #008026 42%,
+    #008026 57%,
+    #004dff 57%,
+    #004dff 71%,
+    #750787 71%,
+    #750787 85%,
+    #e40303 85%,
+    #e40303 100%
+  );
 }
 
 [data-color-theme="gay"] .gradient-blue-cyan,
 [data-color-theme="gay"] .gradient-cyan-green,
-[data-color-theme="gay"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="gay"]
+  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
 [data-color-theme="gay"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
 [data-color-theme="gay"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
-  background: linear-gradient(to right, 
-    #078D70 0%, #078D70 33%,
-    #26CEAA 33%, #26CEAA 66%,
-    #98E8C1 66%, #98E8C1 100%);
+  background: linear-gradient(
+    to right,
+    #078d70 0%,
+    #078d70 33%,
+    #26ceaa 33%,
+    #26ceaa 66%,
+    #98e8c1 66%,
+    #98e8c1 100%
+  );
 }
 
 [data-color-theme="lesbian"] .gradient-blue-cyan,
 [data-color-theme="lesbian"] .gradient-cyan-green,
-[data-color-theme="lesbian"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
-[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
-[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
-[data-color-theme="lesbian"] .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
-  background: linear-gradient(to right, 
-    #D62900 0%, #D62900 20%,
-    #FF9B55 20%, #FF9B55 40%,
-    #FFFFFF 40%, #FFFFFF 60%,
-    #D60270 60%, #D60270 80%,
-    #9B4F96 80%, #9B4F96 100%);
+[data-color-theme="lesbian"]
+  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="lesbian"]
+  .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
+[data-color-theme="lesbian"]
+  .bg-gradient-to-r.from-ipython-cyan.to-ipython-green,
+[data-color-theme="lesbian"]
+  .bg-gradient-to-r.from-ipython-green.to-ipython-blue {
+  background: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 20%,
+    #ff9b55 20%,
+    #ff9b55 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #d60270 60%,
+    #d60270 80%,
+    #9b4f96 80%,
+    #9b4f96 100%
+  );
 }
 
 [data-color-theme="trans"] .gradient-blue-cyan,
 [data-color-theme="trans"] .gradient-cyan-green,
-[data-color-theme="trans"] .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
+[data-color-theme="trans"]
+  .bg-gradient-to-br.from-ipython-blue.via-ipython-cyan.to-ipython-green,
 [data-color-theme="trans"] .bg-gradient-to-r.from-ipython-blue.to-ipython-cyan,
-[data-color-theme="trans"] .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
-  background: linear-gradient(to right, 
-    #5BCEFA 0%, #5BCEFA 20%,
-    #F5A9B8 20%, #F5A9B8 40%,
-    #FFFFFF 40%, #FFFFFF 60%,
-    #F5A9B8 60%, #F5A9B8 80%,
-    #5BCEFA 80%, #5BCEFA 100%);
+[data-color-theme="trans"]
+  .bg-gradient-to-r.from-ipython-cyan.to-ipython-green {
+  background: linear-gradient(
+    to right,
+    #5bcefa 0%,
+    #5bcefa 20%,
+    #f5a9b8 20%,
+    #f5a9b8 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #f5a9b8 60%,
+    #f5a9b8 80%,
+    #5bcefa 80%,
+    #5bcefa 100%
+  );
 }
 
 /* Text utilities */
@@ -204,7 +251,12 @@ pre code {
 
 /* Gradient text for headers - use CSS variables for theme support */
 .gradient-text {
-  background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary), var(--theme-accent));
+  background: linear-gradient(
+    to right,
+    var(--theme-primary),
+    var(--theme-secondary),
+    var(--theme-accent)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -213,13 +265,21 @@ pre code {
 
 /* Enhanced Pride theme gradient text with discrete color bands */
 [data-color-theme="rainbow"] .gradient-text {
-  background: linear-gradient(to right, 
-    #E40303 0%, #E40303 14%,
-    #FF8C00 14%, #FF8C00 28%,
-    #FFED00 28%, #FFED00 42%,
-    #008026 42%, #008026 57%,
-    #004DFF 57%, #004DFF 71%,
-    #750787 71%, #750787 100%);
+  background: linear-gradient(
+    to right,
+    #e40303 0%,
+    #e40303 14%,
+    #ff8c00 14%,
+    #ff8c00 28%,
+    #ffed00 28%,
+    #ffed00 42%,
+    #008026 42%,
+    #008026 57%,
+    #004dff 57%,
+    #004dff 71%,
+    #750787 71%,
+    #750787 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -227,10 +287,15 @@ pre code {
 }
 
 [data-color-theme="gay"] .gradient-text {
-  background: linear-gradient(to right, 
-    #078D70 0%, #078D70 33%,
-    #26CEAA 33%, #26CEAA 66%,
-    #98E8C1 66%, #98E8C1 100%);
+  background: linear-gradient(
+    to right,
+    #078d70 0%,
+    #078d70 33%,
+    #26ceaa 33%,
+    #26ceaa 66%,
+    #98e8c1 66%,
+    #98e8c1 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -238,12 +303,19 @@ pre code {
 }
 
 [data-color-theme="lesbian"] .gradient-text {
-  background: linear-gradient(to right, 
-    #D62900 0%, #D62900 20%,
-    #FF9B55 20%, #FF9B55 40%,
-    #FFFFFF 40%, #FFFFFF 60%,
-    #D60270 60%, #D60270 80%,
-    #9B4F96 80%, #9B4F96 100%);
+  background: linear-gradient(
+    to right,
+    #d62900 0%,
+    #d62900 20%,
+    #ff9b55 20%,
+    #ff9b55 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #d60270 60%,
+    #d60270 80%,
+    #9b4f96 80%,
+    #9b4f96 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -251,12 +323,19 @@ pre code {
 }
 
 [data-color-theme="trans"] .gradient-text {
-  background: linear-gradient(to right, 
-    #5BCEFA 0%, #5BCEFA 20%,
-    #F5A9B8 20%, #F5A9B8 40%,
-    #FFFFFF 40%, #FFFFFF 60%,
-    #F5A9B8 60%, #F5A9B8 80%,
-    #5BCEFA 80%, #5BCEFA 100%);
+  background: linear-gradient(
+    to right,
+    #5bcefa 0%,
+    #5bcefa 20%,
+    #f5a9b8 20%,
+    #f5a9b8 40%,
+    #ffffff 40%,
+    #ffffff 60%,
+    #f5a9b8 60%,
+    #f5a9b8 80%,
+    #5bcefa 80%,
+    #5bcefa 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -270,19 +349,36 @@ pre code {
 
 /* Theme-aware gradient backgrounds using CSS variables */
 .bg-gradient-theme-primary {
-  background: linear-gradient(to bottom right, var(--theme-primary), var(--theme-secondary), var(--theme-accent));
+  background: linear-gradient(
+    to bottom right,
+    var(--theme-primary),
+    var(--theme-secondary),
+    var(--theme-accent)
+  );
 }
 
 .bg-gradient-theme-primary-to-secondary {
-  background: linear-gradient(to right, var(--theme-primary), var(--theme-secondary));
+  background: linear-gradient(
+    to right,
+    var(--theme-primary),
+    var(--theme-secondary)
+  );
 }
 
 .bg-gradient-theme-secondary-to-accent {
-  background: linear-gradient(to right, var(--theme-secondary), var(--theme-accent));
+  background: linear-gradient(
+    to right,
+    var(--theme-secondary),
+    var(--theme-accent)
+  );
 }
 
 .bg-gradient-theme-accent-to-primary {
-  background: linear-gradient(to right, var(--theme-accent), var(--theme-primary));
+  background: linear-gradient(
+    to right,
+    var(--theme-accent),
+    var(--theme-primary)
+  );
 }
 
 /* Theme-aware border colors */
@@ -380,77 +476,85 @@ h3.text-white {
   backdrop-filter: blur(4px);
 }
 
-/* Add background to headings with gradient text on Pride themes */
-[data-color-theme="rainbow"] h2.gradient-text,
-[data-color-theme="rainbow"] h3.gradient-text {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* Override gradient text with solid dark text on Pride themes for headings in white sections */
+[data-color-theme="rainbow"] section.bg-white h2,
+[data-color-theme="rainbow"] section.bg-white h3,
+[data-color-theme="rainbow"] section.bg-gray-50 h2,
+[data-color-theme="rainbow"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  color: #1f2937 !important;
 }
 
-[data-color-theme="gay"] h2.gradient-text,
-[data-color-theme="gay"] h3.gradient-text {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+[data-color-theme="gay"] section.bg-white h2,
+[data-color-theme="gay"] section.bg-white h3,
+[data-color-theme="gay"] section.bg-gray-50 h2,
+[data-color-theme="gay"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  color: #1f2937 !important;
 }
 
-[data-color-theme="lesbian"] h2.gradient-text,
-[data-color-theme="lesbian"] h3.gradient-text {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+[data-color-theme="lesbian"] section.bg-white h2,
+[data-color-theme="lesbian"] section.bg-white h3,
+[data-color-theme="lesbian"] section.bg-gray-50 h2,
+[data-color-theme="lesbian"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  color: #1f2937 !important;
 }
 
-[data-color-theme="trans"] h2.gradient-text,
-[data-color-theme="trans"] h3.gradient-text {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  display: inline-block;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+[data-color-theme="trans"] section.bg-white h2,
+[data-color-theme="trans"] section.bg-white h3,
+[data-color-theme="trans"] section.bg-gray-50 h2,
+[data-color-theme="trans"] section.bg-gray-50 h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+  color: #1f2937 !important;
 }
 
-/* Add background to white cards on Pride themes */
+/* Ensure white sections are fully opaque on Pride themes */
 [data-color-theme="rainbow"] .bg-white,
 [data-color-theme="rainbow"] section.bg-white {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="gay"] .bg-white,
 [data-color-theme="gay"] section.bg-white {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="lesbian"] .bg-white,
 [data-color-theme="lesbian"] section.bg-white {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="trans"] .bg-white,
 [data-color-theme="trans"] section.bg-white {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: #ffffff !important;
 }
 
-/* Add background to gray sections on Pride themes */
+/* Ensure gray sections are fully opaque white on Pride themes */
 [data-color-theme="rainbow"] section.bg-gray-50 {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="gay"] section.bg-gray-50 {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="lesbian"] section.bg-gray-50 {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: #ffffff !important;
 }
 
 [data-color-theme="trans"] section.bg-gray-50 {
-  background: rgba(255, 255, 255, 0.9) !important;
+  background: #ffffff !important;
 }
