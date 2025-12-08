@@ -45,6 +45,30 @@
   --theme-accent: #34D399;
 }
 
+[data-color-theme="rainbow"] {
+  --theme-primary: #E40303;
+  --theme-secondary: #FF8C00;
+  --theme-accent: #FFED00;
+}
+
+[data-color-theme="gay"] {
+  --theme-primary: #078D70;
+  --theme-secondary: #26CEAA;
+  --theme-accent: #98E8C1;
+}
+
+[data-color-theme="lesbian"] {
+  --theme-primary: #D62900;
+  --theme-secondary: #FF9B55;
+  --theme-accent: #FFFFFF;
+}
+
+[data-color-theme="trans"] {
+  --theme-primary: #5BCEFA;
+  --theme-secondary: #F5A9B8;
+  --theme-accent: #FFFFFF;
+}
+
 html {
   scroll-behavior: smooth;
 }
