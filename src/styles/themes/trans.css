@@ -50,6 +50,14 @@
   backdrop-filter: blur(4px);
 }
 
+.dark [data-color-theme="trans"] section.gradient-hero .max-w-7xl.py-20,
+.dark [data-color-theme="trans"] section.gradient-header-1 .max-w-7xl.py-20,
+.dark [data-color-theme="trans"] section.gradient-header-2 .max-w-7xl.py-20 {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
 /* Add backdrop blur to header/CTA divs with text-center or containing h1 */
 [data-color-theme="trans"] section.gradient-hero .max-w-7xl.text-center,
 [data-color-theme="trans"] section.gradient-header-1 .max-w-7xl.text-center,
@@ -58,6 +66,17 @@
 [data-color-theme="trans"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
 [data-color-theme="trans"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero) {
   background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.dark [data-color-theme="trans"] section.gradient-hero .max-w-7xl.text-center,
+.dark [data-color-theme="trans"] section.gradient-header-1 .max-w-7xl.text-center,
+.dark [data-color-theme="trans"] section.gradient-header-2 .max-w-7xl.text-center,
+.dark [data-color-theme="trans"] section.gradient-hero .max-w-7xl:has(h1.gradient-text-hero),
+.dark [data-color-theme="trans"] section.gradient-header-1 .max-w-7xl:has(h1.gradient-text-hero),
+.dark [data-color-theme="trans"] section.gradient-header-2 .max-w-7xl:has(h1.gradient-text-hero) {
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(4px);
 }
@@ -73,7 +92,8 @@
 /* Override for dark mode - must come after light mode rules */
 .dark [data-color-theme="trans"] .bg-white,
 .dark [data-color-theme="trans"] section.bg-white,
-.dark [data-color-theme="trans"] .bg-white.dark\:bg-ipython-dark {
+.dark [data-color-theme="trans"] .bg-white.dark\:bg-ipython-dark,
+.dark [data-color-theme="trans"] nav.bg-white {
   background: #0f172a !important;
 }
 
