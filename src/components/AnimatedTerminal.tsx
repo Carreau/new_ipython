@@ -88,13 +88,13 @@ export default function AnimatedTerminal() {
     if (line.startsWith('In [')) {
       const match = line.match(/^(In \[\d+\]:\s*)(.*)$/);
       if (match) {
-        return { prefix: match[1], content: match[2], prefixColor: 'text-blue-400' };
+        return { prefix: match[1], content: match[2], prefixColor: 'text-theme-primary' };
       }
     }
     if (line.startsWith('Out[')) {
       const match = line.match(/^(Out\[\d+\]:\s*)(.*)$/);
       if (match) {
-        return { prefix: match[1], content: match[2], prefixColor: 'text-yellow-300' };
+        return { prefix: match[1], content: match[2], prefixColor: 'text-theme-accent' };
       }
     }
     if (line.startsWith('   ...:')) {
@@ -105,10 +105,10 @@ export default function AnimatedTerminal() {
 
   const getLineColor = (line: string): string => {
     if (line.startsWith('$')) {
-      return 'text-green-400';
+      return 'text-theme-secondary';
     }
     if (line.startsWith('Out[')) {
-      return 'text-yellow-300';
+      return 'text-theme-accent';
     }
     if (line.startsWith('IPython') || line.includes('Type')) {
       return 'text-gray-300';
@@ -139,7 +139,7 @@ export default function AnimatedTerminal() {
         );
       })}
       {displayedLines.length === 0 && (
-        <div className="text-green-400">$ ipython</div>
+        <div className="text-theme-secondary">$ ipython</div>
       )}
     </div>
   );

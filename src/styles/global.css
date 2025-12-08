@@ -179,6 +179,10 @@ pre code {
   color: var(--theme-secondary);
 }
 
+.text-theme-accent {
+  color: var(--theme-accent);
+}
+
 /* Theme-aware background colors */
 .bg-theme-secondary {
   background-color: var(--theme-secondary);
