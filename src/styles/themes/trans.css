@@ -47,28 +47,17 @@
   color: transparent;
 }
 
-/* Add background to content containers with white text on Trans theme */
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl,
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-4xl,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-4xl {
+/* Add backdrop blur to grid container for better white-on-white readability */
+[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl > div.grid,
+[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl > div.grid,
+[data-color-theme="trans"] section.bg-gradient-to-br .max-w-4xl > div.grid,
+[data-color-theme="trans"] section.bg-gradient-to-r .max-w-4xl > div.grid {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 16px;
   backdrop-filter: blur(4px);
+  padding: 1.5rem;
 }
 
-/* Add backdrop blur to divs containing h1 for better white-on-white readability */
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-7xl > div > div:first-child,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-7xl > div > div:first-child,
-[data-color-theme="trans"] section.bg-gradient-to-br .max-w-4xl > div > div:first-child,
-[data-color-theme="trans"] section.bg-gradient-to-r .max-w-4xl > div > div:first-child,
-[data-color-theme="trans"] section.bg-gradient-to-br div:has(h1.gradient-text-hero),
-[data-color-theme="trans"] section.bg-gradient-to-r div:has(h1.gradient-text-hero) {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  padding: 1rem;
-}
 
 /* Override gradient text with solid dark text on Trans theme for headings in white sections */
 [data-color-theme="trans"] section.bg-white h2,
