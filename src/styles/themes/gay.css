@@ -49,6 +49,15 @@
   padding: 1.5rem;
 }
 
+/* Add backdrop blur to header/CTA divs with text-center or containing h1 */
+[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl.text-center,
+[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl.text-center,
+[data-color-theme="gay"] section.bg-gradient-to-br .max-w-7xl:has(h1.gradient-text-hero),
+[data-color-theme="gay"] section.bg-gradient-to-r .max-w-7xl:has(h1.gradient-text-hero) {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
 
 /* Override gradient text with solid dark text on Gay theme for headings in white sections */
 [data-color-theme="gay"] section.bg-white h2,
