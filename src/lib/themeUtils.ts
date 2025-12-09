@@ -1,0 +1,228 @@
+export type Theme = {
+  id: string;
+  name: string;
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+  dotGradient: string;
+};
+
+export const themes: Theme[] = [
+  {
+    id: 'default',
+    name: 'IPython Default',
+    colors: {
+      primary: '#0D5C63',   // ipython-blue
+      secondary: '#008B95',  // ipython-cyan
+      accent: '#059669',     // ipython-green
+    },
+    dotGradient: 'linear-gradient(to bottom right, #0D5C63, #008B95, #059669)',
+  },
+  {
+    id: 'rainbow',
+    name: 'Rainbow Pride',
+    colors: {
+      primary: '#E40303',   // Red
+      secondary: '#FF8C00', // Orange
+      accent: '#FFED00',    // Yellow
+    },
+    dotGradient: 'linear-gradient(to bottom right, #E40303 0%, #E40303 16.67%, #FF8C00 16.67%, #FF8C00 33.33%, #FFED00 33.33%, #FFED00 50%, #008026 50%, #008026 66.67%, #004CFF 66.67%, #004CFF 83.33%, #732982 83.33%, #732982 100%)',
+  },
+  {
+    id: 'gay',
+    name: 'Gay Pride',
+    colors: {
+      primary: '#078D70',   // Green
+      secondary: '#26CEAA', // Light green/teal
+      accent: '#98E8C1',    // Pale green/mint
+    },
+    dotGradient: 'linear-gradient(to bottom right, #078D70 0%, #078D70 14.28%, #26CEAA 14.28%, #26CEAA 28.56%, #98E8C1 28.56%, #98E8C1 42.84%, #FFFFFF 42.84%, #FFFFFF 57.12%, #7BADE2 57.12%, #7BADE2 71.4%, #5049CC 71.4%, #5049CC 85.68%, #3D1A78 85.68%, #3D1A78 100%)',
+  },
+  {
+    id: 'lesbian',
+    name: 'Lesbian Pride',
+    colors: {
+      primary: '#D52D00',   // Dark orange/red
+      secondary: '#EF7627', // Orange
+      accent: '#FF9A56',    // Light orange/peach
+    },
+    dotGradient: 'linear-gradient(to bottom right, #D52D00 0%, #D52D00 14.28%, #EF7627 14.28%, #EF7627 28.56%, #FF9A56 28.56%, #FF9A56 42.84%, #FFFFFF 42.84%, #FFFFFF 57.12%, #D162A4 57.12%, #D162A4 71.4%, #B55690 71.4%, #B55690 85.68%, #A30262 85.68%, #A30262 100%)',
+  },
+  {
+    id: 'trans',
+    name: 'Trans Pride',
+    colors: {
+      primary: '#5BCEFA',   // Light blue
+      secondary: '#F5A9B8', // Pink
+      accent: '#FFFFFF',    // White
+    },
+    dotGradient: 'linear-gradient(to bottom right, #5BCEFA, #F5A9B8, #FFFFFF, #F5A9B8, #5BCEFA)',
+  },
+  {
+    id: 'purple',
+    name: 'Purple',
+    colors: {
+      primary: '#7C3AED',   // Purple
+      secondary: '#A78BFA', // Light purple
+      accent: '#C4B5FD',    // Lighter purple
+    },
+    dotGradient: 'linear-gradient(to bottom right, #7C3AED, #A78BFA, #C4B5FD)',
+  },
+  {
+    id: 'pink',
+    name: 'Pink',
+    colors: {
+      primary: '#EC4899',   // Pink
+      secondary: '#F472B6', // Light pink
+      accent: '#FBCFE8',    // Lighter pink
+    },
+    dotGradient: 'linear-gradient(to bottom right, #EC4899, #F472B6, #FBCFE8)',
+  },
+  {
+    id: 'orange',
+    name: 'Orange',
+    colors: {
+      primary: '#F97316',   // Orange
+      secondary: '#FB923C', // Light orange
+      accent: '#FDBA74',    // Lighter orange
+    },
+    dotGradient: 'linear-gradient(to bottom right, #F97316, #FB923C, #FDBA74)',
+  },
+  {
+    id: 'indigo',
+    name: 'Indigo',
+    colors: {
+      primary: '#4F46E5',   // Indigo
+      secondary: '#6366F1', // Light indigo
+      accent: '#818CF8',    // Lighter indigo
+    },
+    dotGradient: 'linear-gradient(to bottom right, #4F46E5, #6366F1, #818CF8)',
+  },
+  {
+    id: 'emerald',
+    name: 'Emerald',
+    colors: {
+      primary: '#10B981',   // Emerald
+      secondary: '#34D399', // Light emerald
+      accent: '#6EE7B7',    // Lighter emerald
+    },
+    dotGradient: 'linear-gradient(to bottom right, #10B981, #34D399, #6EE7B7)',
+  },
+  {
+    id: 'winter',
+    name: 'Winter',
+    colors: {
+      primary: '#0EA5E9',   // Sky blue
+      secondary: '#38BDF8', // Light sky blue
+      accent: '#BAE6FD',    // Lighter sky blue
+    },
+    dotGradient: 'linear-gradient(to bottom right, #0EA5E9, #38BDF8, #BAE6FD)',
+  },
+  {
+    id: 'christmas',
+    name: 'Christmas',
+    colors: {
+      primary: '#c8102e',   // Deep Christmas Red
+      secondary: '#006b3c', // Forest Green
+      accent: '#ffffff',    // White/Snow
+    },
+    dotGradient: 'linear-gradient(to bottom right, #c8102e 0%, #c8102e 40%, #006b3c 40%, #006b3c 80%, #ffffff 80%, #ffffff 100%)',
+  },
+  {
+    id: 'ocean',
+    name: 'Ocean',
+    colors: {
+      primary: '#0a2540',   // Deep ocean blue
+      secondary: '#006994', // Ocean blue
+      accent: '#00d4ff',    // Bright cyan
+    },
+    dotGradient: 'linear-gradient(to bottom right, #0a2540 0%, #0a2540 40%, #006994 40%, #006994 70%, #00d4ff 70%, #00d4ff 100%)',
+  },
+  {
+    id: 'velvet',
+    name: 'Red Velvet',
+    colors: {
+      primary: '#6b0f2a',   // Deep velvet red
+      secondary: '#8b1538', // Rich carmine
+      accent: '#a91d3d',    // Warm velvet
+    },
+    dotGradient: 'linear-gradient(to bottom right, #6b0f2a 0%, #6b0f2a 40%, #8b1538 40%, #8b1538 70%, #a91d3d 70%, #a91d3d 100%)',
+  },
+  {
+    id: 'sun',
+    name: 'Sun',
+    colors: {
+      primary: '#f59e0b',   // Bright amber/yellow
+      secondary: '#fbbf24', // Golden yellow
+      accent: '#fcd34d',     // Light yellow
+    },
+    dotGradient: 'linear-gradient(to bottom right, #f59e0b 0%, #f59e0b 40%, #fbbf24 40%, #fbbf24 70%, #fcd34d 70%, #fcd34d 100%)',
+  },
+  {
+    id: 'random',
+    name: 'Random',
+    colors: {
+      primary: '#9333ea',   // Purple
+      secondary: '#ec4899', // Pink
+      accent: '#f59e0b',    // Amber
+    },
+    dotGradient: 'linear-gradient(to bottom right, #9333ea, #ec4899, #f59e0b, #10b981, #3b82f6)',
+  },
+];
+
+/**
+ * Get all available theme IDs excluding 'random'
+ */
+export function getAvailableThemes(): string[] {
+  return themes.filter(t => t.id !== 'random').map(t => t.id);
+}
+
+/**
+ * Get a random theme ID (excluding 'random')
+ */
+export function getRandomTheme(): string {
+  const availableThemes = getAvailableThemes();
+  return availableThemes[Math.floor(Math.random() * availableThemes.length)];
+}
+
+/**
+ * Apply a theme to the document
+ * If themeId is 'random', it will pick a random theme
+ * @param themeId - The theme ID to apply
+ * @param storePreference - Whether to store the preference in localStorage (default: true)
+ */
+export function applyTheme(themeId: string, storePreference: boolean = true): void {
+  let actualThemeId = themeId;
+  
+  // If random is selected, pick a random theme
+  if (themeId === 'random') {
+    actualThemeId = getRandomTheme();
+  }
+  
+  const theme = themes.find(t => t.id === actualThemeId) || themes[0];
+  const root = document.documentElement;
+  
+  // Set CSS custom properties
+  root.style.setProperty('--theme-primary', theme.colors.primary);
+  root.style.setProperty('--theme-secondary', theme.colors.secondary);
+  root.style.setProperty('--theme-accent', theme.colors.accent);
+  
+  // Update Tailwind colors via data attribute (use actual theme, not 'random')
+  root.setAttribute('data-color-theme', actualThemeId);
+  
+  // Store preference (store 'random' if that's what was selected)
+  if (storePreference) {
+    localStorage.setItem('colorTheme', themeId);
+  }
+}
+
+/**
+ * Get the current theme from localStorage or data attribute
+ */
+export function getCurrentTheme(): string {
+  return document.documentElement.getAttribute('data-color-theme') || 
+         localStorage.getItem('colorTheme') || 
+         'default';
+}
