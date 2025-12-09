@@ -108,6 +108,7 @@ export default function SunBackground() {
       uniform mat3 normalMatrix;
       
       varying vec3 vPosition;
+      varying vec3 vPositionModel;  // Original model-space position for texture
       varying vec3 vNormal;
       varying vec3 vNormalModel;
       varying vec3 vNormalView;
@@ -117,8 +118,9 @@ export default function SunBackground() {
         vec4 viewPosition = viewMatrix * worldPosition;
         
         // Use the actual sphere surface position (normalized world position)
-        // This gives us the true 3D sphere coordinates, not a fisheye projection
         vPosition = normalize(worldPosition.xyz);
+        // Keep original model-space position for texture coordinates (doesn't rotate)
+        vPositionModel = normalize(position);
         vNormal = normalize(mat3(modelMatrix) * normal);
         vNormalModel = normal;
         vNormalView = normalize(normalMatrix * normal);
@@ -132,6 +134,7 @@ export default function SunBackground() {
       precision highp float;
       uniform float u_time;
       varying vec3 vPosition;
+      varying vec3 vPositionModel;  // Original model-space position for texture
       varying vec3 vNormal;
       varying vec3 vNormalModel;
       varying vec3 vNormalView;
@@ -213,29 +216,35 @@ float fBm ( in vec3 _pos, in float sz) {
 
 
 void main() {
-    vec3 st = normalize(vPosition);
+    vec3 st = vPositionModel;
 
-    // Calculate spherical coordinates (theta and phi)
-    // theta: angle from positive Y axis (0 to PI)
-    // phi: angle around Y axis (0 to 2*PI)
-    float theta = acos(st.y);
-    float phi = atan(st.z, st.x);
-    if (phi < 0.0) phi += 2.0 * 3.14159265359;
-    
-    // Create texture pattern based on theta and phi
-    // Horizontal stripes based on theta (latitude) - make them more visible
-    float thetaStripe = floor(theta * 8.0 / 3.14159265359);
-    vec3 color = mod(thetaStripe, 2.0) < 1.0 ? vec3(1.0, 0.2, 0.2) : vec3(0.2, 1.0, 0.2);
-    
-    // Vertical stripes based on phi (longitude) - make them asymmetric
-    float phiStripe = floor(phi * 12.0 / (2.0 * 3.14159265359));
-    if (mod(phiStripe, 3.0) < 1.0) {
-      color = vec3(0.2, 0.2, 1.0);
-    } else if (mod(phiStripe, 3.0) < 2.0) {
-      color = vec3(1.0, 1.0, 0.2);
-    }
-    
-    gl_FragColor = vec4(color, 1.0);
+    vec3 q = vec3(0.);
+    q.x = fBm( st, 5.);
+    q.y = fBm( st + vec3(1.2,3.2,1.52), 5.);
+    q.z = fBm( st + vec3(0.02,0.12,0.152), 5.);
+
+    float n = fBm(st+q+vec3(1.82,1.32,1.09), 5.);
+
+    vec3 color = vec3(0.);
+    color = mix(vec3(1.,0.4,0.), vec3(1.,1.,1.), n*n);
+    color = mix(color, vec3(1.,0.,0.), q*0.7);
+    color = 1.6 * color;
+
+    // Glow effect - exact from article
+    float raw_intensity = max(dot(vPosition, vNormalView), 0.);
+    float intensity = pow(raw_intensity, 4.);
+    vec3 u_color = vec3(1.0, 0.8, 0.4);
+    vec4 glowColor = vec4(u_color, intensity);
+
+    // Fresnel effect - exact from article
+    float fresnelTerm_inner = 0.2 - 0.7 * min(dot(vPosition, vNormalView), 0.0);
+    fresnelTerm_inner = pow(fresnelTerm_inner, 5.0);
+    float fresnelTerm_outer = 1.0 + dot(normalize(vPosition), normalize(vNormalView));
+    fresnelTerm_outer = pow(fresnelTerm_outer, 2.0);
+    float fresnelTerm = fresnelTerm_inner + fresnelTerm_outer;
+
+    // Combine - exact from article
+    gl_FragColor = vec4(color, 0.7) * fresnelTerm + glowColor;
 
       }
     `;
@@ -511,30 +520,19 @@ void main() {
       
       const viewMatrix = createLookAtMatrix(0, 0, 2, 0, 0, 0, 0, 1, 0);
 
-      // Adjust orthographic projection to maintain circular sun
-      let left, right, bottom, top;
-      if (aspect > 1) {
-        // Wider than tall
-        left = -aspect;
-        right = aspect;
-        bottom = -1;
-        top = 1;
-      } else {
-        // Taller than wide
-        left = -1;
-        right = 1;
-        bottom = -1 / aspect;
-        top = 1 / aspect;
-      }
-
-      const projectionMatrix = createOrthographicMatrix(
-        left,
-        right,
-        bottom,
-        top,
-        0.1,
-        10
-      );
+      // Use perspective projection
+      const fov = Math.PI / 4;
+      const near = 0.1;
+      const far = 10;
+      const f = 1.0 / Math.tan(fov / 2);
+      const range = 1.0 / (near - far);
+      
+      const projectionMatrix = new Float32Array([
+        f / aspect, 0, 0, 0,
+        0, f, 0, 0,
+        0, 0, (near + far) * range, -1,
+        0, 0, near * far * range * 2, 0,
+      ]);
 
       // Set uniforms
       if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
