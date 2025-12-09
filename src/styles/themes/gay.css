@@ -1,32 +1,49 @@
 /* Gay theme */
 [data-color-theme="gay"] {
-  --theme-primary: #078d70;
-  --theme-secondary: #26ceaa;
-  --theme-accent: #98e8c1;
+  --theme-primary: #078D70;
+  --theme-secondary: #26CEAA;
+  --theme-accent: #98E8C1;
 }
 
 [data-color-theme="gay"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
-    #078D70 0%, #078D70 33%,
-    #26CEAA 33%, #26CEAA 66%,
-    #98E8C1 66%, #98E8C1 100%) !important;
+    #078D70 0%, #078D70 14.28%,
+    #26CEAA 14.28%, #26CEAA 28.56%,
+    #98E8C1 28.56%, #98E8C1 42.84%,
+    #FFFFFF 42.84%, #FFFFFF 57.12%,
+    #7BADE2 57.12%, #7BADE2 71.4%,
+    #5049CC 71.4%, #5049CC 85.68%,
+    #3D1A78 85.68%, #3D1A78 100%) !important;
 }
 
 [data-color-theme="gay"] .gradient-header {
   background-image: linear-gradient(to right, 
-    #078D70 0%, #078D70 50%,
-    #26CEAA 50%, #26CEAA 100%) !important;
+    #078D70 0%, #078D70 14.28%,
+    #26CEAA 14.28%, #26CEAA 28.56%,
+    #98E8C1 28.56%, #98E8C1 42.84%,
+    #FFFFFF 42.84%, #FFFFFF 57.12%,
+    #7BADE2 57.12%, #7BADE2 71.4%,
+    #5049CC 71.4%, #5049CC 85.68%,
+    #3D1A78 85.68%, #3D1A78 100%) !important;
 }
 
 [data-color-theme="gay"] .gradient-text {
   background: linear-gradient(
     to right,
-    #078d70 0%,
-    #078d70 33%,
-    #26ceaa 33%,
-    #26ceaa 66%,
-    #98e8c1 66%,
-    #98e8c1 100%
+    #078D70 0%,
+    #078D70 14.28%,
+    #26CEAA 14.28%,
+    #26CEAA 28.56%,
+    #98E8C1 28.56%,
+    #98E8C1 42.84%,
+    #FFFFFF 42.84%,
+    #FFFFFF 57.12%,
+    #7BADE2 57.12%,
+    #7BADE2 71.4%,
+    #5049CC 71.4%,
+    #5049CC 85.68%,
+    #3D1A78 85.68%,
+    #3D1A78 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -86,5 +103,5 @@
 
 /* Ensure icon containers have visible backgrounds on Gay theme */
 [data-color-theme="gay"] .bg-theme-secondary {
-  background: #0d5c63 !important;
+  background: #1f2937 !important;
 }

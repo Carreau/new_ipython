@@ -30,27 +30,27 @@ const themes: Theme[] = [
       secondary: '#FF8C00', // Orange
       accent: '#FFED00',    // Yellow
     },
-    dotGradient: 'linear-gradient(to bottom right, #E40303 0%, #E40303 14%, #FF8C00 14%, #FF8C00 28%, #FFED00 28%, #FFED00 42%, #008026 42%, #008026 57%, #004DFF 57%, #004DFF 71%, #750787 71%, #750787 85%, #E40303 85%, #E40303 100%)',
+    dotGradient: 'linear-gradient(to bottom right, #E40303 0%, #E40303 16.67%, #FF8C00 16.67%, #FF8C00 33.33%, #FFED00 33.33%, #FFED00 50%, #008026 50%, #008026 66.67%, #004CFF 66.67%, #004CFF 83.33%, #732982 83.33%, #732982 100%)',
   },
   {
     id: 'gay',
     name: 'Gay Pride',
     colors: {
       primary: '#078D70',   // Green
-      secondary: '#26CEAA', // Light green
-      accent: '#98E8C1',    // Pale green
+      secondary: '#26CEAA', // Light green/teal
+      accent: '#98E8C1',    // Pale green/mint
     },
-    dotGradient: 'linear-gradient(to bottom right, #078D70 0%, #078D70 33%, #26CEAA 33%, #26CEAA 66%, #98E8C1 66%, #98E8C1 100%)',
+    dotGradient: 'linear-gradient(to bottom right, #078D70 0%, #078D70 14.28%, #26CEAA 14.28%, #26CEAA 28.56%, #98E8C1 28.56%, #98E8C1 42.84%, #FFFFFF 42.84%, #FFFFFF 57.12%, #7BADE2 57.12%, #7BADE2 71.4%, #5049CC 71.4%, #5049CC 85.68%, #3D1A78 85.68%, #3D1A78 100%)',
   },
   {
     id: 'lesbian',
     name: 'Lesbian Pride',
     colors: {
-      primary: '#D62900',   // Dark orange
-      secondary: '#FF9B55', // Orange
-      accent: '#D60270',    // Pink
+      primary: '#D52D00',   // Dark orange/red
+      secondary: '#EF7627', // Orange
+      accent: '#FF9A56',    // Light orange
     },
-    dotGradient: 'linear-gradient(to bottom right, #d62900 0%, #d62900 20%, #ff9b55 20%, #ff9b55 40%, #ffffff 40%, #ffffff 60%, #d60270 60%, #d60270 80%, #9b4f96 80%, #9b4f96 100%)',
+    dotGradient: 'linear-gradient(to bottom right, #D52D00 0%, #D52D00 14.28%, #EF7627 14.28%, #EF7627 28.56%, #FF9A56 28.56%, #FF9A56 42.84%, #FFFFFF 42.84%, #FFFFFF 57.12%, #D162A4 57.12%, #D162A4 71.4%, #B55690 71.4%, #B55690 85.68%, #A30262 85.68%, #A30262 100%)',
   },
   {
     id: 'trans',

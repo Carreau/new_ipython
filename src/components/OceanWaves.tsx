@@ -53,13 +53,13 @@ export default function OceanWaves() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       
-      // Create bubbles
+      // Create bubbles (distribute across viewport)
       bubblesRef.current = [];
       const bubbleCount = Math.floor((canvas.width * canvas.height) / 20000);
       for (let i = 0; i < bubbleCount; i++) {
         bubblesRef.current.push({
           x: Math.random() * canvas.width,
-          y: window.scrollY + Math.random() * canvas.height,
+          y: Math.random() * canvas.height,
           size: 2 + Math.random() * 8,
           speed: 0.5 + Math.random() * 1.5,
           opacity: 0.2 + Math.random() * 0.4,
@@ -188,21 +188,19 @@ export default function OceanWaves() {
         drawWave(ctx, bottomWaveScreenY + 40, 10, 0.7, 1, '#006994', 0.1);
       }
       
-      // Update and draw bubbles
+      // Update and draw bubbles (viewport-relative)
       bubblesRef.current.forEach((bubble) => {
-        // Update bubble position
+        // Update bubble position (viewport coordinates)
         bubble.y -= bubble.speed;
         bubble.x += bubble.drift;
         
-        // Reset if off screen top
-        if (bubble.y < scrollY - 100) {
-          bubble.y = scrollY + window.innerHeight + 100;
+        // Reset if off screen
+        if (bubble.y < -bubble.size) {
+          bubble.y = window.innerHeight + bubble.size;
           bubble.x = Math.random() * canvas.width;
         }
-        
-        // Reset if off screen bottom
-        if (bubble.y > scrollY + window.innerHeight + 100) {
-          bubble.y = scrollY - 100;
+        if (bubble.y > window.innerHeight + bubble.size) {
+          bubble.y = -bubble.size;
           bubble.x = Math.random() * canvas.width;
         }
         
@@ -210,11 +208,8 @@ export default function OceanWaves() {
         if (bubble.x < -bubble.size) bubble.x = canvas.width + bubble.size;
         if (bubble.x > canvas.width + bubble.size) bubble.x = -bubble.size;
         
-        // Only draw if in or near viewport
-        const currentScreenY = bubble.y - scrollY;
-        if (currentScreenY > -100 && currentScreenY < window.innerHeight + 100) {
-          drawBubble(ctx, bubble);
-        }
+        // Draw bubble (already in viewport coordinates)
+        drawBubble(ctx, bubble);
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);

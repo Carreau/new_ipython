@@ -1,77 +1,107 @@
 /* Lesbian theme */
 [data-color-theme="lesbian"] {
-  --theme-primary: #d62900;
-  --theme-secondary: #ff9b55;
-  --theme-accent: #ffffff;
+  --theme-primary: #D52D00;
+  --theme-secondary: #EF7627;
+  --theme-accent: #FF9A56;
 }
 
 :not(.dark)[data-color-theme="lesbian"] .gradient-hero {
   background-image: linear-gradient(
     to bottom right,
-    #d62900 0%,
-    #d62900 20%,
-    #ff9b55 20%,
-    #ff9b55 40%,
-    #ffffff 40%,
-    #ffffff 60%,
-    #d60270 60%,
-    #d60270 80%,
-    #9b4f96 80%,
-    #9b4f96 100%
+    #D52D00 0%,
+    #D52D00 14.28%,
+    #EF7627 14.28%,
+    #EF7627 28.56%,
+    #FF9A56 28.56%,
+    #FF9A56 42.84%,
+    #FFFFFF 42.84%,
+    #FFFFFF 57.12%,
+    #D162A4 57.12%,
+    #D162A4 71.4%,
+    #B55690 71.4%,
+    #B55690 85.68%,
+    #A30262 85.68%,
+    #A30262 100%
   );
 }
 
 .dark[data-color-theme="lesbian"] .gradient-hero {
   background-image: linear-gradient(
     to bottom right,
-    #d62900 0%,
-    #d62900 20%,
-    #ff9b55 20%,
-    #ff9b55 40%,
-    var(--ipython-dark) 40%,
-    var(--ipython-dark) 60%,
-    #d60270 60%,
-    #d60270 80%,
-    #9b4f96 80%,
-    #9b4f96 100%
+    #D52D00 0%,
+    #D52D00 14.28%,
+    #EF7627 14.28%,
+    #EF7627 28.56%,
+    #FF9A56 28.56%,
+    #FF9A56 42.84%,
+    var(--ipython-dark) 42.84%,
+    var(--ipython-dark) 57.12%,
+    #D162A4 57.12%,
+    #D162A4 71.4%,
+    #B55690 71.4%,
+    #B55690 85.68%,
+    #A30262 85.68%,
+    #A30262 100%
   ) !important;
 }
 
 :not(.dark)[data-color-theme="lesbian"] .gradient-header {
   background-image: linear-gradient(
     to right,
-    #d62900 0%,
-    #d62900 33%,
-    #ff9b55 33%,
-    #ff9b55 66%,
-    #ffffff 66%,
-    #ffffff 100%
+    #D52D00 0%,
+    #D52D00 14.28%,
+    #EF7627 14.28%,
+    #EF7627 28.56%,
+    #FF9A56 28.56%,
+    #FF9A56 42.84%,
+    #FFFFFF 42.84%,
+    #FFFFFF 57.12%,
+    #D162A4 57.12%,
+    #D162A4 71.4%,
+    #B55690 71.4%,
+    #B55690 85.68%,
+    #A30262 85.68%,
+    #A30262 100%
   );
 }
 
 .dark[data-color-theme="lesbian"] .gradient-header {
   background-image: linear-gradient(
     to right,
-    #d62900 0%,
-    #d62900 33%,
-    #ff9b55 33%,
-    #ff9b55 66%,
-    #0f172a 66%,
-    #0f172a 100%
+    #D52D00 0%,
+    #D52D00 14.28%,
+    #EF7627 14.28%,
+    #EF7627 28.56%,
+    #FF9A56 28.56%,
+    #FF9A56 42.84%,
+    #0f172a 42.84%,
+    #0f172a 57.12%,
+    #D162A4 57.12%,
+    #D162A4 71.4%,
+    #B55690 71.4%,
+    #B55690 85.68%,
+    #A30262 85.68%,
+    #A30262 100%
   ) !important;
 }
 
 [data-color-theme="lesbian"] .gradient-text {
   background: linear-gradient(
     to right,
-    #d62900 0%,
-    #d62900 20%,
-    #ff9b55 20%,
-    #ff9b55 50%,
-    #d60270 50%,
-    #d60270 75%,
-    #9b4f96 75%,
-    #9b4f96 100%
+    #D52D00 0%,
+    #D52D00 14.28%,
+    #EF7627 14.28%,
+    #EF7627 28.56%,
+    #FF9A56 28.56%,
+    #FF9A56 42.84%,
+    #FFFFFF 42.84%,
+    #FFFFFF 57.12%,
+    #D162A4 57.12%,
+    #D162A4 71.4%,
+    #B55690 71.4%,
+    #B55690 85.68%,
+    #A30262 85.68%,
+    #A30262 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

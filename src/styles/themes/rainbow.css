@@ -7,37 +7,39 @@
 
 [data-color-theme="rainbow"] .gradient-hero {
   background-image: linear-gradient(to bottom right, 
-    #E40303 0%, #E40303 14%,
-    #FF8C00 14%, #FF8C00 28%,
-    #FFED00 28%, #FFED00 42%,
-    #008026 42%, #008026 57%,
-    #004DFF 57%, #004DFF 71%,
-    #750787 71%, #750787 85%,
-    #E40303 85%, #E40303 100%) !important;
+    #E40303 0%, #E40303 16.67%,
+    #FF8C00 16.67%, #FF8C00 33.33%,
+    #FFED00 33.33%, #FFED00 50%,
+    #008026 50%, #008026 66.67%,
+    #004CFF 66.67%, #004CFF 83.33%,
+    #732982 83.33%, #732982 100%) !important;
 }
 
 [data-color-theme="rainbow"] .gradient-header {
   background-image: linear-gradient(to right, 
-    #E40303 0%, #E40303 33%,
-    #FF8C00 33%, #FF8C00 66%,
-    #FFED00 66%, #FFED00 100%) !important;
+    #E40303 0%, #E40303 16.67%,
+    #FF8C00 16.67%, #FF8C00 33.33%,
+    #FFED00 33.33%, #FFED00 50%,
+    #008026 50%, #008026 66.67%,
+    #004CFF 66.67%, #004CFF 83.33%,
+    #732982 83.33%, #732982 100%) !important;
 }
 
 [data-color-theme="rainbow"] .gradient-text {
   background: linear-gradient(
     to right,
-    #e40303 0%,
-    #e40303 14%,
-    #ff8c00 14%,
-    #ff8c00 28%,
-    #ffed00 28%,
-    #ffed00 42%,
-    #008026 42%,
-    #008026 57%,
-    #004dff 57%,
-    #004dff 71%,
-    #750787 71%,
-    #750787 100%
+    #E40303 0%,
+    #E40303 16.67%,
+    #FF8C00 16.67%,
+    #FF8C00 33.33%,
+    #FFED00 33.33%,
+    #FFED00 50%,
+    #008026 50%,
+    #008026 66.67%,
+    #004CFF 66.67%,
+    #004CFF 83.33%,
+    #732982 83.33%,
+    #732982 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
