@@ -122,8 +122,8 @@ export default function ColorThemeDropdown() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white dark:bg-ipython-slate border border-gray-200 dark:border-gray-700 shadow-lg z-50 max-h-96 overflow-y-auto">
-          <div className="p-2">
+        <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white dark:bg-ipython-slate border border-gray-200 dark:border-gray-700 shadow-lg z-50 overflow-hidden">
+          <div className="p-2 max-h-96 overflow-y-auto">
             {themes.map((theme) => (
               <button
                 key={theme.id}
