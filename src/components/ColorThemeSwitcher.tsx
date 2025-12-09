@@ -152,6 +152,16 @@ const themes: Theme[] = [
     },
     dotGradient: 'linear-gradient(to bottom right, #6b0f2a 0%, #6b0f2a 40%, #8b1538 40%, #8b1538 70%, #a91d3d 70%, #a91d3d 100%)',
   },
+  {
+    id: 'sun',
+    name: 'Sun',
+    colors: {
+      primary: '#f59e0b',   // Bright amber/yellow
+      secondary: '#fbbf24', // Golden yellow
+      accent: '#fcd34d',     // Light yellow
+    },
+    dotGradient: 'linear-gradient(to bottom right, #f59e0b 0%, #f59e0b 40%, #fbbf24 40%, #fbbf24 70%, #fcd34d 70%, #fcd34d 100%)',
+  },
 ];
 
 export default function ColorThemeSwitcher() {

@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import AnimatedTerminal from '../components/AnimatedTerminal';
 import VelvetSilkBackground from '../components/VelvetSilkBackground';
+import SunBackground from '../components/SunBackground';
 
 // Fetch GitHub token for API calls
 const isDev = import.meta.env.DEV;
@@ -72,6 +73,7 @@ try {
     <!-- Hero Section -->
     <section class="min-h-screen gradient-hero flex items-center relative overflow-hidden">
       <VelvetSilkBackground client:load />
+      <SunBackground client:load />
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>

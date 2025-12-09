@@ -15,6 +15,7 @@
 @import "./themes/christmas.css";
 @import "./themes/ocean.css";
 @import "./themes/velvet.css";
+@import "./themes/sun.css";
 
 @tailwind base;
 @tailwind components;
