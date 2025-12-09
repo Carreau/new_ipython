@@ -216,7 +216,7 @@ float fBm ( in vec3 _pos, in float sz) {
 
 
 void main() {
-    vec3 st = vPosition;
+    vec3 st = vPositionModel;
 
     vec3 q = vec3(0.);
     q.x = fBm( st, 5.);
@@ -229,6 +229,23 @@ void main() {
     color = mix(vec3(1.,0.4,0.), vec3(1.,1.,1.), n*n);
     color = mix(color, vec3(1.,0.,0.), q*0.7);
     gl_FragColor = vec4(1.6*color, 1.);
+
+
+    // Glow effect - exact from article
+    float raw_intensity = max(dot(vPosition, vNormalView), 0.);
+    float intensity = pow(raw_intensity, 4.);
+    vec3 u_color = vec3(1.0, 0.8, 0.4);
+    vec4 glowColor = vec4(u_color, intensity);
+
+    // Fresnel effect - exact from article
+    //float fresnelTerm_inner = 0.2 - 0.7 * min(dot(vPosition, vNormalView), 0.0);
+    //fresnelTerm_inner = pow(fresnelTerm_inner, 5.0);
+    //float fresnelTerm_outer = 1.0 + dot(normalize(vPosition), normalize(vNormalView));
+    //fresnelTerm_outer = pow(fresnelTerm_outer, 2.0);
+    //float fresnelTerm = fresnelTerm_inner + fresnelTerm_outer;
+
+    // Combine - exact from article
+    //gl_FragColor = vec4(color, 0.7)*fresnelTerm + glowColor;
 }
     `;
 
@@ -481,7 +498,7 @@ void main() {
       const aspect = canvas.width / canvas.height;
 
       // Rotate around vertical Y axis through time
-      const rotationY = timeRef.current * 0.2;
+      const rotationY = timeRef.current * 0.15;
       const cosY = Math.cos(rotationY);
       const sinY = Math.sin(rotationY);
 
