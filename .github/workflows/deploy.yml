@@ -31,7 +31,7 @@ jobs:
       
       - name: Build Astro site
         run: npm run build
-        env:
+        #env:
           # If you have environment variables, set them here
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
