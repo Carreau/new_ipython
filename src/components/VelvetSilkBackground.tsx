@@ -9,6 +9,10 @@ export default function VelvetSilkBackground() {
   const isVisibleRef = useRef(true);
   const [showSilk, setShowSilk] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [hue, setHue] = useState(350);
+  const [saturation, setSaturation] = useState(1.0);
+  const [brightness, setBrightness] = useState(8.0);
+  const [speed, setSpeed] = useState(0.5);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -88,7 +92,7 @@ export default function VelvetSilkBackground() {
       varying vec2 v_uv;
 
       float noise(vec2 p) {
-        return smoothstep(-0.5, 0.9, sin((p.x - p.y) * 555.0) * sin(p.y * 1444.0)) - 0.4;
+        return 0.1*smoothstep(-0.5, 0.9, sin((p.x - p.y) * 555.0) * sin(p.y * 1444.0)) - 0.4;
       }
 
       float fabric(vec2 p) {
@@ -133,7 +137,7 @@ export default function VelvetSilkBackground() {
         c *= 1.0 - max(0.0, 0.8 * d);
         
         // INVERT is 1, so use inverted path
-        c = pow(c, vec3(0.3) / vec3(0.52, 0.5, 0.4));
+        c = 0.5+pow(c, vec3(0.3) / vec3(0.52, 0.5, 0.4))/2.0;
         c = 1.0 - c;
 
         // Apply HSV color adjustment
@@ -286,17 +290,24 @@ export default function VelvetSilkBackground() {
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-      // Set uniforms - using velvet theme colors
-      // Velvet colors: #6b0f2a, #8b1538, #a91d3d (deep reds, hue ~340-350)
+      // Set uniforms - using velvet theme colors or controls
+      // Check for external controls from VelvetSilkControls component
+      const params =
+        typeof window !== "undefined" ? (window as any).velvetSilkParams : null;
+      const currentHue = params?.hue ?? hue;
+      const currentSaturation = params?.saturation ?? saturation;
+      const currentBrightness = params?.brightness ?? brightness;
+      const currentSpeed = params?.speed ?? speed;
+
       if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
       if (resolutionLocation)
         gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      if (hueLocation) gl.uniform1f(hueLocation, isDark ? 340 : 345); // Velvet red hue
+      if (hueLocation) gl.uniform1f(hueLocation, currentHue);
       if (saturationLocation)
-        gl.uniform1f(saturationLocation, isDark ? 0.85 : 0.9); // Rich saturation for velvet
+        gl.uniform1f(saturationLocation, currentSaturation);
       if (brightnessLocation)
-        gl.uniform1f(brightnessLocation, isDark ? 0.85 : 1.0); // Slightly dimmer in dark mode
-      if (speedLocation) gl.uniform1f(speedLocation, 2.1);
+        gl.uniform1f(brightnessLocation, currentBrightness);
+      if (speedLocation) gl.uniform1f(speedLocation, currentSpeed);
 
       // Check for WebGL errors
       const error = gl.getError();
