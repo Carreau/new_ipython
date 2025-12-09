@@ -1,3 +1,6 @@
+/* Import tw-animate-css for animations - must be first */
+@import "tw-animate-css";
+
 /* Import all theme files - must come before other CSS rules */
 @import "./themes/purple.css";
 @import "./themes/orange.css";
@@ -16,9 +19,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import tw-animate-css for animations */
-@import "tw-animate-css";
 
 :root {
   color-scheme: light;

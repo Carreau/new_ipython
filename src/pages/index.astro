@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import AnimatedTerminal from '../components/AnimatedTerminal';
+import VelvetSilkBackground from '../components/VelvetSilkBackground';
 
 // Fetch GitHub token for API calls
 const isDev = import.meta.env.DEV;
@@ -68,9 +69,17 @@ try {
   <Navigation />
 
   <main>
+    <!-- Debug: Canvas Test - Front and Center -->
+    <section class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div class="w-full h-screen relative">
+        <VelvetSilkBackground client:load />
+      </div>
+    </section>
+
     <!-- Hero Section -->
-    <section class="min-h-screen gradient-hero flex items-center">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+    <section class="min-h-screen gradient-hero flex items-center relative overflow-hidden">
+      <VelvetSilkBackground client:load />
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 class="text-5xl md:text-6xl font-bold gradient-text-hero mb-6 leading-tight">Productive Interactive Computing</h1>

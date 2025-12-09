@@ -2,15 +2,21 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function VelvetSilkBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const glRef = useRef<WebGLRenderingContext | null>(null);
+  const programRef = useRef<WebGLProgram | null>(null);
   const animationFrameRef = useRef<number>();
   const timeRef = useRef(0);
   const isVisibleRef = useRef(true);
   const [showSilk, setShowSilk] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const checkTheme = () => {
       const theme = document.documentElement.getAttribute('data-color-theme');
       setShowSilk(theme === 'velvet');
+      setIsDark(document.documentElement.classList.contains('dark'));
     };
 
     // Check initial theme
@@ -20,7 +26,7 @@ export default function VelvetSilkBackground() {
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-color-theme'],
+      attributeFilter: ['data-color-theme', 'class'],
     });
 
     // Also check localStorage changes
@@ -45,19 +51,185 @@ export default function VelvetSilkBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const gl = canvas.getContext('webgl');
+    if (!gl) {
+      console.error('WebGL not supported or context creation failed');
+      return;
+    }
+
+    glRef.current = gl;
+    console.log('WebGL context created, canvas size:', canvas.width, 'x', canvas.height);
+
+    // Vertex shader source
+    const vertexShaderSource = `
+      attribute vec2 a_position;
+      varying vec2 v_uv;
+      void main() {
+        gl_Position = vec4(a_position, 0.0, 1.0);
+        v_uv = (a_position + 1.0) * 0.5;
+        v_uv.y = 1.0 - v_uv.y; // Flip Y
+      }
+    `;
+
+    // Fragment shader source - exact from ShaderToy example
+    const fragmentShaderSource = `
+      precision highp float;
+      uniform float u_time;
+      uniform vec2 u_resolution;
+      uniform float u_hue;
+      uniform float u_saturation;
+      uniform float u_brightness;
+      uniform float u_speed;
+      varying vec2 v_uv;
+
+      float noise(vec2 p) {
+        return smoothstep(-0.5, 0.9, sin((p.x - p.y) * 555.0) * sin(p.y * 1444.0)) - 0.4;
+      }
+
+      float fabric(vec2 p) {
+        const mat2 m = mat2(1.6, 1.2, -1.2, 1.6);
+        float f = 0.4 * noise(p);
+        f += 0.3 * noise(p = m * p);
+        f += 0.2 * noise(p = m * p);
+        return f + 0.1 * noise(m * p);
+      }
+
+      float silk(vec2 uv, float t) {
+        float s = sin(5.0 * (uv.x + uv.y + cos(2.0 * uv.x + 5.0 * uv.y)) + sin(12.0 * (uv.x + uv.y)) - t);
+        s = 0.7 + 0.3 * (s * s * 0.5 + s);
+        s *= 0.9 + 0.6 * fabric(uv * min(u_resolution.x, u_resolution.y) * 0.0006);
+        return s * 0.9 + 0.1;
+      }
+
+      float silkd(vec2 uv, float t) {
+        float xy = uv.x + uv.y;
+        float d = (5.0 * (1.0 - 2.0 * sin(2.0 * uv.x + 5.0 * uv.y)) + 12.0 * cos(12.0 * xy)) * cos(5.0 * (cos(2.0 * uv.x + 5.0 * uv.y) + xy) + sin(12.0 * xy) - t);
+        return 0.005 * d * (sign(d) + 3.0);
+      }
+
+      vec3 hsv2rgb(vec3 c) {
+        vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+        vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+        return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+      }
+
+      void main() {
+        float mr = min(u_resolution.x, u_resolution.y);
+        vec2 uv = v_uv * u_resolution / mr;
+
+        float t = u_time * u_speed;
+        uv.y += 0.03 * sin(8.0 * uv.x - t);
+
+        float s = sqrt(silk(uv, t));
+        float d = silkd(uv, t);
+
+        vec3 c = vec3(s);
+        c += 0.7 * vec3(1.0, 0.83, 0.6) * d;
+        c *= 1.0 - max(0.0, 0.8 * d);
+        
+        // INVERT is 1, so use inverted path
+        c = pow(c, vec3(0.3) / vec3(0.52, 0.5, 0.4));
+        c = 1.0 - c;
+
+        // Apply HSV color adjustment
+        vec3 hsv = vec3(u_hue / 360.0, u_saturation, u_brightness);
+        vec3 targetColor = hsv2rgb(hsv);
+        c = mix(c, c * targetColor, 0.5);
+        
+        gl_FragColor = vec4(c, 1.0);
+      }
+    `;
+
+    // Compile shader
+    function createShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+      const shader = gl.createShader(type);
+      if (!shader) return null;
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    // Create program
+    function createProgram(gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLProgram | null {
+      const program = gl.createProgram();
+      if (!program) return null;
+      gl.attachShader(program, vertexShader);
+      gl.attachShader(program, fragmentShader);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error('Program link error:', gl.getProgramInfoLog(program));
+        gl.deleteProgram(program);
+        return null;
+      }
+      return program;
+    }
+
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    if (!vertexShader || !fragmentShader) {
+      console.error('Failed to create shaders');
+      return;
+    }
+
+    const program = createProgram(gl, vertexShader, fragmentShader);
+    if (!program) {
+      console.error('Failed to create program');
+      return;
+    }
+    
+    console.log('Shader program created successfully');
+
+    programRef.current = program;
+
+    // Setup geometry (full screen quad)
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    const positions = new Float32Array([
+      -1, -1,
+       1, -1,
+      -1,  1,
+       1,  1,
+    ]);
+    gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+    const positionLocation = gl.getAttribLocation(program, 'a_position');
+    const timeLocation = gl.getUniformLocation(program, 'u_time');
+    const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+    const hueLocation = gl.getUniformLocation(program, 'u_hue');
+    const saturationLocation = gl.getUniformLocation(program, 'u_saturation');
+    const brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
+    const speedLocation = gl.getUniformLocation(program, 'u_speed');
 
     const resizeCanvas = () => {
       const container = canvas.parentElement;
       if (container) {
         const rect = container.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
+        const width = Math.max(rect.width, window.innerWidth);
+        const height = Math.max(rect.height, window.innerHeight);
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        console.log('Canvas resized to:', canvas.width, 'x', canvas.height);
+      } else {
+        // Fallback to window size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        console.log('Canvas resized to window size:', canvas.width, 'x', canvas.height);
       }
     };
 
+    // Initial resize
     resizeCanvas();
+    
+    // Also resize after a short delay to ensure parent is sized
+    setTimeout(resizeCanvas, 100);
+    
     window.addEventListener('resize', resizeCanvas);
 
     const handleVisibilityChange = () => {
@@ -77,110 +249,58 @@ export default function VelvetSilkBackground() {
     window.addEventListener('focus', handleWindowFocus);
     isVisibleRef.current = !document.hidden && document.hasFocus();
 
-    const drawSilk = () => {
-      const width = canvas.width;
-      const height = canvas.height;
-      
-      // Clear canvas
-      ctx.clearRect(0, 0, width, height);
-
-      // Create flowing silk patterns using multiple overlapping gradients
-      const numLayers = 4;
-      
-      for (let layer = 0; layer < numLayers; layer++) {
-        const layerTime = timeRef.current * (0.3 + layer * 0.1);
-        const offsetX = Math.sin(layerTime * 0.5) * width * 0.1;
-        const offsetY = Math.cos(layerTime * 0.3) * height * 0.1;
-        
-        // Create flowing gradient
-        const gradient = ctx.createLinearGradient(
-          width * 0.2 + offsetX,
-          height * 0.3 + offsetY,
-          width * 0.8 + offsetX * 1.5,
-          height * 0.7 + offsetY * 1.5
-        );
-        
-        // Velvet colors with varying opacity
-        const baseOpacity = 0.15;
-        const layerOpacity = baseOpacity * (1 - layer * 0.2);
-        
-        if (layer === 0) {
-          gradient.addColorStop(0, `rgba(107, 15, 42, ${layerOpacity})`);
-          gradient.addColorStop(0.3, `rgba(139, 21, 56, ${layerOpacity * 0.8})`);
-          gradient.addColorStop(0.6, `rgba(169, 29, 61, ${layerOpacity * 0.6})`);
-          gradient.addColorStop(1, `rgba(196, 30, 58, ${layerOpacity * 0.4})`);
-        } else if (layer === 1) {
-          gradient.addColorStop(0, `rgba(139, 21, 56, ${layerOpacity})`);
-          gradient.addColorStop(0.4, `rgba(169, 29, 61, ${layerOpacity * 0.7})`);
-          gradient.addColorStop(0.7, `rgba(196, 30, 58, ${layerOpacity * 0.5})`);
-          gradient.addColorStop(1, `rgba(107, 15, 42, ${layerOpacity * 0.3})`);
-        } else if (layer === 2) {
-          gradient.addColorStop(0, `rgba(169, 29, 61, ${layerOpacity})`);
-          gradient.addColorStop(0.5, `rgba(196, 30, 58, ${layerOpacity * 0.6})`);
-          gradient.addColorStop(1, `rgba(139, 21, 56, ${layerOpacity * 0.4})`);
-        } else {
-          gradient.addColorStop(0, `rgba(196, 30, 58, ${layerOpacity})`);
-          gradient.addColorStop(0.6, `rgba(169, 29, 61, ${layerOpacity * 0.5})`);
-          gradient.addColorStop(1, `rgba(107, 15, 42, ${layerOpacity * 0.3})`);
-        }
-        
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-      }
-
-      // Add flowing wave patterns
-      ctx.save();
-      ctx.globalAlpha = 0.08;
-      ctx.strokeStyle = '#8b1538';
-      ctx.lineWidth = 1;
-      
-      const waveCount = 6;
-      for (let i = 0; i < waveCount; i++) {
-        const waveTime = timeRef.current * 0.4 + i * Math.PI * 0.3;
-        const waveY = height * 0.2 + (i * height * 0.15);
-        const amplitude = 30 + Math.sin(waveTime) * 10;
-        const frequency = 0.01;
-        
-        ctx.beginPath();
-        for (let x = 0; x < width; x += 2) {
-          const y = waveY + Math.sin(x * frequency + waveTime) * amplitude;
-          if (x === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
-        }
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      // Add subtle shimmer effect
-      const shimmerX = (timeRef.current * 20) % (width + 200) - 100;
-      const shimmerGradient = ctx.createLinearGradient(shimmerX, 0, shimmerX + 300, 0);
-      shimmerGradient.addColorStop(0, 'rgba(255, 255, 255, 0)');
-      shimmerGradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.03)');
-      shimmerGradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.05)');
-      shimmerGradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.03)');
-      shimmerGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      
-      ctx.save();
-      ctx.fillStyle = shimmerGradient;
-      ctx.fillRect(0, 0, width, height);
-      ctx.restore();
-    };
-
-    const animate = () => {
+    const render = () => {
       if (!isVisibleRef.current) {
-        animationFrameRef.current = requestAnimationFrame(animate);
+        animationFrameRef.current = requestAnimationFrame(render);
         return;
       }
 
-      timeRef.current += 0.01;
-      drawSilk();
-      animationFrameRef.current = requestAnimationFrame(animate);
+      if (!gl || !program) return;
+
+      timeRef.current += 0.016; // ~60fps
+
+      gl.useProgram(program);
+      
+      // Clear with a test color first to verify rendering works
+      gl.clearColor(0.1, 0.1, 0.1, 1.0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      // Set attributes
+      gl.enableVertexAttribArray(positionLocation);
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+      // Set uniforms - using exact parameters from example
+      if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
+      if (resolutionLocation) gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+      if (hueLocation) gl.uniform1f(hueLocation, 300); // Exact from example
+      if (saturationLocation) gl.uniform1f(saturationLocation, 0.5); // Exact from example
+      if (brightnessLocation) gl.uniform1f(brightnessLocation, 1.0); // Exact from example
+      if (speedLocation) gl.uniform1f(speedLocation, 1.0); // Exact from example
+
+      // Check for WebGL errors
+      const error = gl.getError();
+      if (error !== gl.NO_ERROR) {
+        console.error('WebGL error before draw:', error);
+      }
+
+      // Draw
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      
+      // Check for errors after draw
+      const errorAfter = gl.getError();
+      if (errorAfter !== gl.NO_ERROR) {
+        console.error('WebGL error after draw:', errorAfter);
+      }
+      
+      if (timeRef.current < 0.1) {
+        console.log('First frame rendered, time:', timeRef.current, 'resolution:', canvas.width, 'x', canvas.height);
+      }
+
+      animationFrameRef.current = requestAnimationFrame(render);
     };
 
-    animate();
+    render();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
@@ -190,16 +310,34 @@ export default function VelvetSilkBackground() {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if (program) {
+        gl.deleteProgram(program);
+      }
+      if (vertexShader) {
+        gl.deleteShader(vertexShader);
+      }
+      if (fragmentShader) {
+        gl.deleteShader(fragmentShader);
+      }
     };
-  }, [showSilk]);
+  }, [showSilk, isDark]);
 
-  if (!showSilk) return null;
+  if (!showSilk) {
+    if (typeof document !== 'undefined') {
+      console.log('VelvetSilkBackground: showSilk is false, theme:', document.documentElement.getAttribute('data-color-theme'));
+    }
+    return null;
+  }
+
+  if (typeof document !== 'undefined') {
+    console.log('VelvetSilkBackground: Rendering canvas, isDark:', isDark);
+  }
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ mixBlendMode: 'overlay' }}
+      className="absolute inset-0 w-full h-full"
+      style={{ backgroundColor: '#000000' }}
     />
   );
 }
