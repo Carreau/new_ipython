@@ -134,18 +134,16 @@ export default function SunBackground() {
       varying vec3 vNormalModel;
       varying vec3 vNormalView;
 
-      // 2D Random - exact from article
-      float random(in vec3 st) {
-        return fract(sin(dot(st, vec3(12.9898, 78.233, 23.112))) * 12943.145);
-      }
+      float random (in vec3 st) {
+            return fract(sin(dot(st,vec3(12.9898,78.233,23.112)))*12943.145);
+        }
 
-      // 3D Noise - exact from article with time-based animation
-      float noise(in vec3 _pos) {
+    float noise (in vec3 _pos) {
         vec3 i_pos = floor(_pos);
         vec3 f_pos = fract(_pos);
 
-        float i_time = floor(u_time * 0.2);
-        float f_time = fract(u_time * 0.2);
+        float i_time = floor(u_time*0.2);
+        float f_time = fract(u_time*0.2);
 
         // Four corners in 2D of a tile
         float aa = random(i_pos + i_time);
@@ -171,79 +169,62 @@ export default function SunBackground() {
         float t_time = smoothstep(0., 1., f_time);
 
         // Mix 4 corners percentages
-        return mix(
-          mix(
-            mix(mix(aa, ab, t.x), mix(ac, ad, t.x), t.y),
-            mix(mix(ae, af, t.x), mix(ag, ah, t.x), t.y), 
+        return 
+        mix(
+            mix(
+                mix(mix(aa,ab,t.x), mix(ac,ad,t.x), t.y),
+                mix(mix(ae,af,t.x), mix(ag,ah,t.x), t.y), 
             t.z),
-          mix(
-            mix(mix(ba, bb, t.x), mix(bc, bd, t.x), t.y),
-            mix(mix(be, bf, t.x), mix(bg, bh, t.x), t.y), 
-            t.z),
-          t_time
-        );
-      }
+            mix(
+                mix(mix(ba,bb,t.x), mix(bc,bd,t.x), t.y),
+                mix(mix(be,bf,t.x), mix(bg,bh,t.x), t.y), 
+            t.z), 
+        t_time);
+    }
 
-      // Fractal Brownian Motion - exact from article
-      #define NUM_OCTAVES 6
-      float fBm(in vec3 _pos, in float sz) {
-        float v = 0.0;
-        float a = 0.2;
-        _pos *= sz;
 
-        vec3 angle = vec3(-0.001 * u_time, 0.0001 * u_time, 0.0004 * u_time);
-        mat3 rotx = mat3(1., 0., 0.,
-                         0., cos(angle.x), -sin(angle.x),
-                         0., sin(angle.x), cos(angle.x));
-        mat3 roty = mat3(cos(angle.y), 0., sin(angle.y),
-                         0., 1., 0.,
-                         -sin(angle.y), 0., cos(angle.y));
-        mat3 rotz = mat3(cos(angle.z), -sin(angle.z), 0.,
-                         sin(angle.z), cos(angle.z), 0.,
-                         0., 0., 1.);
 
-        for (int i = 0; i < NUM_OCTAVES; ++i) {
-          v += a * noise(_pos);
-          _pos = rotx * roty * rotz * _pos * 2.0;
-          a *= 0.8;
-        }
-        return v;
-      }
+#define NUM_OCTAVES 6
+float fBm ( in vec3 _pos, in float sz) {
+    float v = 0.0;
+    float a = 0.2;
+    _pos *= sz;
 
-      void main() {
-        vec3 st = vPosition;
+    vec3 angle = vec3(-0.001*u_time,0.0001*u_time,0.0004*u_time);
+    mat3 rotx = mat3(1, 0, 0,
+                    0, cos(angle.x), -sin(angle.x),
+                    0, sin(angle.x), cos(angle.x));
+    mat3 roty = mat3(cos(angle.y), 0, sin(angle.y),
+                    0, 1, 0,
+                    -sin(angle.y), 0, cos(angle.y));
+    mat3 rotz = mat3(cos(angle.z), -sin(angle.z), 0,
+                    sin(angle.z), cos(angle.z), 0,
+                    0, 0, 1);
 
-        // Exact color calculation from article - enhanced for visibility
-        vec3 q = vec3(0.);
-        q.x = fBm(st, 5.);
-        q.y = fBm(st + vec3(1.2, 3.2, 1.52), 5.);
-        q.z = fBm(st + vec3(0.02, 0.12, 0.152), 5.);
+    for (int i = 0; i < NUM_OCTAVES; ++i) {
+        v += a * noise(_pos);
+        _pos = rotx * roty * rotz * _pos * 2.0;
+        a *= 0.8;
+    }
+    return v;
+}
 
-        float n = fBm(st + q + vec3(1.82, 1.32, 1.09), 5.);
 
-        vec3 color = vec3(0.);
-        // Increase contrast for texture visibility
-        float nContrast = pow(n * n, 0.7);
-        color = mix(vec3(1., 0.4, 0.), vec3(1., 1., 1.), nContrast);
-        // Increase q mixing factor for more visible spots
-        color = mix(color, vec3(1., 0., 0.), q * 1.2);
-        color = 1.8 * color;
+void main() {
+    vec3 st = vPosition;
 
-        // Glow effect - exact from article
-        float raw_intensity = max(dot(vPosition, vNormalView), 0.);
-        float intensity = pow(raw_intensity, 4.);
-        vec3 u_color = vec3(1.0, 0.8, 0.4);
-        vec4 glowColor = vec4(u_color, intensity);
+    vec3 q = vec3(0.);
+    q.x = fBm( st, 5.);
+    q.y = fBm( st + vec3(1.2,3.2,1.52), 5.);
+    q.z = fBm( st + vec3(0.02,0.12,0.152), 5.);
 
-        // Fresnel effect - exact from article
-        float fresnelTerm_inner = 0.2 - 0.7 * min(dot(vPosition, vNormalView), 0.0);
-        fresnelTerm_inner = pow(fresnelTerm_inner, 5.0);
-        float fresnelTerm_outer = 1.0 + dot(normalize(vPosition), normalize(vNormalView));
-        fresnelTerm_outer = pow(fresnelTerm_outer, 2.0);
-        float fresnelTerm = fresnelTerm_inner + fresnelTerm_outer;
+    float n = fBm(st+q+vec3(1.82,1.32,1.09), 5.);
 
-        // Combine - exact from article
-        gl_FragColor = vec4(color, 0.7) * fresnelTerm + glowColor;
+    vec3 color = vec3(0.);
+    color = mix(vec3(1.,0.4,0.), vec3(1.,1.,1.), n*n);
+    color = mix(color, vec3(1.,0.,0.), q*0.7);
+    gl_FragColor = vec4(1.6*color, 1.);
+
       }
     `;
 
@@ -286,12 +267,7 @@ export default function SunBackground() {
 
     // Matrix helpers
     function createIdentityMatrix(): Float32Array {
-      return new Float32Array([
-        1, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, 1, 0,
-        0, 0, 0, 1,
-      ]);
+      return new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
     }
 
     function createOrthographicMatrix(
@@ -303,9 +279,18 @@ export default function SunBackground() {
       far: number
     ): Float32Array {
       return new Float32Array([
-        2 / (right - left), 0, 0, 0,
-        0, 2 / (top - bottom), 0, 0,
-        0, 0, -2 / (far - near), 0,
+        2 / (right - left),
+        0,
+        0,
+        0,
+        0,
+        2 / (top - bottom),
+        0,
+        0,
+        0,
+        0,
+        -2 / (far - near),
+        0,
         -(right + left) / (right - left),
         -(top + bottom) / (top - bottom),
         -(far + near) / (far - near),
@@ -341,9 +326,18 @@ export default function SunBackground() {
       const uz = s[0] * f[1] - s[1] * f[0];
 
       return new Float32Array([
-        s[0], ux, -f[0], 0,
-        s[1], uy, -f[1], 0,
-        s[2], uz, -f[2], 0,
+        s[0],
+        ux,
+        -f[0],
+        0,
+        s[1],
+        uy,
+        -f[1],
+        0,
+        s[2],
+        uz,
+        -f[2],
+        0,
         -(s[0] * eyeX + s[1] * eyeY + s[2] * eyeZ),
         -(ux * eyeX + uy * eyeY + uz * eyeZ),
         f[0] * eyeX + f[1] * eyeY + f[2] * eyeZ,
@@ -471,7 +465,7 @@ export default function SunBackground() {
       const aspect = canvas.width / canvas.height;
       const modelMatrix = createIdentityMatrix();
       const viewMatrix = createLookAtMatrix(0, 0, 2, 0, 0, 0, 0, 1, 0);
-      
+
       // Adjust orthographic projection to maintain circular sun
       let left, right, bottom, top;
       if (aspect > 1) {
@@ -487,7 +481,7 @@ export default function SunBackground() {
         bottom = -1 / aspect;
         top = 1 / aspect;
       }
-      
+
       const projectionMatrix = createOrthographicMatrix(
         left,
         right,
