@@ -216,7 +216,7 @@ float fBm ( in vec3 _pos, in float sz) {
 
 
 void main() {
-    vec3 st = vPositionModel;
+    vec3 st = vPosition;
 
     vec3 q = vec3(0.);
     q.x = fBm( st, 5.);
@@ -228,25 +228,8 @@ void main() {
     vec3 color = vec3(0.);
     color = mix(vec3(1.,0.4,0.), vec3(1.,1.,1.), n*n);
     color = mix(color, vec3(1.,0.,0.), q*0.7);
-    color = 1.6 * color;
-
-    // Glow effect - exact from article
-    float raw_intensity = max(dot(vPosition, vNormalView), 0.);
-    float intensity = pow(raw_intensity, 4.);
-    vec3 u_color = vec3(1.0, 0.8, 0.4);
-    vec4 glowColor = vec4(u_color, intensity);
-
-    // Fresnel effect - exact from article
-    float fresnelTerm_inner = 0.2 - 0.7 * min(dot(vPosition, vNormalView), 0.0);
-    fresnelTerm_inner = pow(fresnelTerm_inner, 5.0);
-    float fresnelTerm_outer = 1.0 + dot(normalize(vPosition), normalize(vNormalView));
-    fresnelTerm_outer = pow(fresnelTerm_outer, 2.0);
-    float fresnelTerm = fresnelTerm_inner + fresnelTerm_outer;
-
-    // Combine - exact from article
-    gl_FragColor = vec4(color, 0.7) * fresnelTerm + glowColor;
-
-      }
+    gl_FragColor = vec4(1.6*color, 1.);
+}
     `;
 
     // Compile shader
@@ -368,17 +351,19 @@ void main() {
 
     function createNormalMatrix(modelMatrix: Float32Array): Float32Array {
       // Extract upper-left 3x3 from model matrix
-      const m00 = modelMatrix[0], m01 = modelMatrix[1], m02 = modelMatrix[2];
-      const m10 = modelMatrix[4], m11 = modelMatrix[5], m12 = modelMatrix[6];
-      const m20 = modelMatrix[8], m21 = modelMatrix[9], m22 = modelMatrix[10];
-      
+      const m00 = modelMatrix[0],
+        m01 = modelMatrix[1],
+        m02 = modelMatrix[2];
+      const m10 = modelMatrix[4],
+        m11 = modelMatrix[5],
+        m12 = modelMatrix[6];
+      const m20 = modelMatrix[8],
+        m21 = modelMatrix[9],
+        m22 = modelMatrix[10];
+
       // For rotation matrices, inverse transpose = same matrix
       // Return the 3x3 rotation part
-      return new Float32Array([
-        m00, m01, m02,
-        m10, m11, m12,
-        m20, m21, m22,
-      ]);
+      return new Float32Array([m00, m01, m02, m10, m11, m12, m20, m21, m22]);
     }
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
@@ -401,7 +386,7 @@ void main() {
     programRef.current = program;
 
     // Create sphere geometry
-    const sphere = createSphere(0.8, 32);
+    const sphere = createSphere(0.6, 32);
     const vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.bufferData(
@@ -494,30 +479,54 @@ void main() {
 
       // Set up matrices with aspect ratio correction
       const aspect = canvas.width / canvas.height;
-      
+
       // Rotate around vertical Y axis through time
-      const rotationY = timeRef.current * 1.0;
+      const rotationY = timeRef.current * 0.2;
       const cosY = Math.cos(rotationY);
       const sinY = Math.sin(rotationY);
-      
+
       // Rotation matrix around Y axis (vertical)
       const modelMatrix = new Float32Array([
-        cosY, 0, sinY, 0,
-        0, 1, 0, 0,
-        -sinY, 0, cosY, 0,
-        0, 0, 0, 1,
+        cosY,
+        0,
+        sinY,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -sinY,
+        0,
+        cosY,
+        0,
+        0,
+        0,
+        0,
+        1,
       ]);
-      
+
       // Recalculate normal matrix for the rotated model
-      const m00 = modelMatrix[0], m01 = modelMatrix[1], m02 = modelMatrix[2];
-      const m10 = modelMatrix[4], m11 = modelMatrix[5], m12 = modelMatrix[6];
-      const m20 = modelMatrix[8], m21 = modelMatrix[9], m22 = modelMatrix[10];
+      const m00 = modelMatrix[0],
+        m01 = modelMatrix[1],
+        m02 = modelMatrix[2];
+      const m10 = modelMatrix[4],
+        m11 = modelMatrix[5],
+        m12 = modelMatrix[6];
+      const m20 = modelMatrix[8],
+        m21 = modelMatrix[9],
+        m22 = modelMatrix[10];
       const normalMatrix = new Float32Array([
-        m00, m01, m02,
-        m10, m11, m12,
-        m20, m21, m22,
+        m00,
+        m01,
+        m02,
+        m10,
+        m11,
+        m12,
+        m20,
+        m21,
+        m22,
       ]);
-      
+
       const viewMatrix = createLookAtMatrix(0, 0, 2, 0, 0, 0, 0, 1, 0);
 
       // Use perspective projection
@@ -526,12 +535,24 @@ void main() {
       const far = 10;
       const f = 1.0 / Math.tan(fov / 2);
       const range = 1.0 / (near - far);
-      
+
       const projectionMatrix = new Float32Array([
-        f / aspect, 0, 0, 0,
-        0, f, 0, 0,
-        0, 0, (near + far) * range, -1,
-        0, 0, near * far * range * 2, 0,
+        f / aspect,
+        0,
+        0,
+        0,
+        0,
+        f,
+        0,
+        0,
+        0,
+        0,
+        (near + far) * range,
+        -1,
+        0,
+        0,
+        near * far * range * 2,
+        0,
       ]);
 
       // Set uniforms
