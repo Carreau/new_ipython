@@ -166,15 +166,15 @@ export default function OceanWaves() {
         // Only draw if in or near viewport (reduced range to match smaller gradient)
         if (dividerScreenY > -100 && dividerScreenY < window.innerHeight + 100) {
           if (divider.inverted) {
-            // Wave going up - more visible
-            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00d4ff', 0.25, true);
-            drawWave(ctx, dividerScreenY - 15, 15, 0.6, 1.2, '#00b8e6', 0.2, true);
-            drawWave(ctx, dividerScreenY - 30, 12, 0.7, 1, '#006994', 0.15, true);
+            // Wave going up - more vibrant colors
+            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00EFFF', 0.25, true);
+            drawWave(ctx, dividerScreenY - 15, 15, 0.6, 1.2, '#00C8FF', 0.2, true);
+            drawWave(ctx, dividerScreenY - 30, 12, 0.7, 1, '#00A8FF', 0.15, true);
           } else {
-            // Wave going down - more visible
-            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00d4ff', 0.25, false);
-            drawWave(ctx, dividerScreenY + 15, 15, 0.6, 1.2, '#00b8e6', 0.2, false);
-            drawWave(ctx, dividerScreenY + 30, 12, 0.7, 1, '#006994', 0.15, false);
+            // Wave going down - more vibrant colors
+            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00EFFF', 0.25, false);
+            drawWave(ctx, dividerScreenY + 15, 15, 0.6, 1.2, '#00C8FF', 0.2, false);
+            drawWave(ctx, dividerScreenY + 30, 12, 0.7, 1, '#00A8FF', 0.15, false);
           }
         }
       });
@@ -186,9 +186,9 @@ export default function OceanWaves() {
       
       // Only draw if in or near viewport (reduced range)
       if (bottomWaveScreenY > -100 && bottomWaveScreenY < window.innerHeight + 100) {
-        drawWave(ctx, bottomWaveScreenY, 20, 0.5, 2, '#00d4ff', 0.28);
-        drawWave(ctx, bottomWaveScreenY + 20, 16, 0.6, 1.5, '#00b8e6', 0.22);
-        drawWave(ctx, bottomWaveScreenY + 40, 14, 0.7, 1, '#006994', 0.18);
+        drawWave(ctx, bottomWaveScreenY, 20, 0.5, 2, '#00EFFF', 0.28);
+        drawWave(ctx, bottomWaveScreenY + 20, 16, 0.6, 1.5, '#00C8FF', 0.22);
+        drawWave(ctx, bottomWaveScreenY + 40, 14, 0.7, 1, '#00A8FF', 0.18);
       }
       
       // Update and draw bubbles (viewport-relative)
