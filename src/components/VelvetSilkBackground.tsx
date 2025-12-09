@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 export default function VelvetSilkBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,12 +11,12 @@ export default function VelvetSilkBackground() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    if (typeof document === 'undefined') return;
-    
+    if (typeof document === "undefined") return;
+
     const checkTheme = () => {
-      const theme = document.documentElement.getAttribute('data-color-theme');
-      setShowSilk(theme === 'velvet');
-      setIsDark(document.documentElement.classList.contains('dark'));
+      const theme = document.documentElement.getAttribute("data-color-theme");
+      setShowSilk(theme === "velvet");
+      setIsDark(document.documentElement.classList.contains("dark"));
     };
 
     // Check initial theme
@@ -26,39 +26,44 @@ export default function VelvetSilkBackground() {
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-color-theme', 'class'],
+      attributeFilter: ["data-color-theme", "class"],
     });
 
     // Also check localStorage changes
     const handleStorageChange = () => {
       checkTheme();
     };
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
 
     // Poll for changes (fallback)
     const interval = setInterval(checkTheme, 100);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange);
       clearInterval(interval);
     };
   }, []);
 
   useEffect(() => {
     if (!showSilk) return;
-    
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext('webgl');
+    const gl = canvas.getContext("webgl");
     if (!gl) {
-      console.error('WebGL not supported or context creation failed');
+      console.error("WebGL not supported or context creation failed");
       return;
     }
 
     glRef.current = gl;
-    console.log('WebGL context created, canvas size:', canvas.width, 'x', canvas.height);
+    console.log(
+      "WebGL context created, canvas size:",
+      canvas.width,
+      "x",
+      canvas.height
+    );
 
     // Vertex shader source
     const vertexShaderSource = `
@@ -141,13 +146,17 @@ export default function VelvetSilkBackground() {
     `;
 
     // Compile shader
-    function createShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+    function createShader(
+      gl: WebGLRenderingContext,
+      type: number,
+      source: string
+    ): WebGLShader | null {
       const shader = gl.createShader(type);
       if (!shader) return null;
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+        console.error("Shader compile error:", gl.getShaderInfoLog(shader));
         gl.deleteShader(shader);
         return null;
       }
@@ -155,14 +164,18 @@ export default function VelvetSilkBackground() {
     }
 
     // Create program
-    function createProgram(gl: WebGLRenderingContext, vertexShader: WebGLShader, fragmentShader: WebGLShader): WebGLProgram | null {
+    function createProgram(
+      gl: WebGLRenderingContext,
+      vertexShader: WebGLShader,
+      fragmentShader: WebGLShader
+    ): WebGLProgram | null {
       const program = gl.createProgram();
       if (!program) return null;
       gl.attachShader(program, vertexShader);
       gl.attachShader(program, fragmentShader);
       gl.linkProgram(program);
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        console.error('Program link error:', gl.getProgramInfoLog(program));
+        console.error("Program link error:", gl.getProgramInfoLog(program));
         gl.deleteProgram(program);
         return null;
       }
@@ -170,40 +183,39 @@ export default function VelvetSilkBackground() {
     }
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+    const fragmentShader = createShader(
+      gl,
+      gl.FRAGMENT_SHADER,
+      fragmentShaderSource
+    );
     if (!vertexShader || !fragmentShader) {
-      console.error('Failed to create shaders');
+      console.error("Failed to create shaders");
       return;
     }
 
     const program = createProgram(gl, vertexShader, fragmentShader);
     if (!program) {
-      console.error('Failed to create program');
+      console.error("Failed to create program");
       return;
     }
-    
-    console.log('Shader program created successfully');
+
+    console.log("Shader program created successfully");
 
     programRef.current = program;
 
     // Setup geometry (full screen quad)
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = new Float32Array([
-      -1, -1,
-       1, -1,
-      -1,  1,
-       1,  1,
-    ]);
+    const positions = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
     gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-    const positionLocation = gl.getAttribLocation(program, 'a_position');
-    const timeLocation = gl.getUniformLocation(program, 'u_time');
-    const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
-    const hueLocation = gl.getUniformLocation(program, 'u_hue');
-    const saturationLocation = gl.getUniformLocation(program, 'u_saturation');
-    const brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
-    const speedLocation = gl.getUniformLocation(program, 'u_speed');
+    const positionLocation = gl.getAttribLocation(program, "a_position");
+    const timeLocation = gl.getUniformLocation(program, "u_time");
+    const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
+    const hueLocation = gl.getUniformLocation(program, "u_hue");
+    const saturationLocation = gl.getUniformLocation(program, "u_saturation");
+    const brightnessLocation = gl.getUniformLocation(program, "u_brightness");
+    const speedLocation = gl.getUniformLocation(program, "u_speed");
 
     const resizeCanvas = () => {
       const container = canvas.parentElement;
@@ -214,23 +226,28 @@ export default function VelvetSilkBackground() {
         canvas.width = width;
         canvas.height = height;
         gl.viewport(0, 0, canvas.width, canvas.height);
-        console.log('Canvas resized to:', canvas.width, 'x', canvas.height);
+        console.log("Canvas resized to:", canvas.width, "x", canvas.height);
       } else {
         // Fallback to window size
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         gl.viewport(0, 0, canvas.width, canvas.height);
-        console.log('Canvas resized to window size:', canvas.width, 'x', canvas.height);
+        console.log(
+          "Canvas resized to window size:",
+          canvas.width,
+          "x",
+          canvas.height
+        );
       }
     };
 
     // Initial resize
     resizeCanvas();
-    
+
     // Also resize after a short delay to ensure parent is sized
     setTimeout(resizeCanvas, 100);
-    
-    window.addEventListener('resize', resizeCanvas);
+
+    window.addEventListener("resize", resizeCanvas);
 
     const handleVisibilityChange = () => {
       isVisibleRef.current = !document.hidden;
@@ -244,9 +261,9 @@ export default function VelvetSilkBackground() {
       isVisibleRef.current = true;
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('blur', handleWindowBlur);
-    window.addEventListener('focus', handleWindowFocus);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("blur", handleWindowBlur);
+    window.addEventListener("focus", handleWindowFocus);
     isVisibleRef.current = !document.hidden && document.hasFocus();
 
     const render = () => {
@@ -260,9 +277,8 @@ export default function VelvetSilkBackground() {
       timeRef.current += 0.016; // ~60fps
 
       gl.useProgram(program);
-      
+
       // Clear with a test color first to verify rendering works
-      gl.clearColor(0.1, 0.1, 0.1, 1.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
       // Set attributes
@@ -270,31 +286,42 @@ export default function VelvetSilkBackground() {
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-      // Set uniforms - using exact parameters from example
+      // Set uniforms - using velvet theme colors
+      // Velvet colors: #6b0f2a, #8b1538, #a91d3d (deep reds, hue ~340-350)
       if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
-      if (resolutionLocation) gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      if (hueLocation) gl.uniform1f(hueLocation, 300); // Exact from example
-      if (saturationLocation) gl.uniform1f(saturationLocation, 0.5); // Exact from example
-      if (brightnessLocation) gl.uniform1f(brightnessLocation, 1.0); // Exact from example
-      if (speedLocation) gl.uniform1f(speedLocation, 1.0); // Exact from example
+      if (resolutionLocation)
+        gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+      if (hueLocation) gl.uniform1f(hueLocation, isDark ? 340 : 345); // Velvet red hue
+      if (saturationLocation)
+        gl.uniform1f(saturationLocation, isDark ? 0.85 : 0.9); // Rich saturation for velvet
+      if (brightnessLocation)
+        gl.uniform1f(brightnessLocation, isDark ? 0.85 : 1.0); // Slightly dimmer in dark mode
+      if (speedLocation) gl.uniform1f(speedLocation, 2.1);
 
       // Check for WebGL errors
       const error = gl.getError();
       if (error !== gl.NO_ERROR) {
-        console.error('WebGL error before draw:', error);
+        console.error("WebGL error before draw:", error);
       }
 
       // Draw
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      
+
       // Check for errors after draw
       const errorAfter = gl.getError();
       if (errorAfter !== gl.NO_ERROR) {
-        console.error('WebGL error after draw:', errorAfter);
+        console.error("WebGL error after draw:", errorAfter);
       }
-      
+
       if (timeRef.current < 0.1) {
-        console.log('First frame rendered, time:', timeRef.current, 'resolution:', canvas.width, 'x', canvas.height);
+        console.log(
+          "First frame rendered, time:",
+          timeRef.current,
+          "resolution:",
+          canvas.width,
+          "x",
+          canvas.height
+        );
       }
 
       animationFrameRef.current = requestAnimationFrame(render);
@@ -303,10 +330,10 @@ export default function VelvetSilkBackground() {
     render();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('blur', handleWindowBlur);
-      window.removeEventListener('focus', handleWindowFocus);
+      window.removeEventListener("resize", resizeCanvas);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("blur", handleWindowBlur);
+      window.removeEventListener("focus", handleWindowFocus);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -323,21 +350,24 @@ export default function VelvetSilkBackground() {
   }, [showSilk, isDark]);
 
   if (!showSilk) {
-    if (typeof document !== 'undefined') {
-      console.log('VelvetSilkBackground: showSilk is false, theme:', document.documentElement.getAttribute('data-color-theme'));
+    if (typeof document !== "undefined") {
+      console.log(
+        "VelvetSilkBackground: showSilk is false, theme:",
+        document.documentElement.getAttribute("data-color-theme")
+      );
     }
     return null;
   }
 
-  if (typeof document !== 'undefined') {
-    console.log('VelvetSilkBackground: Rendering canvas, isDark:', isDark);
+  if (typeof document !== "undefined") {
+    console.log("VelvetSilkBackground: Rendering canvas, isDark:", isDark);
   }
 
   return (
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ backgroundColor: '#000000' }}
+      style={{ backgroundColor: "#000000" }}
     />
   );
 }
