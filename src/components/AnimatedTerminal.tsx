@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 
 type TerminalExample = {
   lines: string[];
@@ -62,8 +62,39 @@ export default function AnimatedTerminal({ version }: AnimatedTerminalProps) {
   const [currentExample, setCurrentExample] = useState(0);
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
+    const handleVisibilityChange = () => {
+      isVisibleRef.current = !document.hidden;
+    };
+
+    const handleWindowBlur = () => {
+      isVisibleRef.current = false;
+    };
+
+    const handleWindowFocus = () => {
+      isVisibleRef.current = true;
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleWindowBlur);
+    window.addEventListener('focus', handleWindowFocus);
+    isVisibleRef.current = !document.hidden && document.hasFocus();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleWindowBlur);
+      window.removeEventListener('focus', handleWindowFocus);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Pause animation when page is not visible
+    if (!isVisibleRef.current) {
+      return;
+    }
+
     const example = examples[currentExample];
     if (!example) return;
 
@@ -72,17 +103,21 @@ export default function AnimatedTerminal({ version }: AnimatedTerminalProps) {
     if (currentLineIndex < example.lines.length) {
       // Show next line
       const timer = setTimeout(() => {
-        setDisplayedLines((prev) => [...prev, example.lines[currentLineIndex]]);
-        setCurrentLineIndex((prev) => prev + 1);
+        if (isVisibleRef.current) {
+          setDisplayedLines((prev) => [...prev, example.lines[currentLineIndex]]);
+          setCurrentLineIndex((prev) => prev + 1);
+        }
       }, lineDelay);
 
       return () => clearTimeout(timer);
     } else {
       // All lines displayed, wait then cycle to next example
       const timer = setTimeout(() => {
-        setCurrentExample((prev) => (prev + 1) % examples.length);
-        setCurrentLineIndex(0);
-        setDisplayedLines([]);
+        if (isVisibleRef.current) {
+          setCurrentExample((prev) => (prev + 1) % examples.length);
+          setCurrentLineIndex(0);
+          setDisplayedLines([]);
+        }
       }, example.delay);
 
       return () => clearTimeout(timer);

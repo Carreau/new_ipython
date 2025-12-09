@@ -15,6 +15,7 @@ export default function OceanWaves() {
   const bubblesRef = useRef<Bubble[]>([]);
   const waveOffsetRef = useRef(0);
   const sectionDividersRef = useRef<Array<{ y: number; inverted: boolean }>>([]);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -151,7 +152,30 @@ export default function OceanWaves() {
       ctx.restore();
     };
 
+    const handleVisibilityChange = () => {
+      isVisibleRef.current = !document.hidden;
+    };
+
+    const handleWindowBlur = () => {
+      isVisibleRef.current = false;
+    };
+
+    const handleWindowFocus = () => {
+      isVisibleRef.current = true;
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleWindowBlur);
+    window.addEventListener('focus', handleWindowFocus);
+    isVisibleRef.current = !document.hidden && document.hasFocus();
+
     const animate = () => {
+      // Pause animation when page is not visible
+      if (!isVisibleRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Update wave offset
@@ -223,6 +247,9 @@ export default function OceanWaves() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('scroll', findSections);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleWindowBlur);
+      window.removeEventListener('focus', handleWindowFocus);
       clearInterval(sectionInterval);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);

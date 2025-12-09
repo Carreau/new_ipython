@@ -14,6 +14,7 @@ export default function ChristmasSparkles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number>();
   const sparklesRef = useRef<Sparkle[]>([]);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -102,7 +103,30 @@ export default function ChristmasSparkles() {
       ctx.restore();
     };
 
+    const handleVisibilityChange = () => {
+      isVisibleRef.current = !document.hidden;
+    };
+
+    const handleWindowBlur = () => {
+      isVisibleRef.current = false;
+    };
+
+    const handleWindowFocus = () => {
+      isVisibleRef.current = true;
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleWindowBlur);
+    window.addEventListener('focus', handleWindowFocus);
+    isVisibleRef.current = !document.hidden && document.hasFocus();
+
     const animate = () => {
+      // Pause animation when page is not visible
+      if (!isVisibleRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       sparklesRef.current.forEach((sparkle) => {
@@ -114,7 +138,12 @@ export default function ChristmasSparkles() {
 
     animate();
 
-    return cleanup;
+    return () => {
+      cleanup();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleWindowBlur);
+      window.removeEventListener('focus', handleWindowFocus);
+    };
   }, []);
 
   return (
