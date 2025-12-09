@@ -116,7 +116,9 @@ export default function SunBackground() {
         vec4 worldPosition = modelMatrix * vec4(position, 1.0);
         vec4 viewPosition = viewMatrix * worldPosition;
         
-        vPosition = normalize(viewPosition.xyz);
+        // Use the actual sphere surface position (normalized world position)
+        // This gives us the true 3D sphere coordinates, not a fisheye projection
+        vPosition = normalize(worldPosition.xyz);
         vNormal = normalize(mat3(modelMatrix) * normal);
         vNormalModel = normal;
         vNormalView = normalize(normalMatrix * normal);
@@ -211,19 +213,29 @@ float fBm ( in vec3 _pos, in float sz) {
 
 
 void main() {
-    vec3 st = vPosition;
+    vec3 st = normalize(vPosition);
 
-    vec3 q = vec3(0.);
-    q.x = fBm( st, 5.);
-    q.y = fBm( st + vec3(1.2,3.2,1.52), 5.);
-    q.z = fBm( st + vec3(0.02,0.12,0.152), 5.);
-
-    float n = fBm(st+q+vec3(1.82,1.32,1.09), 5.);
-
-    vec3 color = vec3(0.);
-    color = mix(vec3(1.,0.4,0.), vec3(1.,1.,1.), n*n);
-    color = mix(color, vec3(1.,0.,0.), q*0.7);
-    gl_FragColor = vec4(1.6*color, 1.);
+    // Calculate spherical coordinates (theta and phi)
+    // theta: angle from positive Y axis (0 to PI)
+    // phi: angle around Y axis (0 to 2*PI)
+    float theta = acos(st.y);
+    float phi = atan(st.z, st.x);
+    if (phi < 0.0) phi += 2.0 * 3.14159265359;
+    
+    // Create texture pattern based on theta and phi
+    // Horizontal stripes based on theta (latitude) - make them more visible
+    float thetaStripe = floor(theta * 8.0 / 3.14159265359);
+    vec3 color = mod(thetaStripe, 2.0) < 1.0 ? vec3(1.0, 0.2, 0.2) : vec3(0.2, 1.0, 0.2);
+    
+    // Vertical stripes based on phi (longitude) - make them asymmetric
+    float phiStripe = floor(phi * 12.0 / (2.0 * 3.14159265359));
+    if (mod(phiStripe, 3.0) < 1.0) {
+      color = vec3(0.2, 0.2, 1.0);
+    } else if (mod(phiStripe, 3.0) < 2.0) {
+      color = vec3(1.0, 1.0, 0.2);
+    }
+    
+    gl_FragColor = vec4(color, 1.0);
 
       }
     `;
@@ -346,8 +358,18 @@ void main() {
     }
 
     function createNormalMatrix(modelMatrix: Float32Array): Float32Array {
-      // For identity model matrix, normal matrix is also identity
-      return new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+      // Extract upper-left 3x3 from model matrix
+      const m00 = modelMatrix[0], m01 = modelMatrix[1], m02 = modelMatrix[2];
+      const m10 = modelMatrix[4], m11 = modelMatrix[5], m12 = modelMatrix[6];
+      const m20 = modelMatrix[8], m21 = modelMatrix[9], m22 = modelMatrix[10];
+      
+      // For rotation matrices, inverse transpose = same matrix
+      // Return the 3x3 rotation part
+      return new Float32Array([
+        m00, m01, m02,
+        m10, m11, m12,
+        m20, m21, m22,
+      ]);
     }
 
     const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
@@ -458,12 +480,35 @@ void main() {
       timeRef.current += 0.016;
 
       gl.useProgram(program);
-      gl.clearColor(0, 0, 0, 0);
+      gl.clearColor(0, 0, 0, 1);
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
       // Set up matrices with aspect ratio correction
       const aspect = canvas.width / canvas.height;
-      const modelMatrix = createIdentityMatrix();
+      
+      // Rotate around vertical Y axis through time
+      const rotationY = timeRef.current * 1.0;
+      const cosY = Math.cos(rotationY);
+      const sinY = Math.sin(rotationY);
+      
+      // Rotation matrix around Y axis (vertical)
+      const modelMatrix = new Float32Array([
+        cosY, 0, sinY, 0,
+        0, 1, 0, 0,
+        -sinY, 0, cosY, 0,
+        0, 0, 0, 1,
+      ]);
+      
+      // Recalculate normal matrix for the rotated model
+      const m00 = modelMatrix[0], m01 = modelMatrix[1], m02 = modelMatrix[2];
+      const m10 = modelMatrix[4], m11 = modelMatrix[5], m12 = modelMatrix[6];
+      const m20 = modelMatrix[8], m21 = modelMatrix[9], m22 = modelMatrix[10];
+      const normalMatrix = new Float32Array([
+        m00, m01, m02,
+        m10, m11, m12,
+        m20, m21, m22,
+      ]);
+      
       const viewMatrix = createLookAtMatrix(0, 0, 2, 0, 0, 0, 0, 1, 0);
 
       // Adjust orthographic projection to maintain circular sun
@@ -490,7 +535,6 @@ void main() {
         0.1,
         10
       );
-      const normalMatrix = createNormalMatrix(modelMatrix);
 
       // Set uniforms
       if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
