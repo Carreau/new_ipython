@@ -84,6 +84,11 @@ export default function OceanWaves() {
       const direction = inverted ? -1 : 1;
       const waveSpeed = speed * direction;
       
+      // Reduced gradient height - only 80px above/below the wave
+      const gradientHeight = 80;
+      const gradientStart = inverted ? screenY + amplitude : screenY - amplitude;
+      const gradientEnd = inverted ? screenY + amplitude - gradientHeight : screenY - amplitude + gradientHeight;
+      
       ctx.moveTo(0, screenY);
       
       for (let x = 0; x <= canvas.width; x += 2) {
@@ -92,18 +97,16 @@ export default function OceanWaves() {
       }
       
       if (inverted) {
-        // Wave going up - fill above
-        ctx.lineTo(canvas.width, 0);
-        ctx.lineTo(0, 0);
+        // Wave going up - fill above (limited height)
+        ctx.lineTo(canvas.width, gradientEnd);
+        ctx.lineTo(0, gradientEnd);
       } else {
-        // Wave going down - fill below
-        ctx.lineTo(canvas.width, window.innerHeight);
-        ctx.lineTo(0, window.innerHeight);
+        // Wave going down - fill below (limited height)
+        ctx.lineTo(canvas.width, gradientEnd);
+        ctx.lineTo(0, gradientEnd);
       }
       ctx.closePath();
       
-      const gradientStart = inverted ? screenY + amplitude : screenY - amplitude;
-      const gradientEnd = inverted ? 0 : window.innerHeight;
       const gradient = ctx.createLinearGradient(0, gradientStart, 0, gradientEnd);
       gradient.addColorStop(0, color + Math.floor(opacity * 255).toString(16).padStart(2, '0'));
       gradient.addColorStop(1, color + '00');
@@ -160,18 +163,18 @@ export default function OceanWaves() {
       sectionDividersRef.current.forEach((divider) => {
         const dividerScreenY = divider.y - scrollY;
         
-        // Only draw if in or near viewport
-        if (dividerScreenY > -150 && dividerScreenY < window.innerHeight + 150) {
+        // Only draw if in or near viewport (reduced range to match smaller gradient)
+        if (dividerScreenY > -100 && dividerScreenY < window.innerHeight + 100) {
           if (divider.inverted) {
-            // Wave going up
-            drawWave(ctx, dividerScreenY, 12, 0.5, 1.5, '#00d4ff', 0.12, true);
-            drawWave(ctx, dividerScreenY - 15, 10, 0.6, 1.2, '#00b8e6', 0.1, true);
-            drawWave(ctx, dividerScreenY - 30, 8, 0.7, 1, '#006994', 0.08, true);
+            // Wave going up - more visible
+            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00d4ff', 0.25, true);
+            drawWave(ctx, dividerScreenY - 15, 15, 0.6, 1.2, '#00b8e6', 0.2, true);
+            drawWave(ctx, dividerScreenY - 30, 12, 0.7, 1, '#006994', 0.15, true);
           } else {
-            // Wave going down
-            drawWave(ctx, dividerScreenY, 12, 0.5, 1.5, '#00d4ff', 0.12, false);
-            drawWave(ctx, dividerScreenY + 15, 10, 0.6, 1.2, '#00b8e6', 0.1, false);
-            drawWave(ctx, dividerScreenY + 30, 8, 0.7, 1, '#006994', 0.08, false);
+            // Wave going down - more visible
+            drawWave(ctx, dividerScreenY, 18, 0.5, 1.5, '#00d4ff', 0.25, false);
+            drawWave(ctx, dividerScreenY + 15, 15, 0.6, 1.2, '#00b8e6', 0.2, false);
+            drawWave(ctx, dividerScreenY + 30, 12, 0.7, 1, '#006994', 0.15, false);
           }
         }
       });
@@ -181,11 +184,11 @@ export default function OceanWaves() {
       const bottomWaveDocY = docHeight - 100;
       const bottomWaveScreenY = bottomWaveDocY - scrollY;
       
-      // Only draw if in or near viewport
-      if (bottomWaveScreenY > -150 && bottomWaveScreenY < window.innerHeight + 150) {
-        drawWave(ctx, bottomWaveScreenY, 15, 0.5, 2, '#00d4ff', 0.15);
-        drawWave(ctx, bottomWaveScreenY + 20, 12, 0.6, 1.5, '#00b8e6', 0.12);
-        drawWave(ctx, bottomWaveScreenY + 40, 10, 0.7, 1, '#006994', 0.1);
+      // Only draw if in or near viewport (reduced range)
+      if (bottomWaveScreenY > -100 && bottomWaveScreenY < window.innerHeight + 100) {
+        drawWave(ctx, bottomWaveScreenY, 20, 0.5, 2, '#00d4ff', 0.28);
+        drawWave(ctx, bottomWaveScreenY + 20, 16, 0.6, 1.5, '#00b8e6', 0.22);
+        drawWave(ctx, bottomWaveScreenY + 40, 14, 0.7, 1, '#006994', 0.18);
       }
       
       // Update and draw bubbles (viewport-relative)
@@ -230,7 +233,8 @@ export default function OceanWaves() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full pointer-events-none z-0"
+      style={{ height: '100vh' }}
     />
   );
 }
