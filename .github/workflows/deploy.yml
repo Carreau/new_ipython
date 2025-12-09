@@ -29,14 +29,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Determine base path
+        id: base_path
+        run: |
+          # If BASE_PATH secret is set, use it
+          # Otherwise, if repo name matches owner (username.github.io), use root
+          # Otherwise, use /repo-name
+          if [ -n "${{ secrets.BASE_PATH }}" ]; then
+            echo "base_path=${{ secrets.BASE_PATH }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.repository }}" == "${{ github.repository_owner }}/${{ github.repository_owner }}.github.io" ]; then
+            echo "base_path=" >> $GITHUB_OUTPUT
+          else
+            echo "base_path=/${{ github.event.repository.name }}" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Build Astro site
         run: npm run build
         env:
-          # BASE_PATH: Set this in repository secrets if your site is not at root
-          # For root domain (username.github.io): leave BASE_PATH secret unset or set to empty
-          # For subpath (username.github.io/repo-name): set BASE_PATH secret to "/repo-name"
-          # If BASE_PATH secret is not set, defaults to empty string (root)
-          BASE_PATH: ${{ secrets.BASE_PATH || '' }}
+          BASE_PATH: ${{ steps.base_path.outputs.base_path }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           # If you have other environment variables, set them here
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
