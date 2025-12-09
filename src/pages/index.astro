@@ -4,7 +4,6 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import AnimatedTerminal from '../components/AnimatedTerminal';
 import VelvetSilkBackground from '../components/VelvetSilkBackground';
-import VelvetSilkControls from '../components/VelvetSilkControls';
 
 // Fetch GitHub token for API calls
 const isDev = import.meta.env.DEV;
@@ -96,9 +95,6 @@ try {
         </div>
       </div>
     </section>
-
-    <!-- Temporary: Velvet Silk Controls for debugging -->
-    <VelvetSilkControls client:load />
 
     <!-- Stats Section -->
     <section class="py-12 bg-white dark:bg-ipython-dark border-b border-gray-200 dark:border-ipython-slate">

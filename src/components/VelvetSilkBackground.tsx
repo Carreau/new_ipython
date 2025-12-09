@@ -290,24 +290,14 @@ export default function VelvetSilkBackground() {
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-      // Set uniforms - using velvet theme colors or controls
-      // Check for external controls from VelvetSilkControls component
-      const params =
-        typeof window !== "undefined" ? (window as any).velvetSilkParams : null;
-      const currentHue = params?.hue ?? hue;
-      const currentSaturation = params?.saturation ?? saturation;
-      const currentBrightness = params?.brightness ?? brightness;
-      const currentSpeed = params?.speed ?? speed;
-
+      // Set uniforms - using velvet theme colors
       if (timeLocation) gl.uniform1f(timeLocation, timeRef.current);
       if (resolutionLocation)
         gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
-      if (hueLocation) gl.uniform1f(hueLocation, currentHue);
-      if (saturationLocation)
-        gl.uniform1f(saturationLocation, currentSaturation);
-      if (brightnessLocation)
-        gl.uniform1f(brightnessLocation, currentBrightness);
-      if (speedLocation) gl.uniform1f(speedLocation, currentSpeed);
+      if (hueLocation) gl.uniform1f(hueLocation, hue);
+      if (saturationLocation) gl.uniform1f(saturationLocation, saturation);
+      if (brightnessLocation) gl.uniform1f(brightnessLocation, brightness);
+      if (speedLocation) gl.uniform1f(speedLocation, speed);
 
       // Check for WebGL errors
       const error = gl.getError();
