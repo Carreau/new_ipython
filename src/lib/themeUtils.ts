@@ -222,7 +222,170 @@ export function applyTheme(themeId: string, storePreference: boolean = true): vo
  * Get the current theme from localStorage or data attribute
  */
 export function getCurrentTheme(): string {
+  if (typeof document === 'undefined') return 'default';
   return document.documentElement.getAttribute('data-color-theme') || 
          localStorage.getItem('colorTheme') || 
          'default';
+}
+
+/**
+ * Get the stored theme preference (what user selected, not the actual applied theme)
+ */
+export function getStoredTheme(): string {
+  if (typeof localStorage === 'undefined') return 'default';
+  return localStorage.getItem('colorTheme') || 'default';
+}
+
+// Theme change callbacks
+type ThemeChangeCallback = (themeId: string) => void;
+const themeChangeCallbacks = new Set<ThemeChangeCallback>();
+
+/**
+ * Subscribe to theme changes
+ * @param callback - Function to call when theme changes
+ * @returns Unsubscribe function
+ */
+export function subscribeToThemeChanges(callback: ThemeChangeCallback): () => void {
+  themeChangeCallbacks.add(callback);
+  // Immediately call with current theme
+  callback(getStoredTheme());
+  
+  return () => {
+    themeChangeCallbacks.delete(callback);
+  };
+}
+
+/**
+ * Notify all subscribers of theme change
+ */
+function notifyThemeChange(themeId: string): void {
+  themeChangeCallbacks.forEach(callback => callback(themeId));
+}
+
+// Theme watcher state
+let themeWatcherInitialized = false;
+let themeWatcherCleanup: (() => void) | null = null;
+let randomRotationCleanup: (() => void) | null = null;
+
+/**
+ * Initialize theme watcher - watches for changes from localStorage, data attributes, etc.
+ * Should be called once when the app starts. Safe to call multiple times.
+ */
+export function initializeThemeWatcher(): () => void {
+  if (themeWatcherInitialized || typeof document === 'undefined') {
+    // Return existing cleanup or no-op
+    return themeWatcherCleanup || (() => {});
+  }
+
+  themeWatcherInitialized = true;
+
+  const checkTheme = () => {
+    const storedTheme = getStoredTheme();
+    const currentApplied = getCurrentTheme();
+    
+    // If stored theme is 'random', handle rotation
+    if (storedTheme === 'random') {
+      // Random rotation is handled separately
+      return;
+    }
+    
+    // If stored theme doesn't match applied theme, apply it
+    if (storedTheme !== currentApplied && storedTheme !== 'random') {
+      applyTheme(storedTheme, false); // Don't store again, just apply
+    }
+  };
+
+  // Watch for data attribute changes
+  const observer = new MutationObserver(checkTheme);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-color-theme'],
+  });
+
+  // Watch for localStorage changes (from other tabs/windows)
+  const handleStorageChange = (e: StorageEvent) => {
+    if (e.key === 'colorTheme') {
+      const newTheme = e.newValue || 'default';
+      applyTheme(newTheme, false); // Don't store, it's already stored
+      notifyThemeChange(newTheme);
+      
+      // Handle random theme rotation
+      if (newTheme === 'random') {
+        startRandomThemeRotation();
+      } else {
+        stopRandomThemeRotation();
+      }
+    }
+  };
+  window.addEventListener('storage', handleStorageChange);
+
+  // Poll for changes (fallback)
+  const interval = setInterval(checkTheme, 100);
+
+  // Apply initial theme
+  const initialTheme = getStoredTheme();
+  applyTheme(initialTheme);
+  if (initialTheme === 'random') {
+    startRandomThemeRotation();
+  }
+
+  // Cleanup function
+  themeWatcherCleanup = () => {
+    observer.disconnect();
+    window.removeEventListener('storage', handleStorageChange);
+    clearInterval(interval);
+    stopRandomThemeRotation();
+    themeWatcherInitialized = false;
+    themeWatcherCleanup = null;
+  };
+  
+  return themeWatcherCleanup;
+}
+
+/**
+ * Start random theme rotation
+ */
+function startRandomThemeRotation(): void {
+  if (randomRotationCleanup) return; // Already running
+
+  // Apply random theme immediately
+  applyTheme('random', false);
+  notifyThemeChange('random');
+
+  // Change theme every minute (60000ms)
+  const randomInterval = setInterval(() => {
+    applyTheme('random', false);
+    notifyThemeChange('random');
+  }, 60000);
+
+  randomRotationCleanup = () => {
+    clearInterval(randomInterval);
+    randomRotationCleanup = null;
+  };
+}
+
+/**
+ * Stop random theme rotation
+ */
+function stopRandomThemeRotation(): void {
+  if (randomRotationCleanup) {
+    randomRotationCleanup();
+    randomRotationCleanup = null;
+  }
+}
+
+/**
+ * Change theme (public API for components)
+ * This is the main way components should change themes
+ */
+export function changeTheme(themeId: string): void {
+  applyTheme(themeId, true); // Store preference
+  notifyThemeChange(themeId);
+  
+  // Handle random theme rotation
+  if (themeId === 'random') {
+    startRandomThemeRotation();
+  } else {
+    stopRandomThemeRotation();
+  }
 }

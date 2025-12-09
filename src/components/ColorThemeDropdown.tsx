@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { themes, applyTheme, getCurrentTheme } from "../lib/themeUtils";
+import { themes, changeTheme, subscribeToThemeChanges, initializeThemeWatcher } from "../lib/themeUtils";
 
 export default function ColorThemeDropdown() {
   const [currentTheme, setCurrentTheme] = useState<string>("default");
@@ -9,55 +9,20 @@ export default function ColorThemeDropdown() {
 
   useEffect(() => {
     setIsMounted(true);
-    const checkTheme = () => {
-      const theme = getCurrentTheme();
-      setCurrentTheme(theme);
-    };
-
-    // Check initial theme
-    const savedTheme = getCurrentTheme();
-    setCurrentTheme(savedTheme);
-    applyTheme(savedTheme);
-
-    // Watch for theme changes from other components
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-color-theme"],
+    
+    // Initialize theme watcher (only once globally, but safe to call multiple times)
+    const watcherCleanup = initializeThemeWatcher();
+    
+    // Subscribe to theme changes
+    const unsubscribe = subscribeToThemeChanges((themeId) => {
+      setCurrentTheme(themeId);
     });
 
-    // Also check localStorage changes
-    const handleStorageChange = () => {
-      checkTheme();
-    };
-    window.addEventListener("storage", handleStorageChange);
-
-    // Poll for changes (fallback)
-    const interval = setInterval(checkTheme, 100);
-
     return () => {
-      observer.disconnect();
-      window.removeEventListener("storage", handleStorageChange);
-      clearInterval(interval);
+      unsubscribe();
+      watcherCleanup();
     };
   }, []);
-
-  // Handle random theme rotation
-  useEffect(() => {
-    if (currentTheme !== 'random') return;
-
-    // Apply random theme immediately
-    applyTheme('random', false); // Don't store preference on auto-rotation
-
-    // Change theme every minute (60000ms)
-    const randomInterval = setInterval(() => {
-      applyTheme('random', false); // Don't store preference on auto-rotation
-    }, 60000);
-
-    return () => {
-      clearInterval(randomInterval);
-    };
-  }, [currentTheme]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,8 +45,7 @@ export default function ColorThemeDropdown() {
 
 
   const handleThemeChange = (themeId: string) => {
-    setCurrentTheme(themeId);
-    applyTheme(themeId);
+    changeTheme(themeId);
     setIsOpen(false);
   };
 
