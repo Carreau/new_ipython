@@ -7,18 +7,18 @@ import ColorThemeDropdown from './ColorThemeDropdown';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
     <div class="flex justify-between items-center h-full">
       <!-- Logo -->
-      <a href="/" class="flex items-center space-x-3 group">
-        <img src="/ipython-logo.png" alt="IPython Logo" class="h-8 w-auto group-hover:scale-110 transition-transform" />
+      <a href={import.meta.env.BASE_URL} class="flex items-center space-x-3 group">
+        <img src={`${import.meta.env.BASE_URL}ipython-logo.png`} alt="IPython Logo" class="h-8 w-auto group-hover:scale-110 transition-transform" />
         <span class="text-xl font-bold text-gray-900 dark:text-white">IPython</span>
       </a>
 
       <!-- Navigation Links (Desktop) -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/features" class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Features</a>
-        <a href="/install" class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Install</a>
-        <a href="/get-started" class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Get Started</a>
-        <a href="/community" class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Community</a>
-        <a href="/about" class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">About</a>
+        <a href={`${import.meta.env.BASE_URL}features`} class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Features</a>
+        <a href={`${import.meta.env.BASE_URL}install`} class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Install</a>
+        <a href={`${import.meta.env.BASE_URL}get-started`} class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Get Started</a>
+        <a href={`${import.meta.env.BASE_URL}community`} class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">Community</a>
+        <a href={`${import.meta.env.BASE_URL}about`} class="text-gray-700 dark:text-gray-200 hover:text-theme-primary dark:hover:text-theme-secondary transition-colors font-medium">About</a>
       </div>
 
       <!-- Right side icons -->
@@ -42,11 +42,11 @@ import ColorThemeDropdown from './ColorThemeDropdown';
 
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-300 dark:border-ipython-slate mt-2">
-      <a href="/features" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Features</a>
-      <a href="/install" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Install</a>
-      <a href="/get-started" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Get Started</a>
-      <a href="/community" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Community</a>
-      <a href="/about" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">About</a>
+      <a href={`${import.meta.env.BASE_URL}features`} class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Features</a>
+      <a href={`${import.meta.env.BASE_URL}install`} class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Install</a>
+      <a href={`${import.meta.env.BASE_URL}get-started`} class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Get Started</a>
+      <a href={`${import.meta.env.BASE_URL}community`} class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">Community</a>
+      <a href={`${import.meta.env.BASE_URL}about`} class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-theme-primary hover:bg-gray-50 dark:hover:bg-ipython-slate dark:hover:text-theme-secondary rounded">About</a>
     </div>
   </div>
 </nav>

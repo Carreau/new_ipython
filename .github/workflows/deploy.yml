@@ -31,8 +31,13 @@ jobs:
       
       - name: Build Astro site
         run: npm run build
-        #env:
-          # If you have environment variables, set them here
+        env:
+          # BASE_PATH: Set this in repository secrets if your site is not at root
+          # For root domain (username.github.io): leave BASE_PATH secret unset or set to empty
+          # For subpath (username.github.io/repo-name): set BASE_PATH secret to "/repo-name"
+          # If BASE_PATH secret is not set, defaults to empty string (root)
+          BASE_PATH: ${{ secrets.BASE_PATH || '' }}
+          # If you have other environment variables, set them here
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Upload artifact

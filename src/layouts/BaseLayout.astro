@@ -17,8 +17,8 @@ const { title, description = 'IPython - Productive Interactive Computing' } = As
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/ipython-logo.png" />
-    <link rel="apple-touch-icon" href="/ipython-logo.png" />
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}ipython-logo.png`} />
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}ipython-logo.png`} />
     <title>{title} | IPython</title>
     <meta name="description" content={description} />
 
