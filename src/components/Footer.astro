@@ -1,5 +1,6 @@
 ---
 import ColorThemeSwitcher from './ColorThemeSwitcher';
+import { baseUrl } from '../lib/utils';
 // Footer component with links and copyright
 const currentYear = new Date().getFullYear();
 ---
@@ -17,8 +18,8 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Resources</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`${import.meta.env.BASE_URL}features`} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Features</a></li>
-          <li><a href={`${import.meta.env.BASE_URL}install`} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Installation</a></li>
+          <li><a href={baseUrl('features')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Features</a></li>
+          <li><a href={baseUrl('install')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Installation</a></li>
           <li><a href="https://pypi.org/project/ipython/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">PyPI</a></li>
           <li><a href="https://ipython.readthedocs.io/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Documentation</a></li>
         </ul>
@@ -28,9 +29,9 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Community</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`${import.meta.env.BASE_URL}community`} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Get Help</a></li>
+          <li><a href={baseUrl('community')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Get Help</a></li>
           <li><a href="https://github.com/ipython/ipython" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">GitHub</a></li>
-          <li><a href={`${import.meta.env.BASE_URL}about`} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">About</a></li>
+          <li><a href={baseUrl('about')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">About</a></li>
         </ul>
       </div>
 
@@ -38,7 +39,7 @@ const currentYear = new Date().getFullYear();
       <div>
         <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Legal</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`${import.meta.env.BASE_URL}about`} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Citation Info</a></li>
+          <li><a href={baseUrl('about')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Citation Info</a></li>
           <li><a href="https://github.com/ipython/ipython/blob/main/LICENSE" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">BSD License</a></li>
         </ul>
       </div>

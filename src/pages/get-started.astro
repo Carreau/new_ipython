@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import PageHeader from '../components/PageHeader.astro';
+import { baseUrl } from '../lib/utils';
 ---
 
 <BaseLayout title="Get Started">
@@ -130,10 +131,10 @@ ndarray(shape, dtype=float, buffer=None, offset=0,
         <div class="bg-blue-50 dark:bg-ipython-slate border-l-4 border-theme-secondary p-6 rounded">
           <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Next Steps</h3>
           <ul class="list-disc list-inside space-y-2 text-gray-600 dark:text-gray-400">
-            <li>Explore the <a href={`${import.meta.env.BASE_URL}features`} class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Features page</a> for more advanced capabilities</li>
+            <li>Explore the <a href={baseUrl('features')} class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Features page</a> for more advanced capabilities</li>
             <li>Read the <a href="https://ipython.readthedocs.io/" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">official documentation</a></li>
             <li>Try interactive notebooks with <a href="https://jupyter.org/" class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Jupyter</a></li>
-            <li>Get help on the <a href={`${import.meta.env.BASE_URL}community`} class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Community page</a></li>
+            <li>Get help on the <a href={baseUrl('community')} class="text-theme-secondary hover:text-theme-secondary/80 transition-colors">Community page</a></li>
           </ul>
         </div>
       </div>

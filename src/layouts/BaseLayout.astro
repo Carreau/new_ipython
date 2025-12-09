@@ -3,6 +3,7 @@ import '../styles/global.css';
 import ConditionalSnow from '../components/ConditionalSnow.tsx';
 import ConditionalChristmas from '../components/ConditionalChristmas.tsx';
 import ConditionalOcean from '../components/ConditionalOcean.tsx';
+import { baseUrl } from '../lib/utils';
 
 interface Props {
   title: string;
@@ -17,8 +18,8 @@ const { title, description = 'IPython - Productive Interactive Computing' } = As
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}ipython-logo.png`} />
-    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}ipython-logo.png`} />
+    <link rel="icon" type="image/png" href={baseUrl('ipython-logo.png')} />
+    <link rel="apple-touch-icon" href={baseUrl('ipython-logo.png')} />
     <title>{title} | IPython</title>
     <meta name="description" content={description} />
 
