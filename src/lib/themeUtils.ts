@@ -188,6 +188,14 @@ export function getRandomTheme(): string {
 }
 
 /**
+ * Theme storage format
+ */
+interface ThemeStorage {
+  themeId: string;
+  timestamp: number;
+}
+
+/**
  * Apply a theme to the document
  * If themeId is 'random', it will pick a random theme
  * @param themeId - The theme ID to apply
@@ -212,9 +220,13 @@ export function applyTheme(themeId: string, storePreference: boolean = true): vo
   // Update Tailwind colors via data attribute (use actual theme, not 'random')
   root.setAttribute('data-color-theme', actualThemeId);
   
-  // Store preference (store 'random' if that's what was selected)
+  // Store preference with timestamp (store 'random' if that's what was selected)
   if (storePreference) {
-    localStorage.setItem('colorTheme', themeId);
+    const storage: ThemeStorage = {
+      themeId: themeId,
+      timestamp: Date.now(),
+    };
+    localStorage.setItem('colorTheme', JSON.stringify(storage));
   }
 }
 
@@ -233,7 +245,53 @@ export function getCurrentTheme(): string {
  */
 export function getStoredTheme(): string {
   if (typeof localStorage === 'undefined') return 'default';
-  return localStorage.getItem('colorTheme') || 'default';
+  const stored = localStorage.getItem('colorTheme');
+  if (!stored) return 'default';
+  
+  // Handle both old format (string) and new format (object with timestamp)
+  try {
+    const parsed = JSON.parse(stored);
+    if (typeof parsed === 'object' && parsed.themeId) {
+      return parsed.themeId;
+    }
+  } catch {
+    // If parsing fails, assume it's the old string format
+    return stored;
+  }
+  
+  return 'default';
+}
+
+/**
+ * Get the stored theme preference with timestamp
+ * @returns Object with themeId and timestamp, or null if not found
+ */
+export function getStoredThemeWithTimestamp(): ThemeStorage | null {
+  if (typeof localStorage === 'undefined') return null;
+  const stored = localStorage.getItem('colorTheme');
+  if (!stored) return null;
+  
+  try {
+    const parsed = JSON.parse(stored);
+    if (typeof parsed === 'object' && parsed.themeId && parsed.timestamp) {
+      return parsed as ThemeStorage;
+    }
+    // Handle old format (just a string)
+    if (typeof parsed === 'string') {
+      return {
+        themeId: parsed,
+        timestamp: Date.now(), // Use current time as fallback
+      };
+    }
+  } catch {
+    // If parsing fails, assume it's the old string format
+    return {
+      themeId: stored,
+      timestamp: Date.now(), // Use current time as fallback
+    };
+  }
+  
+  return null;
 }
 
 // Theme change callbacks
@@ -305,7 +363,20 @@ export function initializeThemeWatcher(): () => void {
   // Watch for localStorage changes (from other tabs/windows)
   const handleStorageChange = (e: StorageEvent) => {
     if (e.key === 'colorTheme') {
-      const newTheme = e.newValue || 'default';
+      let newTheme = 'default';
+      if (e.newValue) {
+        try {
+          const parsed = JSON.parse(e.newValue);
+          if (typeof parsed === 'object' && parsed.themeId) {
+            newTheme = parsed.themeId;
+          } else if (typeof parsed === 'string') {
+            newTheme = parsed;
+          }
+        } catch {
+          // If parsing fails, assume it's the old string format
+          newTheme = e.newValue;
+        }
+      }
       applyTheme(newTheme, false); // Don't store, it's already stored
       notifyThemeChange(newTheme);
       
