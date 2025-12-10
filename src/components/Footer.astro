@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
 
 <footer class="bg-gray-50 dark:bg-ipython-slate border-t border-gray-200 dark:border-ipython-dark">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
       <!-- About -->
       <div>
         <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">IPython</h3>
@@ -32,6 +32,19 @@ const currentYear = new Date().getFullYear();
           <li><a href={baseUrl('community')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Get Help</a></li>
           <li><a href="https://github.com/ipython/ipython" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">GitHub</a></li>
           <li><a href={baseUrl('about')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Historical -->
+      <div>
+        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Historical</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href={baseUrl('microsoft-donation-2013')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Microsoft Donation 2013</a></li>
+          <li><a href={baseUrl('roadmap-announcement')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Roadmap Announcement</a></li>
+          <li><a href={baseUrl('sloan-grant')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Sloan Grant</a></li>
+          <li><a href={baseUrl('presentation')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">Presentations</a></li>
+          <li><a href={baseUrl('usersurvey2011')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">User Survey 2011</a></li>
+          <li><a href={baseUrl('usersurvey2013')} class="text-gray-600 dark:text-gray-400 hover:text-theme-secondary transition-colors">User Survey 2013</a></li>
         </ul>
       </div>
 

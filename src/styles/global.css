@@ -201,7 +201,11 @@ body {
 
 /* Text utilities */
 a {
-  @apply transition-colors duration-200;
+  @apply transition-colors duration-200 text-theme-primary hover:text-theme-secondary underline underline-offset-2;
+}
+
+.prose a {
+  @apply text-theme-primary hover:text-theme-secondary font-medium;
 }
 
 /* Code highlighting */
@@ -215,6 +219,46 @@ code {
 
 pre code {
   @apply text-gray-700 dark:text-gray-300;
+}
+
+/* Paragraph spacing */
+p {
+  @apply my-4 text-gray-700 dark:text-gray-300;
+}
+
+.prose p {
+  @apply my-4;
+}
+
+/* List styling */
+ul, ol {
+  @apply my-4 ml-6;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
+
+li {
+  @apply my-2 text-gray-700 dark:text-gray-300;
+}
+
+ul ul, ol ol, ul ol, ol ul {
+  @apply my-2;
+}
+
+/* Image sizing for historical pages */
+.prose img {
+  @apply my-6 rounded-lg;
+}
+
+/* Survey images should be smaller */
+.prose img[src*="survey"] {
+  @apply max-w-2xl mx-auto;
 }
 
 /* Gradient text for headers - use CSS variables for theme support */
