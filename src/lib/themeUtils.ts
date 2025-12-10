@@ -192,7 +192,7 @@ export function getRandomTheme(): string {
  */
 interface ThemeStorage {
   themeId: string;
-  timestamp: number;
+  date: string; // YYYY-MM-DD format
 }
 
 /**
@@ -220,11 +220,13 @@ export function applyTheme(themeId: string, storePreference: boolean = true): vo
   // Update Tailwind colors via data attribute (use actual theme, not 'random')
   root.setAttribute('data-color-theme', actualThemeId);
   
-  // Store preference with timestamp (store 'random' if that's what was selected)
+  // Store preference with date (store 'random' if that's what was selected)
   if (storePreference) {
+    const today = new Date();
+    const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     const storage: ThemeStorage = {
       themeId: themeId,
-      timestamp: Date.now(),
+      date: dateString,
     };
     localStorage.setItem('colorTheme', JSON.stringify(storage));
   }
@@ -263,31 +265,46 @@ export function getStoredTheme(): string {
 }
 
 /**
- * Get the stored theme preference with timestamp
- * @returns Object with themeId and timestamp, or null if not found
+ * Get the stored theme preference with date
+ * @returns Object with themeId and date, or null if not found
  */
-export function getStoredThemeWithTimestamp(): ThemeStorage | null {
+export function getStoredThemeWithDate(): ThemeStorage | null {
   if (typeof localStorage === 'undefined') return null;
   const stored = localStorage.getItem('colorTheme');
   if (!stored) return null;
   
   try {
     const parsed = JSON.parse(stored);
-    if (typeof parsed === 'object' && parsed.themeId && parsed.timestamp) {
-      return parsed as ThemeStorage;
+    if (typeof parsed === 'object' && parsed.themeId) {
+      // Handle both old format (with timestamp) and new format (with date)
+      if (parsed.date) {
+        return parsed as ThemeStorage;
+      } else if (parsed.timestamp) {
+        // Convert old timestamp to date string
+        const date = new Date(parsed.timestamp);
+        const dateString = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+        return {
+          themeId: parsed.themeId,
+          date: dateString,
+        };
+      }
     }
     // Handle old format (just a string)
     if (typeof parsed === 'string') {
+      const today = new Date();
+      const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
       return {
         themeId: parsed,
-        timestamp: Date.now(), // Use current time as fallback
+        date: dateString, // Use current date as fallback
       };
     }
   } catch {
     // If parsing fails, assume it's the old string format
+    const today = new Date();
+    const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     return {
       themeId: stored,
-      timestamp: Date.now(), // Use current time as fallback
+      date: dateString, // Use current date as fallback
     };
   }
   
